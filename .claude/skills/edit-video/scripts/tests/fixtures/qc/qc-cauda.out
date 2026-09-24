@@ -1,0 +1,13 @@
+--- stdout
+
+--- stderr
+varredura: 6 segmento(s), 1013 janela(s) de envelope de 10 ms, 1 bruto(s)
+alvo 200 ms (perfil ritmo.pads.post) · piso auto (piso_local + 10 dB) · ruído da sala -70 dB (mediana do piso_local nos 6 pontos de corte)
+cauda: mediana 220 · p90 225 · máx 230 ms · 5/6 acima do alvo · 0 acima de 600 ms
+   ↳ seg00 b0               0.280-  1.803  cauda 230 ms (+30 sobre o alvo)
+   ↳ seg03 b3               5.395-  7.185  cauda 220 ms (+20 sobre o alvo)
+   ↳ seg04 b4               7.405-  8.892  cauda 220 ms (+20 sobre o alvo)
+   ↳ seg05 b5               8.892- 10.450  cauda 220 ms (+20 sobre o alvo)
+   ↳ seg01 b1               1.803-  3.488  cauda 210 ms (+10 sobre o alvo)
+excedente total sobre o alvo: 0.10s em 5 segmento(s)
+ok: p90 225 ms ≤ 600 ms

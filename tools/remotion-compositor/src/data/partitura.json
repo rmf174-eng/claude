@@ -1,0 +1,191 @@
+{
+ "contrato": "benchmark.partitura/v1",
+ "_procedencia": {
+  "captions": "exemplo",
+  "audio": "exemplo",
+  "audio_e_entregavel": false,
+  "perfil": {
+   "nome": "reels",
+   "arquivo": "exemplo",
+   "video": {
+    "largura": 1080,
+    "altura": 1920,
+    "fps": 30
+   }
+  },
+  "tema": "temaRoseSobreVideo",
+  "lexico_creator": "exemplo",
+  "usuario": "exemplo",
+  "pesos": {
+   "prosodia": 0.2,
+   "lexico": 0.3,
+   "posicao": 0.2,
+   "repeticao": 0.3
+  },
+  "prosodia_ref": {
+   "realce_db": 2.5,
+   "alongamento": 2.0,
+   "pausa_ms": 350
+  },
+  "orcamento": {
+   "alvo_elem_10s": 2.7,
+   "duracao_s": 79.1,
+   "cota": 21,
+   "candidatos": 257,
+   "eleitos": 21
+  },
+  "paginacao": {
+   "paginas": 63,
+   "fechamentos": {
+    "largura": 27,
+    "palavras": 2,
+    "semantica": 34,
+    "fim": 1
+   },
+   "fundidas": {
+    "tras": 0,
+    "frente": 1
+   },
+   "movidas": {
+    "tras": 5,
+    "frente": 0
+   },
+   "avisos": []
+  },
+  "legenda": {
+   "fracao_alvo": 1.0,
+   "fracao_medida": 1.0,
+   "janelas_off": 0
+  },
+  "modo": "prosodia"
+ },
+ "paginas": [
+  {
+   "i": 0,
+   "startMs": 0,
+   "endMs": 1600,
+   "duracaoEfetivaMs": 1600,
+   "larguraEstimada": 883,
+   "motivo": "largura",
+   "text": "Este é um exemplo de legenda",
+   "tokens": [
+    {
+     "text": "Este",
+     "fromMs": 0,
+     "toMs": 240
+    },
+    {
+     "text": " é",
+     "fromMs": 260,
+     "toMs": 500
+    },
+    {
+     "text": " um",
+     "fromMs": 520,
+     "toMs": 760
+    },
+    {
+     "text": " exemplo",
+     "fromMs": 780,
+     "toMs": 1020
+    },
+    {
+     "text": " de",
+     "fromMs": 1040,
+     "toMs": 1280
+    },
+    {
+     "text": " legenda",
+     "fromMs": 1300,
+     "toMs": 1540
+    }
+   ],
+   "linhas": [
+    [
+     {
+      "text": "Este",
+      "fromMs": 0,
+      "toMs": 240
+     },
+     {
+      "text": " é",
+      "fromMs": 260,
+      "toMs": 500
+     },
+     {
+      "text": " um",
+      "fromMs": 520,
+      "toMs": 760
+     }
+    ],
+    [
+     {
+      "text": " exemplo",
+      "fromMs": 780,
+      "toMs": 1020
+     },
+     {
+      "text": " de",
+      "fromMs": 1040,
+      "toMs": 1280
+     },
+     {
+      "text": " legenda",
+      "fromMs": 1300,
+      "toMs": 1540
+     }
+    ]
+   ]
+  }
+ ],
+ "legenda_off": [],
+ "legenda_off_detalhe": [],
+ "itens": [
+  {
+   "id": "001-exemplo",
+   "papel": "tese",
+   "componente": "HandText",
+   "canal": "texto",
+   "texto": "exemplo",
+   "parafrasear": true,
+   "palavra": {
+    "text": "briga?",
+    "idx": 15,
+    "fromMs": 3600,
+    "toMs": 3920
+   },
+   "inS": 3.6,
+   "outS": 5.947,
+   "zona": "topo",
+   "larguraEstimadaPx": 2336,
+   "cor": "ink",
+   "sfx": "pencil",
+   "suprime_legenda": false,
+   "score": 0.9366,
+   "por_que": {
+    "prosodia": 0.0144,
+    "lexico": 0.3,
+    "posicao": 0.2,
+    "repeticao": 0.3,
+    "medido": {
+     "realce_db": 0.36,
+     "alongamento": 0.741,
+     "pausa_depois_ms": 0,
+     "piso_local_db": -36.91
+    }
+   },
+   "travado": false
+  }
+ ],
+ "descartados": [
+  {
+   "id": "002-exemplo",
+   "score": 0.798,
+   "motivo": "espacamento",
+   "medido": {
+    "realce_db": 1.18,
+    "alongamento": 1.111
+   }
+  }
+ ]
+}

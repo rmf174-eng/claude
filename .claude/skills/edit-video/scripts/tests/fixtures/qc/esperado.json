@@ -1,0 +1,103 @@
+{
+  "schema": "benchmark.qc-fixtures/v1",
+  "como_foram_capturadas": "Numa produção SINTÉTICA, não em material de creator: imagem `testsrc2` 256x456, fala do TTS do sistema (`say -v Luciana`) dizendo numerais, montada pelo `montar.sh` de verdade. Dois defeitos plantados na EDL: o seg02 fecha 60 ms dentro do ataque da palavra seguinte, e o seg04 abre 100 ms dentro da primeira palavra. Nenhum nome, nenhuma fala e nenhum bruto de creator entram aqui — ver FRONTEIRA.md §3 e o precedente da SPEC-16.",
+  "as_hand_made": "qc-emendas-asr.out, defeito-asr-sumiu.out, defeito-cor-estagio.out e defeito-timeline-velha.out foram ESCRITAS a partir das strings de formato literais dos scripts, não capturadas. O `test_qc_bateria.py` confere que essas strings ainda existem no fonte — se alguém mudar o formato, o teste quebra em vez de a fixture apodrecer em silêncio.",
+  "conferencia_do_formato_hand_made": "`qc-emendas-asr-real.out` é uma captura histórica de Deepgram sobre áudio sintético. Ela permanece somente como regressão do parser do formato e da timeline por frames. A lógica atual de comparação, inclusive normalização numérica, é exercitada produtor→adaptador em `test_asr_compare.py`; a captura antiga não é aceita como prova do veredito atual.",
+  "o_que_a_spec_05_mudou_aqui": "O stderr do `qc-emendas-asr-real.out` traz `fronteiras por frames reais: última = 10.200s (a soma nominal da EDL daria 10.130s — 70 ms de deriva acumulada)`. É a correção da SPEC-05 em execução: nesta peça de 10,2 s a deriva medida é de 70 ms (em `creator-2/peca-03`, que é 6× mais longa, era 353 ms). Fixture capturada antes da SPEC-05/07/11 teria nascido mentindo.",
+
+  "casos": [
+    {"arquivo": "integridade-edl.out", "item": "integridade-edl", "exit": 0,
+     "esperado": {"unidades": 6, "achados": 0, "falhas": 0, "estado": "ok"},
+     "porque": "timeline fresca, fingerprint bate: 6 segmentos, 306 frames."},
+
+    {"arquivo": "cortes-do-bruto.out", "item": "cortes-do-bruto", "exit": 0,
+     "esperado": {"unidades": 1, "achados": 0, "falhas": 0, "estado": "ok"},
+     "porque": "1 bruto varrido, take contínuo — nada a cruzar. `unidades` é o bruto, não o corte: com 0 brutos varridos o item NÃO poderia sair ok."},
+
+    {"arquivo": "audit-emendas.out", "item": "audit-emendas", "exit": 0,
+     "esperado": {"unidades": 6, "achados": 2, "falhas": 0, "estado": "achado"},
+     "porque": "CLIP-FIM e CLIP-INICIO isolados são achados de energia, não falha. O produtor atual sai 0 nesse caso; VAZA-PROX ou segmento realmente mudo continuam saindo 1 e são promovidos pela bateria."},
+
+    {"arquivo": "defeito-vaza-prox.out", "item": "audit-emendas", "exit": 1,
+     "esperado": {"unidades": 1, "achados": 0, "falhas": 1, "estado": "falha"},
+     "porque": "DEFEITO PLANTADO: a palavra da próxima região aparece antes do fim do segmento. VAZA-PROX tem referência lexical independente e continua sendo promovido a falha dura."},
+
+    {"arquivo": "qc-ataque.out", "item": "qc-ataque", "exit": 1,
+     "esperado": {"unidades": 2, "esperadas": 5, "achados": 0, "falhas": 1,
+                  "estado": "falha"},
+     "porque": "2 medidas para 5 emendas NÃO é buraco: três junções são contíguas no mesmo src (split de plano) e o script as pula de propósito. É o mesmo fenômeno do `22/28` da peca-01. O ATAQUE é falha: a régua é a inclinação, independente do ponto de corte."},
+
+    {"arquivo": "qc-fonemas.out", "item": "qc-fonemas", "exit": 1,
+     "esperado": {"unidades": 6, "achados": 0, "falhas": 1, "estado": "falha"},
+     "porque": "CONSOANTE-VAZADA sem marca [HERDADO] é defeito nosso: a régua é o corpo da palavra vizinha."},
+
+    {"arquivo": "qc-cauda.out", "item": "qc-cauda", "exit": 0,
+     "esperado": {"unidades": 6, "achados": 5, "falhas": 0, "estado": "achado"},
+     "porque": "5 segmentos com cauda acima do alvo, mas p90 dentro do teto de 3× — achado, não falha."},
+
+    {"arquivo": "qc-nivel-achado.out", "item": "qc-nivel-achado", "exit": 0,
+     "esperado": {"unidades": 558, "achados": 5, "falhas": 0, "estado": "achado"},
+     "porque": "DETECTOR por definição do próprio script: todo run listado está abaixo do limiar porque foi selecionado por isso."},
+
+    {"arquivo": "qc-nivel-balanco.out", "item": "qc-nivel-balanco", "exit": 0,
+     "esperado": {"unidades": 6, "achados": 0, "falhas": 0, "estado": "ok"},
+     "porque": "leave-one-out sobre os pares: 6 ranges, 0 flags."},
+
+    {"arquivo": "av-sync.out", "item": "av-sync", "exit": 0,
+     "esperado": {"unidades": 2, "esperadas": 5, "achados": 0, "falhas": 0,
+                  "estado": "ok"},
+     "porque": "2 fronteiras com marcador de 5; as outras 3 são contíguas e entram em `sem_marcador`, NUNCA em ok."},
+
+    {"arquivo": "qc-cor.out", "item": "qc-cor", "exit": 0,
+     "esperado": {"unidades": 11, "achados": 2, "falhas": 0, "estado": "achado"},
+     "porque": "🔴 O `qc-cor.py` SAI 0 pulando 2 das 4 seções (sem bruto legível não há avanço por pixel nem fidelidade). Os dois SKIP viram achado SECAO-NAO-MEDIDA. Sem isso, o pulo viraria aprovação silenciosa."},
+
+    {"arquivo": "flicker-scan.out", "item": "flicker-scan", "exit": 0,
+     "esperado": {"unidades": 240, "achados": 21, "falhas": 0, "estado": "achado"},
+     "porque": "21 achados batendo com o `21 salto(s)` que o próprio script conta. Esta fixture pegou um defeito do adaptador: sem `re.M` o `findall` lia 1 de 21."},
+
+    {"arquivo": "loudness.out", "item": "loudness", "exit": 1,
+     "esperado": {"unidades": 1, "esperadas": 1, "achados": 0, "falhas": 1,
+                  "estado": "falha"},
+     "porque": "alvo absoluto do contrato de entrega: −18,6 contra −14,0 é 4,6 LU fora."},
+
+    {"arquivo": "preto.out", "item": "preto", "exit": 0,
+     "esperado": {"unidades": 306, "achados": 0, "falhas": 0, "estado": "ok"},
+     "porque": "306 frames varridos, nenhum preto. A CONTAGEM é o que separa este ok de um portão cego."},
+
+    {"arquivo": "qc-emendas-asr.out", "item": "qc-emendas-asr", "exit": 0,
+     "esperado": {"unidades": 5, "esperadas": 5, "achados": 0, "falhas": 0,
+                  "estado": "ok"},
+     "porque": "controle positivo do adaptador de ASR: 5 emendas transcritas, nenhuma flag."},
+
+    {"arquivo": "qc-emendas-asr-real.out", "item": "qc-emendas-asr", "exit": 1,
+     "esperado": {"unidades": 5, "esperadas": 5, "achados": 5, "falhas": 0,
+                  "estado": "achado"},
+     "porque": "Captura histórica anterior à normalização dois↔2. As 5 tags SUMIU continuam sendo parseadas, mas divergência lexical isolada de janela curta é revisão, não prova acústica para bloquear. O caminho atual produtor→adaptador é exercitado com ASR mockado em test_asr_compare.py."},
+
+    {"arquivo": "defeito-asr-sumiu.out", "item": "qc-emendas-asr", "exit": 1,
+     "esperado": {"unidades": 3, "achados": 2, "falhas": 0, "estado": "achado"},
+     "porque": "Controle de parser ASR: SUMIU e VAZOU são preservados como dois achados revisáveis. O bloqueio duro depende de evidência acústica independente; defeitos plantados de ataque, fonema, cauda e envelope continuam cobertos pelos respectivos QCs."},
+
+    {"arquivo": "defeito-cor-estagio.out", "item": "qc-cor", "exit": 1,
+     "esperado": {"unidades": 38, "achados": 0, "falhas": 3, "estado": "falha"},
+     "porque": "DEFEITO PLANTADO 2/6 — o defeito real de 2026-08-06, em 13 entregáveis: pixels ainda não convertidos carregando rótulo de saída."},
+
+    {"arquivo": "defeito-timeline-velha.out", "item": "integridade-edl", "exit": 0,
+     "esperado": {"unidades": 29, "achados": 0, "falhas": 1, "estado": "falha"},
+     "porque": "DEFEITO PLANTADO 3/6, e o mais importante: o script sai **0** e a bateria reprova assim mesmo. Exit code não é veredito."},
+
+    {"arquivo": "defeito-avsync.out", "item": "av-sync", "exit": 1,
+     "esperado": {"unidades": 2, "achados": 0, "falhas": 1, "estado": "falha"},
+     "porque": "DEFEITO PLANTADO 4/6, capturado de execução real: 20 ms de atraso injetado com `adelay=20|20` no montado. Mediana medida 19,98 ms contra alvo de 3,0."},
+
+    {"arquivo": "defeito-preto.out", "item": "preto", "exit": 0,
+     "esperado": {"unidades": 42, "achados": 0, "falhas": 1, "estado": "falha"},
+     "porque": "DEFEITO PLANTADO 5/6, capturado de execução real. O ffmpeg sai **0** com 0,37 s de preto no arquivo — quem reprova é o parse do `black_start`, não o exit."},
+
+    {"arquivo": "cego-sem-medicao.out", "item": "audit-emendas", "exit": 0,
+     "esperado": {"unidades": 0, "achados": 0, "falhas": 0,
+                  "estado": "nao_verificado"},
+     "porque": "DEFEITO PLANTADO 6/6, e é o defeito da CASA: o script rodou, saiu 0 e não mediu nada. Saída limpa com `unidades == 0` NUNCA é ok. Sem esta fixture, a regra 1 seria só uma frase no docstring."}
+  ]
+}

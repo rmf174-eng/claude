@@ -1,0 +1,52 @@
+{
+ "contrato": "benchmark.estilo-usuario/v1",
+ "usuario": "teste",
+ "slug": "a",
+ "versao": "v001",
+ "nome": "A (pai)",
+ "nota": "Fixture da bateria §8.2: a camada 3. `ritmo.gramatica_plano` é setado nas 4 camadas de propósito (é o único path do escopo que o contrato benchmark.edit-estilo/v1 da UI sabe expressar).",
+ "perfis": [
+  "teste"
+ ],
+ "herda": null,
+ "picks": {
+  "legenda": "legenda-chapada",
+  "gancho": null
+ },
+ "grafismo": {
+  "postit": true
+ },
+ "parametros": {
+  "legenda-chapada": {
+   "fontSize": 58,
+   "yPct": 79
+  }
+ },
+ "perfil_overrides": {
+  "ritmo": {
+   "pads": {
+    "pre": 0.03
+   },
+   "gramatica_plano": "punch-pontual"
+  },
+  "cor": {
+   "grade": "eq=saturation=1.18:gamma=0.95"
+  },
+  "audio": {
+   "loudness": {
+    "I": -14.0
+   }
+  }
+ },
+ "procedencia": {
+  "tipo": "proprio",
+  "fonte": null,
+  "nota_de_uso": null
+ },
+ "historico": {
+  "criado_em": "2026-08-08T10:00:00-03:00",
+  "derivado_de": null,
+  "confirmado_por": "teste",
+  "mudou": []
+ }
+}

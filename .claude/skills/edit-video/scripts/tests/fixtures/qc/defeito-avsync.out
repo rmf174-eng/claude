@@ -1,0 +1,62 @@
+--- stdout
+{
+ "schema": "benchmark.qc-avsync/v1",
+ "dir": ".",
+ "video": "v1-montado.mp4",
+ "fronteiras_origem": "timeline_real",
+ "alvo_ms": 3.0,
+ "n_fronteiras": 5,
+ "n_com_marcador": 2,
+ "n_jcut": 0,
+ "n_sem_marcador": 3,
+ "mediana_abs_ms": 19.98,
+ "slope_ms_por_emenda": 0.0,
+ "r2": 0.0,
+ "deriva_ms": 0.0,
+ "medidas": [
+  {
+   "onde": "2→3",
+   "t": 5.3333,
+   "offset_ms": 21.98,
+   "offset_vale_ms": 22.81,
+   "largura_vale_ms": 1.0,
+   "modo": "vale",
+   "contraste_db": 59.3
+  },
+  {
+   "onde": "3→4",
+   "t": 7.1333,
+   "offset_ms": 17.98,
+   "offset_vale_ms": 16.93,
+   "largura_vale_ms": 5.0,
+   "modo": "vale",
+   "contraste_db": 69.0
+  }
+ ],
+ "sem_marcador": [
+  {
+   "onde": "0→1",
+   "t": 1.533333,
+   "por_que": "junção contígua"
+  },
+  {
+   "onde": "1→2",
+   "t": 3.233333,
+   "por_que": "junção contígua"
+  },
+  {
+   "onde": "4→5",
+   "t": 8.633333,
+   "por_que": "junção contígua"
+  }
+ ],
+ "flags": [
+  {
+   "onde": "peça",
+   "tag": "AVSYNC-MEDIANA",
+   "detalhe": "mediana |offset| 19.98 ms > alvo 3.0 ms"
+  }
+ ],
+ "resumo": "2/5 fronteira(s) com marcador · mediana 19.98 ms · deriva 0.00 ms (r² 0.00)"
+}
+--- stderr

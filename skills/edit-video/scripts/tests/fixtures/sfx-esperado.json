@@ -1,0 +1,242 @@
+{
+ "schema": "benchmark.sfx-esperado/v1",
+ "_porque": "A tabela de §2.2 da SPEC-26, congelada em 2026-08-09 ANTES da migração, e o estado depois dela. Serve para duas coisas: provar que a régua reproduz a medição, e deixar registrado o que foi trocado — trocar o conteúdo de um .wav mantendo o nome é a família do segmento órfão, e sem este registro ninguém saberia.",
+ "biblioteca": "tools/remotion-compositor/public/sfx",
+ "perfil": {
+  "nome": "reels",
+  "fps": 30,
+  "sr": 48000,
+  "atraso_max_ms": 33.33,
+  "corpo_acento_max_ms": 400,
+  "lufs_alvo": [
+   -21.0,
+   -19.0
+  ]
+ },
+ "antes_da_migracao": {
+  "medido_em": "2026-08-09",
+  "resumo": {
+   "medidos": 9,
+   "ok": 5,
+   "achados": 2,
+   "falhas": 2,
+   "loudness_fora": 5
+  },
+  "arquivos": [
+   {
+    "nome": "pop",
+    "dur_s": 0.321,
+    "onset_ms": 0.0,
+    "corpo_ms": 47,
+    "lufs": -22.5,
+    "pico_dbfs": -2.5,
+    "classe": "acento",
+    "estado": "ok"
+   },
+   {
+    "nome": "pop-hi",
+    "dur_s": 0.318,
+    "onset_ms": 0.0,
+    "corpo_ms": 36,
+    "lufs": -22.4,
+    "pico_dbfs": -2.0,
+    "classe": "acento",
+    "estado": "ok"
+   },
+   {
+    "nome": "pop-lo",
+    "dur_s": 0.322,
+    "onset_ms": 0.0,
+    "corpo_ms": 45,
+    "lufs": -22.5,
+    "pico_dbfs": -2.9,
+    "classe": "acento",
+    "estado": "ok"
+   },
+   {
+    "nome": "shutter",
+    "dur_s": 0.4,
+    "onset_ms": 7.0,
+    "corpo_ms": 320,
+    "lufs": -19.0,
+    "pico_dbfs": -4.4,
+    "classe": "acento",
+    "estado": "ok"
+   },
+   {
+    "nome": "scratch",
+    "dur_s": 0.37,
+    "onset_ms": 17.0,
+    "corpo_ms": 348,
+    "lufs": -20.2,
+    "pico_dbfs": -1.4,
+    "classe": "acento",
+    "estado": "ok"
+   },
+   {
+    "nome": "whoosh",
+    "dur_s": 0.154,
+    "onset_ms": 46.0,
+    "corpo_ms": 102,
+    "lufs": -20.0,
+    "pico_dbfs": -3.1,
+    "classe": "acento",
+    "estado": "falha"
+   },
+   {
+    "nome": "whoosh-soft",
+    "dur_s": 0.299,
+    "onset_ms": 75.0,
+    "corpo_ms": 183,
+    "lufs": -21.0,
+    "pico_dbfs": -4.4,
+    "classe": "acento",
+    "estado": "falha"
+   },
+   {
+    "nome": "typing",
+    "dur_s": 2.2,
+    "onset_ms": 98.0,
+    "corpo_ms": 2070,
+    "lufs": -29.3,
+    "pico_dbfs": -2.2,
+    "classe": "textura",
+    "estado": "achado"
+   },
+   {
+    "nome": "pencil",
+    "dur_s": 1.917,
+    "onset_ms": 135.0,
+    "corpo_ms": 1715,
+    "lufs": -23.7,
+    "pico_dbfs": -3.0,
+    "classe": "textura",
+    "estado": "achado"
+   }
+  ]
+ },
+ "depois_da_migracao": {
+  "medido_em": "2026-08-09",
+  "migrados": [
+   "whoosh",
+   "whoosh-soft",
+   "typing",
+   "pencil"
+  ],
+  "nao_reprocessados": [
+   "pop",
+   "pop-hi",
+   "pop-lo",
+   "shutter",
+   "scratch"
+  ],
+  "resumo": {
+   "medidos": 9,
+   "ok": 9,
+   "achados": 0,
+   "falhas": 0,
+   "loudness_fora": 4,
+   "sem_procedencia": 0
+  },
+  "arquivos": [
+   {
+    "nome": "pencil",
+    "onset_ms": 3.0,
+    "corpo_ms": 1714.0,
+    "lufs": -21.6,
+    "pico_dbfs": -1.0,
+    "classe": "textura",
+    "estado": "ok",
+    "tags": []
+   },
+   {
+    "nome": "pop-hi",
+    "onset_ms": 0.0,
+    "corpo_ms": 36.0,
+    "lufs": -22.4,
+    "pico_dbfs": -2.0,
+    "classe": "acento",
+    "estado": "ok",
+    "tags": [
+     "LOUDNESS-FORA-DO-ALVO"
+    ]
+   },
+   {
+    "nome": "pop-lo",
+    "onset_ms": 0.0,
+    "corpo_ms": 45.0,
+    "lufs": -22.5,
+    "pico_dbfs": -2.9,
+    "classe": "acento",
+    "estado": "ok",
+    "tags": [
+     "LOUDNESS-FORA-DO-ALVO"
+    ]
+   },
+   {
+    "nome": "pop",
+    "onset_ms": 0.0,
+    "corpo_ms": 47.0,
+    "lufs": -22.5,
+    "pico_dbfs": -2.5,
+    "classe": "acento",
+    "estado": "ok",
+    "tags": [
+     "LOUDNESS-FORA-DO-ALVO"
+    ]
+   },
+   {
+    "nome": "scratch",
+    "onset_ms": 17.0,
+    "corpo_ms": 348.0,
+    "lufs": -20.2,
+    "pico_dbfs": -1.4,
+    "classe": "acento",
+    "estado": "ok",
+    "tags": []
+   },
+   {
+    "nome": "shutter",
+    "onset_ms": 7.0,
+    "corpo_ms": 320.0,
+    "lufs": -19.0,
+    "pico_dbfs": -4.4,
+    "classe": "acento",
+    "estado": "ok",
+    "tags": []
+   },
+   {
+    "nome": "typing",
+    "onset_ms": 3.0,
+    "corpo_ms": 2070.0,
+    "lufs": -27.9,
+    "pico_dbfs": -1.0,
+    "classe": "textura",
+    "estado": "ok",
+    "tags": [
+     "LOUDNESS-FORA-DO-ALVO"
+    ]
+   },
+   {
+    "nome": "whoosh-soft",
+    "onset_ms": 3.0,
+    "corpo_ms": 183.0,
+    "lufs": -20.0,
+    "pico_dbfs": -4.6,
+    "classe": "acento",
+    "estado": "ok",
+    "tags": []
+   },
+   {
+    "nome": "whoosh",
+    "onset_ms": 3.0,
+    "corpo_ms": 102.0,
+    "lufs": -20.0,
+    "pico_dbfs": -4.5,
+    "classe": "acento",
+    "estado": "ok",
+    "tags": []
+   }
+  ]
+ }
+}

@@ -1,0 +1,2519 @@
+{
+ "contrato": "benchmark.catalogo-estilos/v1",
+ "gerado_em": "2026-08-12T09:53:04-03:00",
+ "gerador": "scripts/gerar-previews.py",
+ "canvas": {
+  "largura": 1080,
+  "altura": 1920,
+  "fps": 30,
+  "escala": 0.3333
+ },
+ "estilos": [
+  {
+   "slug": "plano-fixo",
+   "grupo": "gramatica",
+   "nome": "Plano fixo",
+   "oQuePinta": "Um enquadramento só do começo ao fim; o corte de fala aparece como jump cut assumido.",
+   "camada": "edl",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [
+    "reels",
+    "longform"
+   ],
+   "origem": "skills/edit-video/perfis/reels.json:ritmo.gramatica_plano",
+   "parametros": [
+    {
+     "nome": "zoom",
+     "tipo": "fator",
+     "padrao": 1,
+     "faixa": [
+      1,
+      1.6
+     ],
+     "nota": "recorte único aplicado a todos os segmentos da EDL"
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/plano-fixo.webm",
+    "poster": "previews/plano-fixo.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "09d9ae5bbee0"
+  },
+  {
+   "slug": "plano-alternado",
+   "grupo": "gramatica",
+   "nome": "Plano alternado",
+   "oQuePinta": "Alterna enquadramento nativo e punch-in a cada frase, e o jump cut passa a ler como troca de plano.",
+   "camada": "edl",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "skills/edit-video/perfis/_base.json:ritmo.zoom_alternado",
+   "parametros": [
+    {
+     "nome": "zoomA",
+     "tipo": "fator",
+     "padrao": 1,
+     "faixa": [
+      1,
+      1.2
+     ]
+    },
+    {
+     "nome": "zoomB",
+     "tipo": "fator",
+     "padrao": 1.27,
+     "faixa": [
+      1.1,
+      1.6
+     ],
+     "nota": "faixa medida na referência: 1,22–1,31"
+    },
+    {
+     "nome": "trocaS",
+     "tipo": "s",
+     "padrao": 2.2,
+     "faixa": [
+      0.8,
+      8
+     ],
+     "nota": "na peça real a troca é por FRASE; no preview é periódica"
+    }
+   ],
+   "medido": {
+    "fonte": "ref-D, take único 4K, 23 s (modelado 2026-07-25)",
+    "data": "2026-07-25"
+   },
+   "duplicatas": [],
+   "preview": {
+    "durS": 4.6,
+    "placa": "retrato",
+    "frameCartao": 96,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/plano-alternado.webm",
+    "poster": "previews/plano-alternado.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "e959703a9f9e"
+  },
+  {
+   "slug": "punch-pontual",
+   "grupo": "gramatica",
+   "nome": "Punch-in pontual",
+   "oQuePinta": "Um único avanço de enquadramento num beat de ênfase; o resto da peça fica no plano nativo.",
+   "camada": "edl",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [
+    "vsl",
+    "screencast"
+   ],
+   "origem": "skills/edit-video/perfis/vsl.json:ritmo.gramatica_plano",
+   "parametros": [
+    {
+     "nome": "zoom",
+     "tipo": "fator",
+     "padrao": 1.27,
+     "faixa": [
+      1.05,
+      1.6
+     ]
+    },
+    {
+     "nome": "emS",
+     "tipo": "s",
+     "padrao": 1.2,
+     "faixa": [
+      0,
+      60
+     ]
+    },
+    {
+     "nome": "rampaS",
+     "tipo": "s",
+     "padrao": 0.45,
+     "faixa": [
+      0.1,
+      2
+     ]
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/punch-pontual.webm",
+    "poster": "previews/punch-pontual.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "ac99998cddf2"
+  },
+  {
+   "slug": "split-screen-esfumacado",
+   "grupo": "gramatica",
+   "nome": "Split-screen esfumaçado",
+   "oQuePinta": "Encaixa o apoio no topo, REENQUADRA a base para o rosto cair abaixo da rampa e dissolve a emenda numa rampa longa de alpha. O deslocamento é MEDIDO por segmento do vídeo, não escolhido no olho.",
+   "camada": "pixel",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "skills/edit-video/scripts/split-broll.py:56",
+   "parametros": [
+    {
+     "nome": "opacoPct",
+     "tipo": "fator",
+     "padrao": 34,
+     "faixa": [
+      20,
+      45
+     ],
+     "nota": "fração da altura"
+    },
+    {
+     "nome": "fimPct",
+     "tipo": "fator",
+     "padrao": 51,
+     "faixa": [
+      30,
+      60
+     ],
+     "nota": "% onde o alpha chega a zero — a diferença para `opacoPct` É a rampa"
+    },
+    {
+     "nome": "folgaTopoPct",
+     "tipo": "fator",
+     "padrao": 3.6,
+     "faixa": [
+      1,
+      8
+     ],
+     "nota": "respiro entre o fim da rampa e o topo da cabeça; o deslocamento é MEDIDO, não escolhido"
+    },
+    {
+     "nome": "escalaMax",
+     "tipo": "fator",
+     "padrao": 1.08,
+     "faixa": [
+      1,
+      1.25
+     ],
+     "nota": "teto do upscale da base; estourar é exit 1, nunca clamp silencioso"
+    }
+   ],
+   "medido": {
+    "fonte": "ref-D — rampa longa (17% da altura) no trecho remendado; enquadramento medido por matte de pessoa em 35 amostras (SPEC-28): sem plano, 12,2% de mediana de b-roll sobre o topo da cabeça; com plano, 0,00%",
+    "data": "2026-08-09"
+   },
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/split-screen-esfumacado.webm",
+    "poster": "previews/split-screen-esfumacado.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "9855d27d9c40"
+  },
+  {
+   "slug": "hook-titulo-typeon",
+   "grupo": "gancho",
+   "nome": "Gancho digitado",
+   "oQuePinta": "Uma linha em caixa alta condensada digita letra a letra e uma serif itálica entra seca embaixo, deslocada.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [
+    "reels"
+   ],
+   "origem": "src/TitleCard.tsx:82",
+   "parametros": [
+    {
+     "nome": "fpc",
+     "tipo": "fator",
+     "padrao": 1.1,
+     "faixa": [
+      0.4,
+      3
+     ],
+     "nota": "frames por caractere digitado"
+    },
+    {
+     "nome": "fontSize1",
+     "tipo": "px",
+     "padrao": 128,
+     "faixa": [
+      48,
+      220
+     ]
+    },
+    {
+     "nome": "fontSize2",
+     "tipo": "px",
+     "padrao": 150,
+     "faixa": [
+      48,
+      240
+     ]
+    },
+    {
+     "nome": "gap2",
+     "tipo": "px",
+     "padrao": -34,
+     "faixa": [
+      -140,
+      140
+     ]
+    },
+    {
+     "nome": "align2",
+     "tipo": "enum",
+     "padrao": "right",
+     "valores": [
+      "center",
+      "right",
+      "left"
+     ],
+     "nota": "o degrau assimétrico é o que dá o ar de assinatura"
+    },
+    {
+     "nome": "inset2",
+     "tipo": "px",
+     "padrao": 140,
+     "faixa": [
+      0,
+      400
+     ]
+    },
+    {
+     "nome": "ajustar",
+     "tipo": "bool",
+     "padrao": false,
+     "nota": "SPEC-13: liga o ajuste por largura medida; exige fonte já carregada"
+    }
+   ],
+   "medido": {
+    "fonte": "ref-D — abertura tipográfica dos 2 primeiros segundos",
+    "data": "2026-07-25"
+   },
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 66,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/hook-titulo-typeon.webm",
+    "poster": "previews/hook-titulo-typeon.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "f6dbdb91eff7"
+  },
+  {
+   "slug": "hook-titulo-fade",
+   "grupo": "gancho",
+   "nome": "Gancho digitado com saída em fade",
+   "oQuePinta": "O mesmo gancho digitado, mas com um instante declarado em que ele sai de cena por fade.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/TitleCard.tsx:216",
+   "parametros": [
+    {
+     "nome": "fadeAtS",
+     "tipo": "s",
+     "padrao": 2.2,
+     "faixa": [
+      0.5,
+      12
+     ]
+    },
+    {
+     "nome": "fpc",
+     "tipo": "fator",
+     "padrao": 1.1,
+     "faixa": [
+      0.4,
+      3
+     ]
+    },
+    {
+     "nome": "fontSize1",
+     "tipo": "px",
+     "padrao": 128,
+     "faixa": [
+      48,
+      220
+     ]
+    },
+    {
+     "nome": "fontSize2",
+     "tipo": "px",
+     "padrao": 150,
+     "faixa": [
+      48,
+      240
+     ]
+    },
+    {
+     "nome": "align2",
+     "tipo": "enum",
+     "padrao": "right",
+     "valores": [
+      "center",
+      "right",
+      "left"
+     ]
+    }
+   ],
+   "medido": {
+    "fonte": "ref-D — mesma abertura, com a saída declarada",
+    "data": "2026-07-25"
+   },
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/hook-titulo-fade.webm",
+    "poster": "previews/hook-titulo-fade.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "fc3d85b052f6"
+  },
+  {
+   "slug": "hook-lettering-anotado",
+   "grupo": "gancho",
+   "nome": "Gancho manuscrito anotado",
+   "oQuePinta": "Bloco manuscrito no canto livre, com palavra marcada em pop e traço desenhado por cima.",
+   "camada": "alpha",
+   "estado": "candidato",
+   "bloqueio": "`HookLettering.tsx:182` (HookCluster) não tem prop nenhuma: texto, posição e timings são literais de UMA peça, e ele toca `staticFile(\"sfx/*.wav\")`, que não existe no pacote (`**/public/*` é ignorado). Precisa receber texto, posição e timings por prop, e o SFX por opção, antes de virar `pronto`.",
+   "perfis": [
+    "reels"
+   ],
+   "defaultDe": [],
+   "origem": "src/HookLettering.tsx:182",
+   "parametros": [],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30
+   },
+   "desde": "2026-08-08",
+   "sha": "fe5793c7cb45"
+  },
+  {
+   "slug": "legenda-destaque-tema",
+   "grupo": "legenda",
+   "nome": "Branca com destaque do tema",
+   "oQuePinta": "Legenda branca grande com a palavra ativa na cor de destaque do tema escolhido.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "longform"
+   ],
+   "defaultDe": [
+    "reels"
+   ],
+   "origem": "src/CaptionLayer.tsx:123",
+   "acento": {
+    "param": "highlight"
+   },
+   "parametros": [
+    {
+     "nome": "fontSize",
+     "tipo": "px",
+     "padrao": 58,
+     "faixa": [
+      24,
+      80
+     ]
+    },
+    {
+     "nome": "yPct",
+     "tipo": "fator",
+     "padrao": 75,
+     "faixa": [
+      40,
+      85
+     ]
+    },
+    {
+     "nome": "maxWidth",
+     "tipo": "px",
+     "padrao": 900,
+     "faixa": [
+      300,
+      1000
+     ]
+    },
+    {
+     "nome": "combinaMs",
+     "tipo": "s",
+     "padrao": 1100,
+     "faixa": [
+      700,
+      3000
+     ],
+     "nota": "milissegundos de agrupamento por página"
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 78,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/legenda-destaque-tema.webm",
+    "poster": "previews/legenda-destaque-tema.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "7c081ab4cd60"
+  },
+  {
+   "slug": "legenda-chapada",
+   "grupo": "legenda",
+   "nome": "Branca chapada, pequena",
+   "oQuePinta": "Legenda branca pequena, sem palavra ativa, baixa no quadro; não disputa com o rosto nem com o ritmo de corte.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/CaptionLayer.tsx:301",
+   "parametros": [
+    {
+     "nome": "fontSize",
+     "tipo": "px",
+     "padrao": 46,
+     "faixa": [
+      24,
+      80
+     ]
+    },
+    {
+     "nome": "yPct",
+     "tipo": "fator",
+     "padrao": 79,
+     "faixa": [
+      40,
+      85
+     ]
+    },
+    {
+     "nome": "maxWidth",
+     "tipo": "px",
+     "padrao": 860,
+     "faixa": [
+      300,
+      1000
+     ]
+    },
+    {
+     "nome": "combinaMs",
+     "tipo": "s",
+     "padrao": 1100,
+     "faixa": [
+      700,
+      3000
+     ]
+    }
+   ],
+   "medido": {
+    "fonte": "ref-D (talking-head 23 s, modelado 2026-07-25)",
+    "data": "2026-07-25"
+   },
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 78,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/legenda-chapada.webm",
+    "poster": "previews/legenda-chapada.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "78d1fab68214"
+  },
+  {
+   "slug": "legenda-frio-agressivo",
+   "grupo": "legenda",
+   "nome": "Frio total — chapada e curta",
+   "oQuePinta": "Uma a três palavras por página, brancas, sem cor nenhuma: o protagonista é o ritmo de corte.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "vsl",
+    "reels"
+   ],
+   "defaultDe": [],
+   "origem": "src/vsl/estilos-medidos.ts:35",
+   "parametros": [
+    {
+     "nome": "fontSize",
+     "tipo": "px",
+     "padrao": 44,
+     "faixa": [
+      24,
+      64
+     ]
+    },
+    {
+     "nome": "yPct",
+     "tipo": "fator",
+     "padrao": 63,
+     "faixa": [
+      40,
+      85
+     ]
+    },
+    {
+     "nome": "maxWidth",
+     "tipo": "px",
+     "padrao": 450,
+     "faixa": [
+      300,
+      1000
+     ]
+    },
+    {
+     "nome": "combinaMs",
+     "tipo": "s",
+     "padrao": 1740,
+     "faixa": [
+      900,
+      3000
+     ]
+    }
+   ],
+   "medido": {
+    "fonte": "ref-G var1 (25:31, 12/02/2026) — 27,9 cortes/min",
+    "data": "2026-08-01"
+   },
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 78,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/legenda-frio-agressivo.webm",
+    "poster": "previews/legenda-frio-agressivo.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "11986b573950"
+  },
+  {
+   "slug": "legenda-frio-colorido",
+   "grupo": "legenda",
+   "nome": "Frio — toda colorida, itálica",
+   "oQuePinta": "A legenda inteira sai numa cor só, em itálico; não existe palavra ativa porque tudo já é destaque.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "vsl",
+    "reels"
+   ],
+   "defaultDe": [],
+   "origem": "src/vsl/estilos-medidos.ts:60",
+   "parametros": [
+    {
+     "nome": "fontSize",
+     "tipo": "px",
+     "padrao": 46,
+     "faixa": [
+      24,
+      64
+     ]
+    },
+    {
+     "nome": "color",
+     "tipo": "cor",
+     "padrao": "#EECD3B",
+     "nota": "medido no núcleo do glifo — a legenda toda, não só o destaque"
+    },
+    {
+     "nome": "yPct",
+     "tipo": "fator",
+     "padrao": 59,
+     "faixa": [
+      40,
+      85
+     ]
+    },
+    {
+     "nome": "maxWidth",
+     "tipo": "px",
+     "padrao": 825,
+     "faixa": [
+      300,
+      1000
+     ]
+    },
+    {
+     "nome": "combinaMs",
+     "tipo": "s",
+     "padrao": 2500,
+     "faixa": [
+      900,
+      3000
+     ]
+    }
+   ],
+   "medido": {
+    "fonte": "ref-F FCC v2 (37:54, 25/05/2026) — 100% do tráfego pago dela",
+    "data": "2026-08-01"
+   },
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 78,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/legenda-frio-colorido.webm",
+    "poster": "previews/legenda-frio-colorido.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "c8aa77da8974"
+  },
+  {
+   "slug": "legenda-morno-destacado",
+   "grupo": "legenda",
+   "nome": "Destaque morno",
+   "oQuePinta": "Legenda branca com a palavra ativa numa cor quente; cinco a seis palavras por página.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "vsl",
+    "reels",
+    "longform"
+   ],
+   "defaultDe": [
+    "vsl"
+   ],
+   "origem": "src/vsl/estilos-medidos.ts:87",
+   "acento": {
+    "param": "highlight"
+   },
+   "parametros": [
+    {
+     "nome": "fontSize",
+     "tipo": "px",
+     "padrao": 32,
+     "faixa": [
+      24,
+      64
+     ]
+    },
+    {
+     "nome": "highlight",
+     "tipo": "cor",
+     "padrao": "#F14418",
+     "nota": "medido no núcleo do glifo"
+    },
+    {
+     "nome": "yPct",
+     "tipo": "fator",
+     "padrao": 56,
+     "faixa": [
+      40,
+      85
+     ]
+    },
+    {
+     "nome": "maxWidth",
+     "tipo": "px",
+     "padrao": 700,
+     "faixa": [
+      300,
+      1000
+     ]
+    },
+    {
+     "nome": "combinaMs",
+     "tipo": "s",
+     "padrao": 1820,
+     "faixa": [
+      900,
+      3000
+     ]
+    }
+   ],
+   "medido": {
+    "fonte": "ref-E.com.br home var1 (7:46, 31/07/2026)",
+    "data": "2026-08-01"
+   },
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 78,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/legenda-morno-destacado.webm",
+    "poster": "previews/legenda-morno-destacado.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "80539e79b046"
+  },
+  {
+   "slug": "legenda-quente-evento",
+   "grupo": "legenda",
+   "nome": "Quente — maior e mais baixa",
+   "oQuePinta": "Legenda maior, mais baixa no quadro e com pouco destaque; a carga gráfica migra para as cartelas.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "vsl",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/vsl/estilos-medidos.ts:112",
+   "acento": {
+    "param": "highlight"
+   },
+   "parametros": [
+    {
+     "nome": "fontSize",
+     "tipo": "px",
+     "padrao": 48,
+     "faixa": [
+      24,
+      72
+     ]
+    },
+    {
+     "nome": "highlight",
+     "tipo": "cor",
+     "padrao": "#FE5410"
+    },
+    {
+     "nome": "yPct",
+     "tipo": "fator",
+     "padrao": 70,
+     "faixa": [
+      40,
+      85
+     ]
+    },
+    {
+     "nome": "maxWidth",
+     "tipo": "px",
+     "padrao": 680,
+     "faixa": [
+      300,
+      1000
+     ]
+    },
+    {
+     "nome": "combinaMs",
+     "tipo": "s",
+     "padrao": 2030,
+     "faixa": [
+      900,
+      3000
+     ]
+    }
+   ],
+   "medido": {
+    "fonte": "Imersão 7D (6:43, 20/07/2026) — 8,6 cortes/min",
+    "data": "2026-08-01"
+   },
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 78,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/legenda-quente-evento.webm",
+    "poster": "previews/legenda-quente-evento.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "1f8277c295ff"
+  },
+  {
+   "slug": "tema-neutro",
+   "grupo": "tema",
+   "nome": "Neutro",
+   "oQuePinta": "Tinta escura sobre fundo claro, destaque amarelo e cinco cores de post-it por categoria.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "origem": "src/themes.ts:17",
+   "parametros": [],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "vazia",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/tema-neutro.webm",
+    "poster": "previews/tema-neutro.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "d513cccff62c"
+  },
+  {
+   "slug": "tema-creator-2",
+   "grupo": "tema",
+   "nome": "Rosé sobre vídeo",
+   "oQuePinta": "Tinta branca com sombra escura para viver sobre vídeo, destaque rosé e papelaria creme.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/themes.ts:38",
+   "parametros": [],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "vazia",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/tema-creator-2.webm",
+    "poster": "previews/tema-creator-2.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "aece406b9b31"
+  },
+  {
+   "slug": "tema-ref-c-oferta",
+   "grupo": "tema",
+   "nome": "Amarelo limão de oferta",
+   "oQuePinta": "Tinta quase preta e um amarelo limão único, sem paleta de post-it; feito para cena acromática.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl"
+   ],
+   "defaultDe": [],
+   "origem": "src/themes.ts:58",
+   "parametros": [],
+   "medido": {
+    "fonte": "ref-C em modo oferta (post-ref-C-2, 70 s)",
+    "data": "2026-07-29"
+   },
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "vazia",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/tema-ref-c-oferta.webm",
+    "poster": "previews/tema-ref-c-oferta.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "88d63808e119"
+  },
+  {
+   "slug": "tema-estudo-ref-c",
+   "grupo": "tema",
+   "nome": "Amarelo educativo",
+   "oQuePinta": "Variante do neutro com tinta mais escura e post-its nomeados por categoria editorial.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels"
+   ],
+   "defaultDe": [],
+   "origem": "src/themes.ts:67",
+   "parametros": [],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "vazia",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/tema-estudo-ref-c.webm",
+    "poster": "previews/tema-estudo-ref-c.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "bfedb2b70098"
+  },
+  {
+   "slug": "manuscrito-write-on",
+   "grupo": "grafismo",
+   "nome": "Manuscrito que aparece",
+   "oQuePinta": "Texto de caneta fina que surge letra a letra sem se mover, como se estivesse sendo escrito.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/MotionKit.tsx:190",
+   "parametros": [
+    {
+     "nome": "size",
+     "tipo": "px",
+     "padrao": 44,
+     "faixa": [
+      20,
+      140
+     ]
+    },
+    {
+     "nome": "font",
+     "tipo": "enum",
+     "padrao": "pen",
+     "valores": [
+      "pen",
+      "script",
+      "marker"
+     ]
+    },
+    {
+     "nome": "align",
+     "tipo": "enum",
+     "padrao": "center",
+     "valores": [
+      "left",
+      "center",
+      "right"
+     ]
+    },
+    {
+     "nome": "rotate",
+     "tipo": "fator",
+     "padrao": 0,
+     "faixa": [
+      -20,
+      20
+     ]
+    },
+    {
+     "nome": "fpc",
+     "tipo": "fator",
+     "padrao": 0.9,
+     "faixa": [
+      0.3,
+      3
+     ],
+     "nota": "frames por caractere"
+    },
+    {
+     "nome": "lineHeight",
+     "tipo": "fator",
+     "padrao": 1.15,
+     "faixa": [
+      0.9,
+      2
+     ]
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/manuscrito-write-on.webm",
+    "poster": "previews/manuscrito-write-on.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "6da0aa0b7884"
+  },
+  {
+   "slug": "frase-que-troca",
+   "grupo": "grafismo",
+   "nome": "Frase que troca",
+   "oQuePinta": "Uma frase manuscrita dá lugar à seguinte no mesmo ponto da tela, em tempos declarados.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/MotionKit.tsx:253",
+   "parametros": [
+    {
+     "nome": "size",
+     "tipo": "px",
+     "padrao": 40,
+     "faixa": [
+      20,
+      120
+     ]
+    },
+    {
+     "nome": "align",
+     "tipo": "enum",
+     "padrao": "center",
+     "valores": [
+      "left",
+      "center"
+     ]
+    },
+    {
+     "nome": "fpc",
+     "tipo": "fator",
+     "padrao": 0.7,
+     "faixa": [
+      0.3,
+      3
+     ]
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 78,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/frase-que-troca.webm",
+    "poster": "previews/frase-que-troca.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "88294e490998"
+  },
+  {
+   "slug": "marca-texto",
+   "grupo": "grafismo",
+   "nome": "Marca-texto",
+   "oQuePinta": "Uma faixa de marca-texto varre da esquerda para a direita por baixo de um trecho já escrito.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/MotionKit.tsx:348",
+   "parametros": [
+    {
+     "nome": "sweepS",
+     "tipo": "s",
+     "padrao": 0.4,
+     "faixa": [
+      0.1,
+      2
+     ]
+    },
+    {
+     "nome": "rotate",
+     "tipo": "fator",
+     "padrao": 0,
+     "faixa": [
+      -20,
+      20
+     ],
+     "nota": "acompanha a inclinação da linha manuscrita"
+    },
+    {
+     "nome": "blend",
+     "tipo": "enum",
+     "padrao": "normal",
+     "valores": [
+      "normal",
+      "multiply"
+     ],
+     "nota": "multiply escurece sobre a cena, como marca-texto de verdade"
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/marca-texto.webm",
+    "poster": "previews/marca-texto.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "87aa7241d64b"
+  },
+  {
+   "slug": "selo-carimbado",
+   "grupo": "grafismo",
+   "nome": "Selo carimbado",
+   "oQuePinta": "Um selo inclinado bate na tela e assenta em três frames, como carimbo de verdade.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/MotionKit.tsx:402",
+   "parametros": [
+    {
+     "nome": "size",
+     "tipo": "px",
+     "padrao": 78,
+     "faixa": [
+      28,
+      180
+     ]
+    },
+    {
+     "nome": "rotate",
+     "tipo": "fator",
+     "padrao": -12.9,
+     "faixa": [
+      -30,
+      30
+     ]
+    },
+    {
+     "nome": "padX",
+     "tipo": "px",
+     "padrao": 26,
+     "faixa": [
+      0,
+      80
+     ]
+    },
+    {
+     "nome": "padY",
+     "tipo": "px",
+     "padrao": 10,
+     "faixa": [
+      0,
+      60
+     ]
+    },
+    {
+     "nome": "font",
+     "tipo": "enum",
+     "padrao": "marker",
+     "valores": [
+      "marker",
+      "pen",
+      "script"
+     ]
+    },
+    {
+     "nome": "overshoot",
+     "tipo": "fator",
+     "padrao": 1.06,
+     "faixa": [
+      1,
+      1.4
+     ],
+     "nota": "1,0 = sem overshoot; a referência bate seco"
+    }
+   ],
+   "duplicatas": [
+    "src/MaeDoMarido.tsx:123",
+    "src/MesaComAmiga.tsx:241"
+   ],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/selo-carimbado.webm",
+    "poster": "previews/selo-carimbado.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "c96108a6b741"
+  },
+  {
+   "slug": "painel-rolante",
+   "grupo": "grafismo",
+   "nome": "Painel rolante",
+   "oQuePinta": "Uma janela recorta um conteúdo mais alto que ela e o percorre de cima para baixo em velocidade constante.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/MotionKit.tsx:473",
+   "parametros": [
+    {
+     "nome": "speedPxS",
+     "tipo": "px",
+     "padrao": 60,
+     "faixa": [
+      10,
+      400
+     ]
+    },
+    {
+     "nome": "radius",
+     "tipo": "px",
+     "padrao": 26,
+     "faixa": [
+      0,
+      80
+     ]
+    },
+    {
+     "nome": "enter",
+     "tipo": "enum",
+     "padrao": "fade",
+     "valores": [
+      "fade",
+      "slide",
+      "cut"
+     ]
+    },
+    {
+     "nome": "enterS",
+     "tipo": "s",
+     "padrao": 0.3,
+     "faixa": [
+      0,
+      2
+     ]
+    },
+    {
+     "nome": "shadow",
+     "tipo": "bool",
+     "padrao": true
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "vazia",
+    "frameCartao": 78,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/painel-rolante.webm",
+    "poster": "previews/painel-rolante.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "3177195c4fb9"
+  },
+  {
+   "slug": "passo-numerado",
+   "grupo": "grafismo",
+   "nome": "Passo numerado",
+   "oQuePinta": "Um número em bloco colorido entra em mola com o rótulo do passo ao lado.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/MotionKit.tsx:553",
+   "parametros": [
+    {
+     "nome": "size",
+     "tipo": "px",
+     "padrao": 58,
+     "faixa": [
+      24,
+      140
+     ]
+    }
+   ],
+   "duplicatas": [
+    "src/MotionKit.tsx:614",
+    "src/peca-11/Kit.tsx:186",
+    "src/MesaComAmiga.tsx:120",
+    "src/peca-10/Kit.tsx:253"
+   ],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/passo-numerado.webm",
+    "poster": "previews/passo-numerado.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "d9de03ced2a1"
+  },
+  {
+   "slug": "palavra-acento",
+   "grupo": "grafismo",
+   "nome": "Palavra de acento",
+   "oQuePinta": "Uma palavra grande entra em mola, inclinada, na cor de destaque do tema.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/MotionKit.tsx:665",
+   "parametros": [
+    {
+     "nome": "size",
+     "tipo": "px",
+     "padrao": 96,
+     "faixa": [
+      32,
+      220
+     ]
+    },
+    {
+     "nome": "rotate",
+     "tipo": "fator",
+     "padrao": 0,
+     "faixa": [
+      -25,
+      25
+     ]
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/palavra-acento.webm",
+    "poster": "previews/palavra-acento.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "46e1076170e8"
+  },
+  {
+   "slug": "postit",
+   "grupo": "grafismo",
+   "nome": "Post-it",
+   "oQuePinta": "Um cartão de papel colorido entra em mola, levemente torto, com texto curto dentro.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/MotionKit.tsx:706",
+   "parametros": [
+    {
+     "nome": "size",
+     "tipo": "px",
+     "padrao": 34,
+     "faixa": [
+      16,
+      90
+     ]
+    },
+    {
+     "nome": "rotate",
+     "tipo": "fator",
+     "padrao": 0,
+     "faixa": [
+      -20,
+      20
+     ]
+    },
+    {
+     "nome": "category",
+     "tipo": "texto",
+     "padrao": "",
+     "nota": "chave da paleta semântica do tema; vazio = a primeira cor"
+    }
+   ],
+   "duplicatas": [
+    "src/vsl/VslKit.tsx:95",
+    "src/MesaComAmiga.tsx:72",
+    "src/peca-03.tsx:492"
+   ],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/postit.webm",
+    "poster": "previews/postit.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "bc02fa6384d2"
+  },
+  {
+   "slug": "pip-flutuante",
+   "grupo": "grafismo",
+   "nome": "Cartão flutuante de mídia",
+   "oQuePinta": "Um cartão retrato com mídia dentro entra em mola por cima da cena e pode sair no tempo declarado.",
+   "camada": "alpha",
+   "estado": "candidato",
+   "bloqueio": "`MotionKit.tsx:803` chama `staticFile(src)`: a entrada exige um arquivo em `public/`, que não vai no pacote (`**/public/*` é ignorado) e não existe na máquina do cliente. Precisa aceitar `src` já resolvido (URL ou data-URI) antes de virar `pronto` — e só então ganha preview.",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/MotionKit.tsx:758",
+   "parametros": [
+    {
+     "nome": "ratio",
+     "tipo": "fator",
+     "padrao": 1.33,
+     "faixa": [
+      0.5,
+      2.5
+     ]
+    },
+    {
+     "nome": "rotate",
+     "tipo": "fator",
+     "padrao": 0,
+     "faixa": [
+      -20,
+      20
+     ]
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30
+   },
+   "desde": "2026-08-08",
+   "sha": "f183e38d2418"
+  },
+  {
+   "slug": "painel-lite",
+   "grupo": "grafismo",
+   "nome": "Painel leve",
+   "oQuePinta": "Um retângulo semitransparente entra por baixo do conteúdo para dar leitura sobre vídeo.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/MotionKit.tsx:813",
+   "parametros": [
+    {
+     "nome": "enter",
+     "tipo": "enum",
+     "padrao": "fade",
+     "valores": [
+      "fade",
+      "slide"
+     ]
+    },
+    {
+     "nome": "radius",
+     "tipo": "px",
+     "padrao": 26,
+     "faixa": [
+      0,
+      90
+     ]
+    },
+    {
+     "nome": "opacity",
+     "tipo": "fator",
+     "padrao": 1,
+     "faixa": [
+      0.15,
+      1
+     ]
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/painel-lite.webm",
+    "poster": "previews/painel-lite.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "b9aa8aa963b2"
+  },
+  {
+   "slug": "tarja-identificacao",
+   "grupo": "grafismo",
+   "nome": "Tarja de identificação",
+   "oQuePinta": "Uma tarja entra deslizando pela esquerda com uma ou duas linhas — quem fala, o que é aquilo — e um botão opcional que pulsa uma vez.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/MotionKit.tsx:LowerThird",
+   "parametros": [
+    {
+     "nome": "linha1",
+     "tipo": "texto",
+     "padrao": "Nome de quem fala"
+    },
+    {
+     "nome": "linha2",
+     "tipo": "texto",
+     "padrao": "o que ele é"
+    },
+    {
+     "nome": "botao",
+     "tipo": "texto",
+     "padrao": ""
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/tarja-identificacao.webm",
+    "poster": "previews/tarja-identificacao.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "c61f32735223"
+  },
+  {
+   "slug": "legenda-empilhada",
+   "grupo": "legenda",
+   "nome": "Empilhada",
+   "oQuePinta": "As linhas da página entram uma por vez e ficam: a frase se constrói na tela em vez de aparecer pronta.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/CaptionLayer.tsx:CaptionStyle.layout",
+   "acento": {
+    "param": "highlight"
+   },
+   "parametros": [
+    {
+     "nome": "fontSize",
+     "tipo": "px",
+     "padrao": 64,
+     "faixa": [
+      24,
+      80
+     ]
+    },
+    {
+     "nome": "yPct",
+     "tipo": "fator",
+     "padrao": 75,
+     "faixa": [
+      40,
+      92
+     ]
+    },
+    {
+     "nome": "highlight",
+     "tipo": "cor",
+     "padrao": "#F0E14A"
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 78,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/legenda-empilhada.webm",
+    "poster": "previews/legenda-empilhada.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "f14ecc82f6ea"
+  },
+  {
+   "slug": "legenda-dispersa",
+   "grupo": "legenda",
+   "nome": "Dispersa",
+   "oQuePinta": "Cada palavra ganha um deslocamento e uma inclinação próprios, com a página inteira ainda legível.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/CaptionLayer.tsx:CaptionStyle.layout",
+   "acento": {
+    "param": "highlight"
+   },
+   "parametros": [
+    {
+     "nome": "fontSize",
+     "tipo": "px",
+     "padrao": 64,
+     "faixa": [
+      24,
+      80
+     ]
+    },
+    {
+     "nome": "yPct",
+     "tipo": "fator",
+     "padrao": 75,
+     "faixa": [
+      40,
+      92
+     ]
+    },
+    {
+     "nome": "highlight",
+     "tipo": "cor",
+     "padrao": "#F0E14A"
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 78,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/legenda-dispersa.webm",
+    "poster": "previews/legenda-dispersa.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "f3349755df39"
+  },
+  {
+   "slug": "headline-outline",
+   "grupo": "gancho",
+   "nome": "Headline Contorno",
+   "oQuePinta": "Texto grande com contorno grosso e sombra, sem caixa: a imagem continua vendo-se atrás dele.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/MotionKit.tsx:Headline",
+   "parametros": [
+    {
+     "nome": "look",
+     "tipo": "enum",
+     "padrao": "outline",
+     "valores": [
+      "outline",
+      "card",
+      "realce",
+      "misto"
+     ]
+    },
+    {
+     "nome": "linha1",
+     "tipo": "texto",
+     "padrao": "A frase que segura"
+    },
+    {
+     "nome": "linha2",
+     "tipo": "texto",
+     "padrao": "o primeiro segundo"
+    },
+    {
+     "nome": "yPct",
+     "tipo": "fator",
+     "padrao": 0.18,
+     "faixa": [
+      0.04,
+      0.7
+     ]
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/headline-outline.webm",
+    "poster": "previews/headline-outline.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "71a7f5d47cb0"
+  },
+  {
+   "slug": "headline-card",
+   "grupo": "gancho",
+   "nome": "Headline Cartão",
+   "oQuePinta": "As duas linhas dentro de retângulos do painel do tema — o tratamento mais legível sobre qualquer imagem.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/MotionKit.tsx:Headline",
+   "parametros": [
+    {
+     "nome": "look",
+     "tipo": "enum",
+     "padrao": "card",
+     "valores": [
+      "outline",
+      "card",
+      "realce",
+      "misto"
+     ]
+    },
+    {
+     "nome": "linha1",
+     "tipo": "texto",
+     "padrao": "A frase que segura"
+    },
+    {
+     "nome": "linha2",
+     "tipo": "texto",
+     "padrao": "o primeiro segundo"
+    },
+    {
+     "nome": "yPct",
+     "tipo": "fator",
+     "padrao": 0.18,
+     "faixa": [
+      0.04,
+      0.7
+     ]
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/headline-card.webm",
+    "poster": "previews/headline-card.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "3b880bc2aa7e"
+  },
+  {
+   "slug": "headline-realce",
+   "grupo": "gancho",
+   "nome": "Headline Realce",
+   "oQuePinta": "Marca-texto na cor de destaque atrás das palavras, como se alguém tivesse grifado a frase.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/MotionKit.tsx:Headline",
+   "parametros": [
+    {
+     "nome": "look",
+     "tipo": "enum",
+     "padrao": "realce",
+     "valores": [
+      "outline",
+      "card",
+      "realce",
+      "misto"
+     ]
+    },
+    {
+     "nome": "linha1",
+     "tipo": "texto",
+     "padrao": "A frase que segura"
+    },
+    {
+     "nome": "linha2",
+     "tipo": "texto",
+     "padrao": "o primeiro segundo"
+    },
+    {
+     "nome": "yPct",
+     "tipo": "fator",
+     "padrao": 0.18,
+     "faixa": [
+      0.04,
+      0.7
+     ]
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/headline-realce.webm",
+    "poster": "previews/headline-realce.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "77b94369da3c"
+  },
+  {
+   "slug": "headline-misto",
+   "grupo": "gancho",
+   "nome": "Headline Misto",
+   "oQuePinta": "Primeira linha em cartão, segunda em realce — o degrau que separa a afirmação da assinatura.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/MotionKit.tsx:Headline",
+   "parametros": [
+    {
+     "nome": "look",
+     "tipo": "enum",
+     "padrao": "misto",
+     "valores": [
+      "outline",
+      "card",
+      "realce",
+      "misto"
+     ]
+    },
+    {
+     "nome": "linha1",
+     "tipo": "texto",
+     "padrao": "A frase que segura"
+    },
+    {
+     "nome": "linha2",
+     "tipo": "texto",
+     "padrao": "o primeiro segundo"
+    },
+    {
+     "nome": "yPct",
+     "tipo": "fator",
+     "padrao": 0.18,
+     "faixa": [
+      0.04,
+      0.7
+     ]
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/headline-misto.webm",
+    "poster": "previews/headline-misto.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "b1a9279389da"
+  },
+  {
+   "slug": "flash-no-corte",
+   "grupo": "grafismo",
+   "nome": "Flash na transição",
+   "oQuePinta": "Um clarão curto na cor de destaque cobre a emenda: ele COMEÇA antes do corte, tem o pico no frame da emenda e apaga logo depois.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/MotionKit.tsx:FlashCorte",
+   "parametros": [
+    {
+     "nome": "lidera",
+     "tipo": "px",
+     "padrao": 2,
+     "faixa": [
+      0,
+      6
+     ]
+    },
+    {
+     "nome": "apaga",
+     "tipo": "px",
+     "padrao": 2,
+     "faixa": [
+      1,
+      8
+     ]
+    },
+    {
+     "nome": "forca",
+     "tipo": "fator",
+     "padrao": 0.42,
+     "faixa": [
+      0.1,
+      1
+     ]
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 45,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/flash-no-corte.webm",
+    "poster": "previews/flash-no-corte.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "9138fa2a4cf3"
+  },
+  {
+   "slug": "traco-mao-livre",
+   "grupo": "grafismo",
+   "nome": "Traço à mão livre",
+   "oQuePinta": "Um traço desenha sozinho ao longo de um caminho: sublinhado, círculo, risco ou seta.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/HookLettering.tsx:64",
+   "parametros": [
+    {
+     "nome": "drawS",
+     "tipo": "s",
+     "padrao": 0.4,
+     "faixa": [
+      0.1,
+      3
+     ]
+    },
+    {
+     "nome": "strokeWidth",
+     "tipo": "px",
+     "padrao": 8,
+     "faixa": [
+      2,
+      40
+     ]
+    },
+    {
+     "nome": "arrowHead",
+     "tipo": "bool",
+     "padrao": false
+    },
+    {
+     "nome": "gerador",
+     "tipo": "enum",
+     "padrao": "sublinhado",
+     "valores": [
+      "sublinhado",
+      "circulo",
+      "risco",
+      "xis",
+      "seta",
+      "rabisco"
+     ],
+     "nota": "geradores de caminho em MotionKit.tsx:296-343"
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/traco-mao-livre.webm",
+    "poster": "previews/traco-mao-livre.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "411d1c54889f"
+  },
+  {
+   "slug": "mockup-janela-mac",
+   "grupo": "grafismo",
+   "nome": "Janela de sistema",
+   "oQuePinta": "Uma janela de aplicativo com barra de título entra deslizando e serve de moldura para o conteúdo.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/Mockups.tsx:29",
+   "parametros": [
+    {
+     "nome": "enter",
+     "tipo": "enum",
+     "padrao": "slide-right",
+     "valores": [
+      "slide-right",
+      "slide-up",
+      "pop"
+     ]
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "vazia",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/mockup-janela-mac.webm",
+    "poster": "previews/mockup-janela-mac.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "bcae0cf3b683"
+  },
+  {
+   "slug": "mockup-lista-mensagens",
+   "grupo": "grafismo",
+   "nome": "Lista de conversas",
+   "oQuePinta": "Uma caixa de entrada de mensagens sobe na tela e as conversas aparecem uma a uma.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/Mockups.tsx:165",
+   "parametros": [
+    {
+     "nome": "header",
+     "tipo": "texto",
+     "padrao": "Mensagens"
+    },
+    {
+     "nome": "headerColor",
+     "tipo": "cor",
+     "padrao": "#22B357"
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "vazia",
+    "frameCartao": 78,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/mockup-lista-mensagens.webm",
+    "poster": "previews/mockup-lista-mensagens.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "db740a594c90"
+  },
+  {
+   "slug": "mockup-banner-chamada",
+   "grupo": "grafismo",
+   "nome": "Banner de chamada",
+   "oQuePinta": "O aviso de chamada recebida ou perdida desce do topo, com nome e legenda curta.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/Mockups.tsx:312",
+   "parametros": [
+    {
+     "nome": "mode",
+     "tipo": "enum",
+     "padrao": "incoming",
+     "valores": [
+      "incoming",
+      "missed"
+     ]
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "vazia",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/mockup-banner-chamada.webm",
+    "poster": "previews/mockup-banner-chamada.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "dd7a652b7f36"
+  },
+  {
+   "slug": "mockup-calendario",
+   "grupo": "grafismo",
+   "nome": "Calendário cheio",
+   "oQuePinta": "Uma grade de calendário com compromissos coloridos aparece e desliza lateralmente durante a cena.",
+   "camada": "alpha",
+   "estado": "pronto",
+   "perfis": [
+    "reels",
+    "vsl",
+    "screencast",
+    "longform"
+   ],
+   "defaultDe": [],
+   "origem": "src/Mockups.tsx:477",
+   "parametros": [
+    {
+     "nome": "panPx",
+     "tipo": "px",
+     "padrao": 220,
+     "faixa": [
+      0,
+      700
+     ]
+    },
+    {
+     "nome": "opacity",
+     "tipo": "fator",
+     "padrao": 0.88,
+     "faixa": [
+      0.2,
+      1
+     ]
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "vazia",
+    "frameCartao": 78,
+    "w": 360,
+    "h": 640,
+    "fps": 30,
+    "webm": "previews/mockup-calendario.webm",
+    "poster": "previews/mockup-calendario.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "8490a3b1902e"
+  },
+  {
+   "slug": "chip",
+   "grupo": "grafismo",
+   "nome": "Chip",
+   "oQuePinta": "Uma pílula escura com borda colorida e texto curto entra em mola.",
+   "camada": "alpha",
+   "estado": "candidato",
+   "bloqueio": "importa `vsl/theme.ts:49-58`, que crava a geometria de uma produção 16:9 em pixels; precisa receber as zonas por prop antes de virar `pronto` (SPEC-00 §3.1)",
+   "perfis": [
+    "vsl"
+   ],
+   "defaultDe": [],
+   "origem": "src/vsl/VslKit.tsx:228",
+   "parametros": [],
+   "duplicatas": [
+    "src/peca-11/Kit.tsx:146",
+    "src/peca-10/Kit.tsx:36",
+    "src/peca-06.tsx:376"
+   ],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30
+   },
+   "desde": "2026-08-08",
+   "sha": "dc5ca9f17295"
+  },
+  {
+   "slug": "veu-pleno",
+   "grupo": "grafismo",
+   "nome": "Véu do registro pleno",
+   "oQuePinta": "Um véu escuro cobre a cena inteira para o gráfico tomar a tela sem competir com o vídeo.",
+   "camada": "alpha",
+   "estado": "candidato",
+   "bloqueio": "importa `vsl/theme.ts:49-58`, que crava a geometria de uma produção 16:9 em pixels; precisa receber as zonas por prop antes de virar `pronto` (SPEC-00 §3.1)",
+   "perfis": [
+    "vsl"
+   ],
+   "defaultDe": [],
+   "origem": "src/vsl/VslKit.tsx:81",
+   "parametros": [],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30
+   },
+   "desde": "2026-08-08",
+   "sha": "b160cc978a68"
+  },
+  {
+   "slug": "item-riscado",
+   "grupo": "grafismo",
+   "nome": "Item riscado",
+   "oQuePinta": "Um item de lista entra inteiro e depois é riscado, apagando enquanto o traço passa.",
+   "camada": "alpha",
+   "estado": "candidato",
+   "bloqueio": "importa `vsl/theme.ts:49-58`, que crava a geometria de uma produção 16:9 em pixels; precisa receber as zonas por prop antes de virar `pronto` (SPEC-00 §3.1)",
+   "perfis": [
+    "vsl"
+   ],
+   "defaultDe": [],
+   "origem": "src/vsl/VslKit.tsx:340",
+   "parametros": [],
+   "duplicatas": [
+    "src/vsl/VslKit.tsx:446",
+    "src/peca-03.tsx:46"
+   ],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30
+   },
+   "desde": "2026-08-08",
+   "sha": "f0c52f88a5a0"
+  },
+  {
+   "slug": "balao-whatsapp",
+   "grupo": "grafismo",
+   "nome": "Balão de mensagem",
+   "oQuePinta": "Um balão de conversa sobe com indicador de digitando antes do texto aparecer.",
+   "camada": "alpha",
+   "estado": "candidato",
+   "bloqueio": "importa `vsl/theme.ts:49-58`, que crava a geometria de uma produção 16:9 em pixels; precisa receber as zonas por prop antes de virar `pronto` (SPEC-00 §3.1)",
+   "perfis": [
+    "vsl"
+   ],
+   "defaultDe": [],
+   "origem": "src/vsl/VslKit.tsx:477",
+   "parametros": [],
+   "duplicatas": [
+    "src/peca-06.tsx:448",
+    "src/peca-03.tsx:232"
+   ],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30
+   },
+   "desde": "2026-08-08",
+   "sha": "2434ed492448"
+  },
+  {
+   "slug": "badge",
+   "grupo": "grafismo",
+   "nome": "Selo de duas linhas",
+   "oQuePinta": "Um cartão pequeno de duas linhas entra em mola, tipo etiqueta de dado.",
+   "camada": "alpha",
+   "estado": "candidato",
+   "bloqueio": "importa `vsl/theme.ts:49-58`, que crava a geometria de uma produção 16:9 em pixels; precisa receber as zonas por prop antes de virar `pronto` (SPEC-00 §3.1)",
+   "perfis": [
+    "vsl"
+   ],
+   "defaultDe": [],
+   "origem": "src/vsl/VslKit.tsx:567",
+   "parametros": [],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30
+   },
+   "desde": "2026-08-08",
+   "sha": "6547edd17600"
+  },
+  {
+   "slug": "cta-botao-seta",
+   "grupo": "grafismo",
+   "nome": "Botão de CTA com seta",
+   "oQuePinta": "Um botão largo entra, dá dois micro-pulos e uma seta pulsa apontando para ele.",
+   "camada": "alpha",
+   "estado": "candidato",
+   "bloqueio": "importa `vsl/theme.ts:49-58`, que crava a geometria de uma produção 16:9 em pixels; precisa receber as zonas por prop antes de virar `pronto` (SPEC-00 §3.1)",
+   "perfis": [
+    "vsl"
+   ],
+   "defaultDe": [],
+   "origem": "src/vsl/VslKit.tsx:627",
+   "parametros": [],
+   "duplicatas": [],
+   "preview": {
+    "durS": 3,
+    "placa": "retrato",
+    "frameCartao": 54,
+    "w": 360,
+    "h": 640,
+    "fps": 30
+   },
+   "desde": "2026-08-08",
+   "sha": "8390fc878618"
+  }
+ ]
+}

@@ -1,0 +1,58 @@
+{
+  "contrato": "benchmark.catalogo-cor/v1",
+  "versao": 1,
+  "descricao": "De perfil de cor DETECTADO para a cadeia de conversão que ESTE repo tem medida. A detecção tem parte derivada de terceiro (ver detect-cor.py); a curva é nossa. Onde não há curva medida, a entrada sai `calibrado: false` e o detector devolve o caso para o humano — nunca cai num tone-mapper de manual.",
+
+  "saida": {
+    "comentario": "O alvo de TODA cadeia deste catálogo é Rec.709 SDR. Fica aqui, e não no script, porque valor não mora em código (SPEC-00).",
+    "tags": {"color_primaries": "bt709", "color_trc": "bt709", "colorspace": "bt709", "color_range": "tv"},
+    "aplicar_por": "setparams",
+    "porque_setparams": "medido em 2026-08-06 e remedido em 2026-08-08 (ffmpeg 8.0.1 homebrew): as opções de SAÍDA -color_primaries e -color_trc são silenciosamente ignoradas — só -colorspace pega. E a flag ignorada não deixa `unknown`, deixa A TAG DA FONTE: é assim que nasce o rótulo Frankenstein bt709/arib-std-b67/bt2020. `setparams` no filtergraph grava as três; `-bsf:v h264_metadata` corrige arquivo pronto sem re-encode."
+  },
+
+  "entradas": {
+    "hlg": {
+      "cadeia": [{"tipo": "lut3d", "arquivo": "tools/remotion-compositor/luts/hlg2sdr.cube"}],
+      "calibrado": true,
+      "referencia": "avconvert --preset Preset1920x1080 (AVFoundation, motor do app Edits que a creator usa)",
+      "erro_medido": "pele lum +0,5% · sat −0,2% · R/B +0,9%",
+      "gerador": "tools/remotion-compositor/scripts/gen-hlg2sdr-lut.py --alvo apple --croma luz --croma-ganho 1.16",
+      "nota": "a curva é MEDIDA (curva-apple-hlg2sdr.json: 65 pontos sinal→saída sobre 10 frames, 1,2M pixels quase-neutros), não derivada do standard. A cadeia de manual foi reprovada: −21% de faixa de contraste no rosto."
+    },
+
+    "rec709": {
+      "cadeia": [],
+      "calibrado": true,
+      "nota": "já está no destino. Nenhuma conversão — só as tags de saída, se faltarem."
+    },
+
+    "bt2020_sdr": {
+      "cadeia": [{"tipo": "colorspace",
+                  "filtro": "colorspace=ispace={matriz}:iprimaries={primarias}:itrc=bt2020-10:irange={range}:space=bt709:primaries=bt709:trc=bt709:range=tv"}],
+      "calibrado": true,
+      "referencia": "matemática fechada de primárias (matriz de primárias, matemática fechada)",
+      "nota": "BT.2020 SDR é BT.2020 de PRIMÁRIAS com curva de transferência ordinária — NÃO é HDR. `itrc=bt2020-10` é a peça que faz isso ser conversão de gamut e não de tom: a transferência BT.2020 SDR coincide com a do Rec.709. É a única entrada calibrada deste catálogo que não passou pelo avconvert, e o motivo é este: troca de primárias é matemática fechada, não julgamento estético.",
+      "proibido": "NUNCA aplicar hlg2sdr.cube aqui. A nossa LUT começa pela inversa da OETF HLG (gen-hlg2sdr-lut.py:39); sobre um sinal que já é gamma 709 isso escurece e esmaga as sombras. É o erro que a detecção existe para evitar."
+    },
+
+    "pq": {
+      "cadeia": null,
+      "calibrado": false,
+      "acao": "PQ (SMPTE ST 2084) detectado. NÃO temos curva PQ→SDR medida. Meça o avconvert num clipe PQ e tabele como curva-apple-hlg2sdr.json (receita no cabeçalho de gen-hlg2sdr-lut.py:32-36), ou compare candidatos com `detect-cor.py candidatos`. NÃO somar tone-mapper de manual (hable/reinhard/mobius): a cadeia derivada do standard já foi reprovada aqui — −21% de faixa de contraste no rosto, pretos +24%, altas −18%."
+    },
+
+    "apple_log": {
+      "cadeia": "expansao-medida",
+      "calibrado": false,
+      "acao": "Apple Log detectado. A expansão é derivada da MEDIÇÃO da própria imagem (piso de preto e teto de branco reais), não de curva de fabricante chutada — por isso vale como ponto de partida. Mas não é entregável: aprove por `detect-cor.py candidatos` antes de usar."
+    },
+
+    "log_*": {
+      "casa": ["*log*"],
+      "cadeia": "expansao-medida",
+      "calibrado": false,
+      "acao": "curva LOG de fabricante (ou LOG desconhecido detectado por estatística). A expansão é derivada da medição da própria imagem. Aprove por `detect-cor.py candidatos` antes de usar; se a peça for entregável, meça o avconvert e tabele uma curva.",
+      "nota": "`casa` são os padrões fnmatch que esta entrada cobre além do nome literal: sony_slog3, panasonic_vlog, canon_clog3, arri_logc, nikon_nlog, fuji_flog, dji_dlog e log_desconhecido."
+    }
+  }
+}

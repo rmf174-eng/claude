@@ -1,0 +1,9 @@
+--- stdout
+seg02 fim       5.575  [CONSOANTE-VAZADA]
+        nos 45 ms antes do corte a razão alta/baixa sobe +16 dB sobre o corpo da palavra (RMS -36 dB): é uma consoante surda da palavra VIZINHA vazando. O envelope RMS não mostra isso — fricativa tem energia baixa e parece vale de silêncio.
+
+--- stderr
+piso de sala: -71.4 dB · 6 segmentos
+  input/take-a.mp4: 0 cortes herdados a 30fps (raster 96x171, limiar 8.0)
+
+1 alerta(s) fonético(s)

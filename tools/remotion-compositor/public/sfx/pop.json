@@ -1,0 +1,30 @@
+{
+ "schema": "benchmark.sfx/v1",
+ "nome": "pop",
+ "classe": "acento",
+ "origem": {
+  "tipo": "desconhecida",
+  "caminho": null,
+  "sha256": null,
+  "licenca": null,
+  "fonte": null,
+  "seed": null
+ },
+ "antes": {
+  "onset_ms": 0.0,
+  "corpo_ms": 47.0,
+  "lufs": -22.5,
+  "pico_dbfs": -2.5
+ },
+ "depois": {
+  "onset_ms": 0.0,
+  "corpo_ms": 47.0,
+  "lufs": -22.5,
+  "pico_dbfs": -2.5
+ },
+ "sha256_wav": "246b7adb70d3b575f3462f000195562ce62ab0f63ffa7fa9f006ce630ade06c6",
+ "gerado_em": "2026-08-09T00:35:11-03:00",
+ "gerado_por": "sfx-preparar.py",
+ "reprocessado": false,
+ "_nota": "arquivo anterior a esta spec: a procedência não é conhecida e não se inventa. `antes` == `depois` porque nada foi reprocessado."
+}

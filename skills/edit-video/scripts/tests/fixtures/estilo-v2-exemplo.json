@@ -1,0 +1,36 @@
+{
+ "contrato": "benchmark.edit-estilo/v2",
+ "salvo_em": "2026-08-08T23:42:10-03:00",
+ "revisao_base": 0,
+ "fonte": "galeria",
+ "rerender": false,
+
+ "gramatica": "plano-alternado",
+ "gramatica_plano": "alternada",
+ "tema": "tema-neutro",
+ "legenda": "legenda-destaque-tema",
+
+ "acento": "#d14e72",
+ "acento_usado": true,
+ "acento_onde": ["legenda"],
+
+ "grafismos": ["postit"],
+ "grafismos_fora": ["marca-texto"],
+
+ "elementos": {
+  "sfx": true,
+  "trilha": true,
+  "split_broll": false,
+  "flash_no_corte": false,
+  "legenda_ativa": true,
+  "tracking": false
+ },
+
+ "parametros": {
+  "legenda-destaque-tema": {"fontSize": 64}
+ },
+
+ "observacao": "o cartão do CTA pode entrar mais tarde",
+ "perfil": "reels",
+ "catalogo_gerado_em": "2026-08-08T23:18:00-03:00"
+}

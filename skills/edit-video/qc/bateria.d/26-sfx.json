@@ -1,0 +1,22 @@
+{
+ "_porque": "SPEC-26. Fragmento em vez de edição de bateria.json — ver 26-corte-imagem.json.",
+ "itens": [
+  {
+   "id": "sfx",
+   "titulo": "nível E posição do transiente na biblioteca de SFX",
+   "classe": "qc",
+   "tipo": "convergencia",
+   "estagios": ["compositado"],
+   "exec": {"script": "qc-sfx.py", "argv": ["--perfil", "{perfil.nome}"]},
+   "requer": [],
+   "requer_perfil": null,
+   "unidade": "arquivo",
+   "adaptador": "qc_sfx",
+   "promove_falha": ["TRANSIENTE-ATRASADO", "LEAD-IN-COME-O-EFEITO", "INAUDIVEL", "SFX-AUSENTE", "SIDECAR-DIVERGENTE", "SINTETIZADO-SEM-SEED"],
+   "rebaixa_achado": ["LOUDNESS-FORA-DO-ALVO", "TRANSIENTE-ATRASADO-TEXTURA"],
+   "prova_de_dentes": true,
+   "nota_classe": "convergência: a régua é a posição do transiente medida no próprio arquivo, independente de qualquer seleção. Audita a BIBLIOTECA INTEIRA, não os SFX desta peça (§3.5): um SFX quebrado está quebrado para todas as peças, e descobrir quais 3 esta peça usa exigiria parsear TSX, que a SPEC-15 protege por md5. LOUDNESS-FORA-DO-ALVO é ACHADO porque parte do desvio é o padding que o sfx-preparar.py remove; TRANSIENTE-ATRASADO-TEXTURA é ACHADO porque textura não tem ataque a perder — as duas têm tag própria justamente para não reprovarem pela tag do acento.",
+   "custo_s": 5
+  }
+ ]
+}

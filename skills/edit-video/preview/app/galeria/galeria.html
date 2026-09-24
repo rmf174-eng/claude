@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b0d0f">
+<title>Ilha | look</title>
+<!-- Mesmo favicon inline do `app/index.html` (achado R-20g), pelo mesmo motivo e
+     porque o conserto de lá não alcançava esta página: aberta sozinha, ela pedia
+     `/favicon.ico` e abria o console com um 404 vermelho que não é erro. Medido
+     nesta sessão, com a página autônoma no browser. -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23ff6b3d'/%3E%3Cpath d='M10 8h4v16h-4zm8 0h4v7l-4 3z' fill='%23fff8f2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="./galeria.css">
+</head>
+<body class="galeria-pagina">
+<!--
+  Página AUTÔNOMA (SPEC-19 §3.13). Funciona sozinha em
+  /<token>/app/galeria/galeria.html e não abre `app/index.html` nem `app/app.js`
+  (esses são da SPEC-18).
+
+  Parâmetros de query:
+    ?galeria=<url>   de onde vem o benchmark.galeria-estilos/v1
+                     (default: ./galeria.json, o vizinho)
+    ?fixture=1       desliga o POST e mostra o payload numa caixa de texto
+-->
+<main id="palco"></main>
+<script type="module">
+  import { montarGaleria } from "./galeria.js";
+  // `base` é o prefixo /<token> quando a página é servida pelo servidor da
+  // SPEC-17. Servida por um http.server qualquer (fixture/pacote), fica vazio e
+  // a tela não tenta /api/estado nem /api/salvar.
+  const partes = location.pathname.split("/").filter(Boolean);
+  const i = partes.indexOf("app");
+  const base = i > 0 ? "/" + partes.slice(0, i).join("/") : "";
+  window.__galeria = montarGaleria(document.getElementById("palco"), { base });
+</script>
+</body>
+</html>

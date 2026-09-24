@@ -1,0 +1,266 @@
+{
+  "schema": "benchmark.pacote/v1",
+  "produto": "ilha-de-edicao",
+  "versao_manifesto": 1,
+  "raiz": {
+    "_como_achar": "Nunca contando '..'. O auditor sobe de __file__ até achar um dos marcadores abaixo, na ordem. É o mesmo mecanismo que a §3.3 prescreve para consertar A1/A2 — o auditor obedece a régua que ele aplica.",
+    "marcadores": [
+      {
+        "quando": "arvore-de-desenvolvimento",
+        "exige": [
+          "ilha/tools/pacote/MANIFESTO.json"
+        ]
+      },
+      {
+        "quando": "arvore-do-produto",
+        "exige": [
+          "tools/pacote/MANIFESTO.json"
+        ]
+      }
+    ],
+    "env": "ILHA_RAIZ"
+  },
+  "ativos": {
+    "_o_que_e": "Arquivo que É produto e NÃO está no git — materializado no primeiro uso, conferido por sha256. O precedente é tools/audio-clean/deep-filter (SPEC-000 §3.9 + ilha/tools/audio-clean/README.md), e o padrão já estava decidido para broll-library, sfx-library e music-library/tracks. A regra: INDEX versionado, mídia fora, sha256 autoritativo.",
+    "_por_que_os_sfx_entram_aqui": [
+      "É a contradição que a FRONTEIRA §3b mandou a SPEC-22 resolver. As três exigências",
+      "da SPEC-000 não são satisfazíveis juntas: §3.9 quer os .wav DENTRO do git, §2.7 os",
+      "conta no produto (560 KB, 9 arquivos) e o gate §7.8 exige 0 arquivo .wav rastreado.",
+      "",
+      "MEDIDO em 2026-08-09, e é o número que decide:",
+      "  · 9 arquivos, 573.006 bytes (560 KB), todos WAV PCM 16 bit mono 44,1 kHz;",
+      "  · 0 rastreados hoje (git -C ilha ls-files | grep -icE '\\.(mp4|mov|mp3|wav|webm|zip)$' = 0);",
+      "  · 12 chamadas a staticFile('sfx/…') em COMPONENTES DO PRODUTO — MotionKit.tsx:108,",
+      "    Overlays.tsx:388,399, HookLettering.tsx (6) e SfxDemo.tsx (3);",
+      "  · 7 nomes distintos alcançáveis pelo campo `sfx` dos dados (pop 32×, pencil 11×,",
+      "    scratch 6×, whoosh-soft 5×, whoosh 5×, pop-lo 2×, pop-hi 2×).",
+      "",
+      "Ou seja: os SFX NÃO são opcionais. O componente genérico MotionKit.tsx monta",
+      "`sfx/${name}.wav` a partir de uma prop — o produto embarca código que referencia",
+      "9 arquivos que o produto não contém. Um clone novo não tem SFX nenhum.",
+      "",
+      "DECISÃO: ativos, não exceção no gate de mídia. É o caminho que a FRONTEIRA §3b já",
+      "registra como o certo, e o único que satisfaz as três exigências ao mesmo tempo —",
+      "o gate §7.8 continua lendo 0 DE VERDADE, e a §2.7 continua contando os 560 KB no",
+      "produto, materializados. Trocar a extensão para driblar o grep seria rótulo",
+      "mentindo, que é o defeito que este repo mais paga para não ter.",
+      "",
+      "O que NÃO foi decidido aqui, e é fase B: de ONDE cada um é buscado. 3 dos 9 têm",
+      "origem pública (BigSoundBank, CC0), 3 são derivação determinística de outro por",
+      "receita ffmpeg, 2 são sample do próprio creator-1 (sem URL hoje — vão como asset de",
+      "release) e 1 vem do catálogo remotion.media. As receitas e origens estão em cada",
+      "entrada; quem constrói o materializador é a fase B."
+    ],
+    "_correcao_da_SPEC-000_2.7": "A tabela da §2.7 soma 6.607 KB / 95 arquivos e inclui os 560 KB / 9 de public/sfx/. Com esta decisão o número se parte em dois, e os dois devem ser ditos: 6.047 KB / 86 arquivos VERSIONADOS + 560 KB / 9 MATERIALIZADOS. O total do produto instalado continua 6,5 MB.",
+    "sfx": {
+      "destino": "tools/remotion-compositor/public/sfx/",
+      "formato": "WAV PCM 16 bit mono 44100 Hz",
+      "total_bytes": 526838,
+      "arquivos": [
+        {
+          "nome": "pop.wav",
+          "bytes": 28526,
+          "dur_s": 0.321451,
+          "sha256": "246b7adb70d3b575f3462f000195562ce62ab0f63ffa7fa9f006ce630ade06c6",
+          "origem": "proprio",
+          "licenca": "próprio — sample gravado por nós, uso liberado com o pacote",
+          "fonte_bruta": "tools/sfx-library/pop.mp3",
+          "procedencia": "remotion-compositor/SKILL.md:324"
+        },
+        {
+          "nome": "pencil.wav",
+          "bytes": 157578,
+          "dur_s": 1.784671,
+          "sha256": "d68f41c4533a85d0facf17bf36dbe6833425d01ee85d675bc4ace4f68fd3bb76",
+          "origem": "proprio",
+          "licenca": "próprio — sample gravado por nós, uso liberado com o pacote",
+          "fonte_bruta": "tools/sfx-library/pencil.mp3",
+          "procedencia": "remotion-compositor/SKILL.md:324",
+          "remedido_em": "2026-08-09T00:41 — outro agente desta onda reescreveu o arquivo às 00:35"
+        },
+        {
+          "nome": "typing.wav",
+          "bytes": 185790,
+          "dur_s": 2.104989,
+          "sha256": "27cbe69b17f995ff7091b3eb626d84b8e696049ab4db97cadadfd40985c6524c",
+          "origem": "cc0-externo",
+          "licenca": "CC0",
+          "fonte": "BigSoundBank #1734 (teclado real)",
+          "procedencia": "remotion-compositor/SKILL.md:324",
+          "remedido_em": "2026-08-09T00:41 — outro agente desta onda reescreveu o arquivo às 00:35"
+        },
+        {
+          "nome": "shutter.wav",
+          "bytes": 35396,
+          "dur_s": 0.399955,
+          "sha256": "8df3580106e5ecee89d07f8943656a301ee6a812fb69abee9dd14d9141a764f0",
+          "origem": "cc0-externo",
+          "licenca": "CC0",
+          "fonte": "BigSoundBank s0307",
+          "procedencia": "remotion-compositor/SKILL.md:324"
+        },
+        {
+          "nome": "scratch.wav",
+          "bytes": 32818,
+          "dur_s": 0.37,
+          "sha256": "b34f178f5b9f36c4edf7069b2a212a9c1685dd87a41ebac44cc6befbd807a9a5",
+          "origem": "cc0-externo",
+          "licenca": "CC0",
+          "fonte": "BigSoundBank s3237 (risco de lápis)",
+          "procedencia": "remotion-compositor/SKILL.md:324"
+        },
+        {
+          "nome": "whoosh.wav",
+          "bytes": 9828,
+          "dur_s": 0.110544,
+          "sha256": "1039610b31c63754fbfd0a58bd28dc25d680392bd127cfa9a0e1a97aa021c597",
+          "origem": "remotion-media",
+          "licenca": "🔶 NÃO CONFERIDA — catálogo remotion.media",
+          "procedencia": "remotion-compositor/SKILL.md:324,326",
+          "pendencia": "conferir a licença do catálogo remotion.media antes de redistribuir",
+          "remedido_em": "2026-08-09T00:41 — outro agente desta onda reescreveu o arquivo às 00:35"
+        },
+        {
+          "nome": "pop-hi.wav",
+          "bytes": 28186,
+          "dur_s": 0.317596,
+          "sha256": "48e7493a71573cc6a577d1ecaa52db89641370c9d7c34d8382dadbeadcd5cc80",
+          "origem": "derivado",
+          "deriva_de": "pop.wav",
+          "receita": "+2 semitons, mesma loudness (remotion-compositor/SKILL.md:285,324)",
+          "licenca": "segue a de pop.wav"
+        },
+        {
+          "nome": "pop-lo.wav",
+          "bytes": 28616,
+          "dur_s": 0.322472,
+          "sha256": "11bccd734ff4097afd317cad94fa2a6901bb18c8960437a6a3368cae42822966",
+          "origem": "derivado",
+          "deriva_de": "pop.wav",
+          "receita": "−2 semitons, mesma loudness (remotion-compositor/SKILL.md:285,324)",
+          "licenca": "segue a de pop.wav"
+        },
+        {
+          "nome": "whoosh-soft.wav",
+          "bytes": 20100,
+          "dur_s": 0.227007,
+          "sha256": "12071b2211846fa57bcba00573a66f1b8702b223e9c3e03a9d9c362646961914",
+          "origem": "derivado",
+          "deriva_de": "whoosh.wav",
+          "receita": "pitch ×0,85 + stretch → ~0,30 s (remotion-compositor/SKILL.md:324)",
+          "licenca": "segue a de whoosh.wav",
+          "remedido_em": "2026-08-09T00:41 — outro agente desta onda reescreveu o arquivo às 00:35"
+        }
+      ],
+      "medido_em": "2026-08-09T00:41-03:00",
+      "_aviso_de_corrida": "⚠️ CONTENÇÃO MEDIDA, e é resultado. Os sha256 desta lista foram tirados às 00:20 de 2026-08-09. Às 00:35, OUTRO agente desta mesma onda reescreveu 4 dos 9 arquivos (pencil 169.220→157.578 B, typing 194.170→185.790, whoosh-soft 26.454→20.100, whoosh 13.620→9.828 — aparagem de silêncio de cabeça, junto com um public/sfx/_inventario.json novo). O auditor acusou os 4 em 15 minutos, sem que ninguém avisasse. Os valores acima foram remedidos às 00:41. Se eles mudarem de novo, o auditor sai 1, imprime o sha do disco e o comando para atualizar — que é exatamente o comportamento que se quer de um sha256 declarado. O total caiu de 573.006 para 526.838 bytes (515 KB), e a §2.7 da SPEC-000 diz 560 KB: a diferença é essa aparagem, não erro de contagem."
+    }
+  },
+  "chaves": {
+    "_regra_dura": "fallback só pode ser null em recurso que o produto anuncia como opcional. NENHUMA etapa do caminho bruto → vídeo entregue pode ter fallback null. O auditor (classe D) checa isso lendo este bloco.",
+    "_a_regra_dura_esta_sendo_QUEBRADA_por_transcricao": "🔴 SPEC-46, 2026-08-12. A regra continua valendo e continua com dentes; o que mudou é que ela parou de ser satisfeita por uma FRASE. `transcricao` declarava o fallback 'modo local (Whisper local + alinhar.py)', e não existe Whisper nenhum no pacote — `git grep -rln whisper` sobre o que embarca devolve ZERO arquivos, `transcribe.sh:24` para duro em `${DEEPGRAM_API_KEY:?}` e o `alinhar.py:11` diz na primeira linha do docstring que NÃO transcreve (ele alinha palavras que o ASR já achou). Ou seja: sem a chave, o caminho bruto → entregue está BLOQUEADO, e o manifesto dizia 'nada bloqueado'. Agora o fallback é `null`, que é a verdade, e o achado de classe D que isso gera está em `aceitos.json` com dono e teto 1 — um SEGUNDO recurso crítico sem fallback continua reprovando. O conserto de verdade (fallback local de ASR) é trabalho de spec, não de manifesto.",
+    "recursos": {
+      "transcricao": {
+        "chaves": [
+          "DEEPGRAM_API_KEY"
+        ],
+        "no_caminho_critico": true,
+        "fallback": null,
+        "_fallback_null_motivo": "SPEC-46: BLOQUEANTE, medido. Sem DEEPGRAM_API_KEY não há transcrição, e sem transcrição não há corte, legenda nem QC de emendas — o caminho bruto → entregue para. Ver `chaves._a_regra_dura_esta_sendo_QUEBRADA_por_transcricao`.",
+        "bloqueia_sem_chave": "transcrição — e com ela o corte por fala, as legendas e o QC de emendas por ASR",
+        "custo": "~US$0,005/min",
+        "spec": "SPEC-04",
+        "ocorrencias": [
+          ".claude/skills/transcribe/scripts/transcribe.sh",
+          ".claude/skills/transcribe/scripts/transcribe-longo.sh",
+          ".claude/skills/transcribe/SKILL.md",
+          ".claude/skills/edit-video/scripts/srt.py"
+        ]
+      },
+      "qc-emendas-asr": {
+        "chaves": [
+          "DEEPGRAM_API_KEY"
+        ],
+        "no_caminho_critico": false,
+        "fallback": "o QC roda sem ele; qc-fonemas.py (que não usa API) continua obrigatório",
+        "custo": "~US$0,005/min de áudio",
+        "spec": "SPEC-12",
+        "ocorrencias": [
+          ".claude/skills/edit-video/scripts/qc-emendas-asr.py"
+        ]
+      },
+      "insert-gerado": {
+        "chaves": [
+          "GEMINI_API_KEY"
+        ],
+        "no_caminho_critico": false,
+        "fallback": null,
+        "custo": "~US$0,10/s de vídeo gerado (docs/CUSTOS.md)",
+        "spec": "SPEC-22",
+        "opcional_anunciado": true,
+        "ocorrencias": [
+          ".claude/skills/omni-insert/scripts/omni-gen.py",
+          ".claude/skills/omni-insert/scripts/qc-fala.py"
+        ]
+      },
+      "broll": {
+        "chaves": [
+          "PEXELS_API_KEY",
+          "PIXABAY_API_KEY"
+        ],
+        "no_caminho_critico": false,
+        "fallback": "Mixkit funciona sem chave nenhuma (broll-source/SKILL.md)",
+        "custo": "grátis",
+        "spec": "SPEC-29",
+        "ocorrencias": [
+          ".claude/skills/broll-source/scripts/buscar.py"
+        ]
+      },
+      "trilha": {
+        "chaves": [
+          "GEMINI_API_KEY"
+        ],
+        "no_caminho_critico": false,
+        "fallback": "sem trilha — a peça sai sem música, e o QC de áudio já roda na versão sem trilha por decisão da SPEC-20",
+        "custo": "Lyria 3, por peça",
+        "spec": "SPEC-20",
+        "opcional_anunciado": true,
+        "ocorrencias": [
+          ".claude/skills/edit-video/scripts/musica-gerar.py"
+        ]
+      },
+      "download-url": {
+        "chaves": [],
+        "no_caminho_critico": false,
+        "fallback": "não precisa de chave; post que exige login precisa de BENCH_COOKIES",
+        "custo": "grátis",
+        "spec": "—",
+        "ocorrencias": []
+      }
+    }
+  },
+  "plataformas": {
+    "suportadas_hoje": [
+      "macos-arm64"
+    ],
+    "_porque_so_uma": "🔴 REESCRITO NA SPEC-46 (2026-08-12), porque o texto anterior estava vencido. Ele dizia que 'duas dependências travam: avconvert e o binário deep-filter' — e o próprio bloco `opcionais` logo abaixo já declarava as duas OPCIONAIS, com o que se perde sem cada uma. O B1 foi resolvido: a curva do avconvert viaja como DADO (luts/curva-apple-hlg2sdr.json), então ele só é preciso para REGENERAR a referência. A verdade hoje é outra e é mais simples: `macos-arm64` é a única plataforma em que o caminho bruto → entregue foi medido INTEIRO. Fora dela, o que se sabe é o que o dono mediu num container Linux em 2026-08-12: QC 21/21, `npm ci`, `tsc` sem erro, os bundles compilando e o servidor de preview headless respondendo — e o RENDER nunca chegou a rodar ali (sem Chromium e com o download barrado). Plataforma sem render medido não entra em `suportadas_hoje`, e 'roda em Windows/Linux' continua na lista NÃO PROMETER do POSICIONAMENTO.md. O que degrada fora do Mac está nomeado em `opcionais`, cada item com o que se perde e o que continua funcionando.",
+    "requisitos": {
+      "ffmpeg": "com os filtros que usamos; ⚠️ o build desta máquina é slim (sem libass/drawtext)",
+      "node": ">= 22 (Remotion 4.x)",
+      "python3": ">= 3.11 (a máquina de referência é 3.14.2)",
+      "python_pacotes": [
+        "numpy",
+        "Pillow"
+      ],
+      "jq": "obrigatório — o `montar.sh` o chama 15 vezes para ler o EDL e o perfil, e `transcribe.sh` e `download.sh` também dependem dele. Sem jq a montagem para na primeira leitura de JSON",
+      "_python_pacotes_como": "python3 -m pip install -r requirements.txt (na raiz do pacote). O arquivo também lista os opcionais — rembg, fonttools, torch/torchaudio — com o que cada um destrava.",
+      "chromium": "o Remotion baixa o chrome-headless-shell no PRIMEIRO render, não na instalação — ~193 MB, medido pelo dono num container Linux em 2026-08-12. Em sandbox cuja rede é cortada na hora do uso, force o download no setup: `cd tools/remotion-compositor && npx remotion browser ensure`"
+    },
+    "opcionais": {
+      "avconvert": "macOS — só para REGENERAR a referência de cor. Sem ele, qc-cor.py compara contra luts/curva-apple-hlg2sdr.json, que é dado e viaja",
+      "deep-filter": "arm64 — só a via D do clean-audio. As vias highpass+afftdn e arnndn continuam funcionando",
+      "swiftc + Apple Vision": "macOS + Xcode Command Line Tools — compila sob demanda dois binários em scripts/.bin/. Sem `swiftc`, `matte.py` (engine 'vision', o recorte de pessoa) e `rastrear-rosto.py` (o punch-in que segue o rosto) param com mensagem NOMEADA, não com traceback: 'swiftc não encontrado. O detector é Apple Vision'. O resto da montagem não depende deles. Faltava neste bloco até a SPEC-46."
+    }
+  },
+  "_reduzido_pelo_export": "O corte (inclui/nunca_sai/excecoes) e a política de release (export) são da árvore FONTE e não viajam: a lista de nomes proibidos e a lista de arquivos escondidos entregariam o inventário que o corte existe para não entregar. SPEC-000 §3.10, exportar-produto.py decisão 5."
+}

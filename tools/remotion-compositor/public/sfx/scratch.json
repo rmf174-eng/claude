@@ -1,0 +1,30 @@
+{
+ "schema": "benchmark.sfx/v1",
+ "nome": "scratch",
+ "classe": "acento",
+ "origem": {
+  "tipo": "desconhecida",
+  "caminho": null,
+  "sha256": null,
+  "licenca": null,
+  "fonte": null,
+  "seed": null
+ },
+ "antes": {
+  "onset_ms": 17.0,
+  "corpo_ms": 348.0,
+  "lufs": -20.2,
+  "pico_dbfs": -1.4
+ },
+ "depois": {
+  "onset_ms": 17.0,
+  "corpo_ms": 348.0,
+  "lufs": -20.2,
+  "pico_dbfs": -1.4
+ },
+ "sha256_wav": "b34f178f5b9f36c4edf7069b2a212a9c1685dd87a41ebac44cc6befbd807a9a5",
+ "gerado_em": "2026-08-09T00:35:11-03:00",
+ "gerado_por": "sfx-preparar.py",
+ "reprocessado": false,
+ "_nota": "arquivo anterior a esta spec: a procedência não é conhecida e não se inventa. `antes` == `depois` porque nada foi reprocessado."
+}

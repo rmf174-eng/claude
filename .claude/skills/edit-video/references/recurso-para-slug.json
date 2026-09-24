@@ -1,0 +1,75 @@
+{
+  "contrato": "benchmark.recurso-para-slug/v1",
+  "dono": "quem mantém o catálogo de estilos",
+  "versao": "2026-08-11",
+  "_dono": [
+    "Papel, não pessoa: esta tabela EMBARCA no produto, e o portão de nomes",
+    "reprova nome próprio dentro do pacote — foi ele que pegou a primeira versão",
+    "desta linha. As tabelas que ficam do nosso lado (MANIFESTO, _catalogo-fichas)",
+    "continuam nomeando gente, porque não viajam."
+  ],
+  "_leia": [
+    "A ponte entre a taxonomia de ELEMENTOS medidos numa referência (o campo",
+    "`tipo` do deep-edit, que a style-extract agrega em `eixos.grafismo.recursos`)",
+    "e os SLUGS do catálogo de estilos (SPEC-15), que é o vocabulário que a galeria",
+    "sabe oferecer e o Remotion sabe renderizar.",
+    "",
+    "Sem esta tabela o número mais confiante do estilo extraído — `recursos`, que",
+    "no corpus de teste saiu com conf ALTA em 4/4 referências — morria no artefato:",
+    "a galeria lê o catálogo, e o catálogo não conhece a palavra `tachado`.",
+    "",
+    "🔴 A REGRA DE OURO: só entra par cuja equivalência seja verdadeira e ÚNICA.",
+    "Recurso sem slug equivalente, ou com mais de um candidato igualmente bom, NÃO",
+    "vira pick — vira sugestão em prosa no HISTORICO do estilo. Um pick inventado é",
+    "pior que um pick ausente: ele é indistinguível de uma escolha que alguém fez.",
+    "",
+    "Recurso que é TIPOGRAFIA (texto-sans, texto-serif) não está aqui de propósito:",
+    "família de fonte é identidade, e a §4.4 da SPEC-24 já a recusa por escrito."
+  ],
+  "mapa": {
+    "texto-manuscrito": {
+      "slug": "manuscrito-write-on",
+      "porque": "escrita à mão que aparece letra a letra — é o mesmo mecanismo, com outro nome"
+    },
+    "numero-passo": {
+      "slug": "passo-numerado",
+      "porque": "numeral de passo sobre a peça"
+    },
+    "tachado": {
+      "slug": "item-riscado",
+      "porque": "item com risco por cima; o catálogo chama de riscado o que a medição chama de tachado"
+    },
+    "pip-video": {
+      "slug": "pip-flutuante",
+      "porque": "vídeo secundário em cartão sobre o principal"
+    },
+    "print-screenshot": {
+      "slug": "mockup-janela-mac",
+      "porque": "captura de tela apresentada dentro de uma janela de sistema"
+    },
+    "painel-fundo": {
+      "slug": "painel-lite",
+      "porque": "chapa atrás do texto para garantir leitura"
+    },
+    "postit": {
+      "slug": "postit",
+      "porque": "mesmo nome nos dois vocabulários"
+    },
+    "barra-progresso": {
+      "slug": "painel-rolante",
+      "porque": "elemento que avança com o tempo na borda do quadro"
+    }
+  },
+  "sem_equivalente": {
+    "texto-sans": "tipografia, não grafismo — família de fonte é identidade e não migra",
+    "texto-serif": "idem",
+    "cartao": "genérico demais: `postit`, `painel-lite` e `pip-flutuante` são todos cartões, e escolher um seria inventar",
+    "mockup": "o catálogo tem quatro (janela, lista de conversas, banner, calendário) e a medição não diz qual",
+    "foto": "imagem de apoio é b-roll, e entra pela broll-source, não pelo catálogo de grafismo",
+    "emoji-sticker": "sem equivalente no catálogo, por decisão registrada: emoji abaixo de ~40 px vira mancha",
+    "seta": "o `traco-mao-livre` cobre traço à mão livre em geral; qual traço é decisão do plano, não do estilo",
+    "sublinhado": "idem",
+    "circulo-destaque": "idem",
+    "outro": "o balde do que a medição não classificou — por construção não tem destino"
+  }
+}

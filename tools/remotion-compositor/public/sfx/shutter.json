@@ -1,0 +1,30 @@
+{
+ "schema": "benchmark.sfx/v1",
+ "nome": "shutter",
+ "classe": "acento",
+ "origem": {
+  "tipo": "desconhecida",
+  "caminho": null,
+  "sha256": null,
+  "licenca": null,
+  "fonte": null,
+  "seed": null
+ },
+ "antes": {
+  "onset_ms": 7.0,
+  "corpo_ms": 320.0,
+  "lufs": -19.0,
+  "pico_dbfs": -4.4
+ },
+ "depois": {
+  "onset_ms": 7.0,
+  "corpo_ms": 320.0,
+  "lufs": -19.0,
+  "pico_dbfs": -4.4
+ },
+ "sha256_wav": "8df3580106e5ecee89d07f8943656a301ee6a812fb69abee9dd14d9141a764f0",
+ "gerado_em": "2026-08-09T00:35:11-03:00",
+ "gerado_por": "sfx-preparar.py",
+ "reprocessado": false,
+ "_nota": "arquivo anterior a esta spec: a procedência não é conhecida e não se inventa. `antes` == `depois` porque nada foi reprocessado."
+}

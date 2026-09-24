@@ -1,0 +1,99 @@
+{
+ "contrato": "benchmark.galeria-interruptores/v1",
+ "_nota": "Liga/desliga de PIPELINE — o que não é escolha de estilo, mas muda o que a Fase 2 monta. Dado versionado no repo, não por sessão: é do APP, como o catálogo (ref-A/SKILL.md:206-209). Toda caixa DESMARCADA é um NÃO explícito e aparece no digest em `fora:` (SPEC-19 §3.9).",
+ "direcoes_edicao": [
+  {
+   "modo": "essencial",
+   "nome": "Essencial",
+   "descricao": "Só cortes e legenda. Sem animações e sem efeitos sonoros.",
+   "densidade": "leve",
+   "sfx": "sem-sfx"
+  },
+  {
+   "modo": "animada",
+   "nome": "Com animações",
+   "descricao": "Planeja movimentos nos beats da fala e já prevê os sons das animações.",
+   "densidade": "equilibrada",
+   "sfx": "automatico"
+  },
+  {
+   "modo": "surpresa",
+   "nome": "Me surpreenda",
+   "descricao": "A ILHA escolhe a direção, as animações e os sons mais adequados para esta peça.",
+   "densidade": "equilibrada",
+   "sfx": "automatico"
+  }
+ ],
+ "itens": [
+  {
+   "id": "sfx",
+   "nome": "SFX nos beats",
+   "padrao": true,
+   "perfis": [
+    "reels",
+    "vsl",
+    "longform",
+    "screencast"
+   ],
+   "aplica": "os efeitos sonoros marcados no plano entram na mixagem",
+   "tecnico": "SFX do plano entram no amix da composição"
+  },
+  {
+   "id": "trilha",
+   "nome": "Trilha com ducking",
+   "padrao": false,
+   "perfis": [
+    "reels",
+    "vsl"
+   ],
+   "aplica": "entra música de fundo, e ela abaixa sozinha quando você fala",
+   "tecnico": "trilha licenciada + ducking calibrado pelo integrado pós-ducking (SPEC-20)"
+  },
+  {
+   "id": "split_broll",
+   "nome": "Split-screen com b-roll",
+   "padrao": false,
+   "perfis": [
+    "reels"
+   ],
+   "aplica": "a tela se divide: a imagem de apoio em cima, você embaixo",
+   "tecnico": "split-broll.py — camada PIXEL, fora do Remotion"
+  },
+  {
+   "id": "flash_no_corte",
+   "nome": "Flash na transição",
+   "padrao": false,
+   "perfis": [
+    "reels",
+    "vsl"
+   ],
+   "aplica": "um clarão branco rapidíssimo na emenda entre dois cortes",
+   "tecnico": "1 frame branco a 70% de opacidade na emenda"
+  },
+  {
+   "id": "legenda_ativa",
+   "nome": "Legenda queimada",
+   "padrao": true,
+   "perfis": [
+    "reels",
+    "vsl",
+    "longform",
+    "screencast"
+   ],
+   "aplica": "a legenda fica gravada na imagem do vídeo, não em arquivo separado",
+   "tecnico": "perfil.legenda.ativa"
+  },
+  {
+   "id": "tracking",
+   "nome": "Punch que segue o rosto",
+   "padrao": false,
+   "perfis": [
+    "reels",
+    "vsl"
+   ],
+   "aplica": "o zoom acompanha o seu rosto quando você se mexe; sem isso ele fica preso no centro do quadro e corta a sua cabeça",
+   "tecnico": "rastrear-rosto.py grava track-rosto.json e o punch entra por MotionKit.CameraSegue track="
+  }
+ ],
+ "_nota_microcopy": "`aplica` é o que o CREATOR lê no card; `tecnico` é o mesmo fato na língua de quem mantém o código, e sai só no `title=` (achado A-F2, 2026-08-11 — a mesma régua do F1-5). Interruptor novo precisa dos dois: sem `tecnico` a tela perde a rastreabilidade, sem `aplica` o creator lê nome de script."
+}

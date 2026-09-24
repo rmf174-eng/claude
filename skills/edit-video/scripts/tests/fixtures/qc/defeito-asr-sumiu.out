@@ -1,0 +1,10 @@
+--- stdout
+[00→01]    1.53s               b0 | b1              
+         ouvido: um dois tres quatro
+[01→02]    3.23s               b1 | b2              
+         ouvido: tres quatro cinco  ⚠️ SUMIU ['seis']
+[02→03]    5.33s               b2 | b3              
+         ouvido: cinco seis e sete oito  ⚠️ VAZOU ['e']
+--- stderr
+
+5 emendas · 2 com flag

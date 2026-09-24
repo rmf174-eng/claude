@@ -1,0 +1,21 @@
+Copyright (c) 2026 YVFL. Todos os direitos reservados.
+
+Este software é proprietário. O uso é concedido exclusivamente nos termos da
+licença de compra acordada entre a YVFL e o adquirente. Nenhuma permissão é
+concedida para redistribuir, sublicenciar, revender ou publicar este código,
+no todo ou em parte, sem autorização escrita da YVFL.
+
+--------------------------------------------------------------------------------
+CÓDIGO DE TERCEIROS
+
+Este produto pode incorporar componentes sob licenças permissivas de terceiros.
+MIT é permissiva e não copyleft: ela exige que o aviso de copyright seja
+preservado, e não exige que a obra derivada seja aberta. Por isso esta licença
+proprietária é compatível com os componentes listados.
+
+O inventário completo, arquivo por arquivo, com a origem e a licença de cada um,
+está em AVISOS-DE-TERCEIROS.md. As licenças integrais estão em LICENSES/.
+
+Decisão registrada em 2026-08-09 pelo Oscar (SPEC-000 §9.4 item C). O motivo:
+o produto é para vender, e uma licença permissiva permitiria ao primeiro
+comprador redistribuir a ilha inteira, de graça e legalmente.

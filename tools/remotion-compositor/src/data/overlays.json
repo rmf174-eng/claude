@@ -1,0 +1,26 @@
+{
+  "_exemplo": "Fixture do produto. Substitua por overlays.json da sua peça.",
+  "cards": [
+    {
+      "id": "001-exemplo",
+      "kind": "postit",
+      "text": "um cartão",
+      "startS": 0.5,
+      "endS": 2.5,
+      "x": "8%",
+      "y": "22%",
+      "rotate": -3,
+      "stackRow": 0,
+      "fontSize": 54,
+      "width": 520,
+      "writeOn": true,
+      "panel": false
+    }
+  ],
+  "captionEmphasis": [
+    {
+      "startS": 0.4,
+      "endS": 1.2
+    }
+  ]
+}

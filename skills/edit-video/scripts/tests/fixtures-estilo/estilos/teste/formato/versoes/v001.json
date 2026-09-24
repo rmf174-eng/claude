@@ -1,0 +1,31 @@
+{
+ "contrato": "benchmark.estilo-usuario/v1",
+ "usuario": "teste",
+ "slug": "formato",
+ "versao": "v001",
+ "nome": "Tenta escrever formato",
+ "nota": null,
+ "perfis": [
+  "teste"
+ ],
+ "herda": null,
+ "picks": {},
+ "grafismo": {},
+ "parametros": {},
+ "perfil_overrides": {
+  "video": {
+   "fps": 25
+  }
+ },
+ "procedencia": {
+  "tipo": "proprio",
+  "fonte": null,
+  "nota_de_uso": null
+ },
+ "historico": {
+  "criado_em": "2026-08-08T10:00:00-03:00",
+  "derivado_de": null,
+  "confirmado_por": "teste",
+  "mudou": []
+ }
+}

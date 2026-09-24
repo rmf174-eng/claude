@@ -1,0 +1,35 @@
+{
+ "schema": "benchmark.sfx/v1",
+ "nome": "whoosh-soft",
+ "classe": "acento",
+ "origem": {
+  "tipo": "arquivo",
+  "caminho": "_historico/whoosh-soft-8175e381.wav",
+  "sha256": "8175e3812d8b888e2e5e0b72ab9a49dffc2739142451b4a46082489dcd550dbe",
+  "licenca": null,
+  "fonte": "migrado por sfx-preparar.py",
+  "seed": null
+ },
+ "antes": {
+  "onset_ms": 75.0,
+  "corpo_ms": 183.0,
+  "lufs": -21.0,
+  "pico_dbfs": -4.4
+ },
+ "depois": {
+  "onset_ms": 3.0,
+  "corpo_ms": 183.0,
+  "lufs": -20.0,
+  "pico_dbfs": -4.6
+ },
+ "sha256_wav": "12071b2211846fa57bcba00573a66f1b8702b223e9c3e03a9d9c362646961914",
+ "gerado_em": "2026-08-09T00:35:07-03:00",
+ "gerado_por": "sfx-preparar.py",
+ "ganho_db": -0.2,
+ "corte_s": [
+  0.072,
+  0.299
+ ],
+ "reprocessado": true,
+ "ganho_limitado_por": null
+}

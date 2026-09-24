@@ -1,0 +1,47 @@
+{
+  "contrato": "benchmark.lexico-pt/v1",
+  "_procedencia": {
+    "stop_e_neg": "listas iniciais de uma ferramenta de edição de terceiro, helpers/caption_style.py:36-42",
+    "nota": "classes gramaticais do pt-BR; a lista EMPH deles NÃO foi copiada (vocabulário do autor: inclui 'segify' e 'inception', que são produtos dele). Aqui só entram classes fechadas do português — palavra funcional é palavra funcional em qualquer creator.",
+    "ampliacao": "as listas do ref-A foram ampliadas com as formas que faltavam do mesmo paradigma (artigos, contrações de preposição+artigo, pronomes átonos, verbos-suporte). Nenhuma palavra de conteúdo entrou.",
+    "acentos": "as chaves são gravadas SEM acento e em minúscula; quem consome normaliza (NFD + descarta combining) antes de comparar. É o que evita 'é' ≠ 'e' e 'só' ≠ 'so'."
+  },
+
+  "stop": [
+    "a", "ao", "aos", "as", "ate", "com", "como", "da", "das", "de", "do", "dos",
+    "e", "em", "essa", "esse", "esta", "este", "isso", "isto", "ja", "la", "lhe",
+    "me", "meu", "minha", "na", "nas", "no", "nos", "num", "numa", "o", "os",
+    "ou", "para", "pela", "pelas", "pelo", "pelos", "por", "pra", "pro", "que",
+    "se", "sem", "seu", "sua", "suas", "seus", "so", "te", "tem", "ter", "teu",
+    "tua", "um", "uma", "umas", "uns", "vai", "vou", "voce", "voces", "eu", "ele",
+    "ela", "eles", "elas", "nossa", "nosso", "foi", "ser", "sao", "era", "esta",
+    "estou", "aqui", "ali", "ai", "mas", "e", "of",
+    "sobre", "sob", "entre", "contra", "desde", "apos", "perante", "durante",
+    "ante", "tras", "atras", "aquele", "aquela", "aqueles", "aquelas", "aquilo",
+    "quando", "onde", "quem", "qual", "quais", "porque", "pois", "entao",
+    "tambem", "ainda", "assim", "muito", "mais", "menos", "tudo", "todo", "toda",
+    "todos", "todas", "outro", "outra", "outros", "outras", "cada", "algum",
+    "alguma", "alguns", "algumas", "estar", "fazer", "ir", "dar"
+  ],
+
+  "neg": ["nao", "nunca", "nada", "nem", "jamais", "ninguem", "nenhum", "nenhuma"],
+
+  "enumeracao": [
+    "primeiro", "primeira", "segundo", "segunda", "terceiro", "terceira",
+    "quarto", "quarta", "quinto", "quinta", "passo", "etapa", "regra", "numero",
+    "ponto", "parte", "fase"
+  ],
+
+  "contraste": [
+    "mas", "porem", "entretanto", "todavia", "contudo", "so", "verdade",
+    "entanto", "enquanto", "embora", "apesar"
+  ],
+
+  "contraste_frase": ["so que", "na verdade", "no entanto", "acontece que", "a real e"],
+
+  "regex_numero": "^(r\\$)?[0-9]+([.,][0-9]+)*(%|x|k|mil|milhoes|milhao)?$",
+
+  "_nao_use": {
+    "emph": "NÃO existe aqui de propósito. Uma lista literal de palavras 'que merecem destaque' é calibração de UM creator dentro do motor — é o acoplamento que o `caption_style.py:25-35` do ref-A tem e que a nossa linha proíbe. O equivalente nosso é o eixo PROSÓDIA (medido no áudio) mais o `lexico-creator.json` do creator, que é dele e fica fora do produto."
+  }
+}

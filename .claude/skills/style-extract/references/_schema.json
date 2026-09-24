@@ -1,0 +1,290 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "benchmark.estilo-edicao/v1",
+  "title": "Estilo de edição extraído de N referências (SPEC-23)",
+  "description": "Contrato consumido pela SPEC-24. Todo valor sob eixos/por_bloco/denominador_comum e sob variantes.*.overrides é um Param completo — não existe escalar solto. O validador executável é agregar.py (subconjunto de JSON Schema; jsonschema não é dependência desta skill).",
+
+  "type": "object",
+  "required": [
+    "contrato", "slug", "nome", "estado", "gerado_em", "gerador", "versao_extrator",
+    "aplica_a", "corpus", "n_refs", "coerencia", "complexidade",
+    "eixos", "por_bloco", "regras", "regras_candidatas", "variantes",
+    "overlay_perfil", "denominador_comum", "nao_medido", "avisos"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "contrato": {"const": "benchmark.estilo-edicao/v1"},
+    "slug": {"type": "string", "minLength": 1},
+    "nome": {"type": "string", "minLength": 1},
+    "estado": {"enum": ["pronto", "parcial", "incoerente"]},
+    "gerado_em": {"type": "string", "minLength": 1},
+    "gerador": {"type": "string", "minLength": 1},
+    "versao_extrator": {"type": "integer", "minimum": 1},
+
+    "aplica_a": {
+      "type": "object",
+      "required": ["perfis", "objetivo", "temperatura", "formato_das_refs"],
+      "additionalProperties": false,
+      "properties": {
+        "perfis": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+        "objetivo": {"enum": ["venda", "educativo", "autoridade", "captura", "bastidor", "anuncio", "misto"]},
+        "temperatura": {"enum": ["frio-total", "frio", "morno", "quente", "na", "mista"]},
+        "formato_das_refs": {
+          "type": "object",
+          "required": ["aspecto", "dur_s"],
+          "additionalProperties": false,
+          "properties": {
+            "aspecto": {"type": "array", "items": {"type": "string"}},
+            "dur_s": {
+              "type": "object",
+              "required": ["min", "max"],
+              "additionalProperties": false,
+              "properties": {"min": {"type": "number"}, "max": {"type": "number"}}
+            }
+          }
+        }
+      }
+    },
+
+    "corpus": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "fonte", "url", "dur_s", "medicao", "cobertura_semantica_pct",
+                     "objetivo", "temperatura"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "fonte": {"type": "string"},
+          "url": {"type": ["string", "null"]},
+          "dur_s": {"type": "number"},
+          "medicao": {"type": "string"},
+          "cobertura_semantica_pct": {"type": ["number", "null"]},
+          "objetivo": {"type": "string"},
+          "temperatura": {"type": "string"}
+        }
+      }
+    },
+    "n_refs": {"type": "integer", "minimum": 1},
+
+    "coerencia": {
+      "type": "object",
+      "required": ["score", "estado", "nucleo_ok", "nucleo_falhou", "clusters", "veredito"],
+      "additionalProperties": false,
+      "properties": {
+        "score": {"type": "number", "minimum": 0, "maximum": 1},
+        "estado": {"enum": ["pronto", "parcial", "incoerente"]},
+        "nucleo_ok": {"type": "array", "items": {"type": "string"}},
+        "nucleo_falhou": {"type": "array", "items": {"type": "string"}},
+        "clusters": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["refs", "separa_por"],
+            "additionalProperties": false,
+            "properties": {
+              "refs": {"type": "array", "items": {"type": "string"}},
+              "separa_por": {"type": ["string", "null"]}
+            }
+          }
+        },
+        "veredito": {"type": "string", "minLength": 1}
+      }
+    },
+
+    "complexidade": {
+      "type": "object",
+      "required": ["versao_escala", "ic", "faixa", "componentes", "por_ref"],
+      "additionalProperties": false,
+      "properties": {
+        "versao_escala": {"type": "integer", "minimum": 1},
+        "ic": {"type": ["integer", "null"]},
+        "faixa": {"type": ["string", "null"]},
+        "componentes": {"type": "object"},
+        "componentes_faltando": {"type": "array", "items": {"type": "string"}},
+        "por_ref": {"type": "object"}
+      }
+    },
+
+    "eixos": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {"anyOf": [{"$ref": "#/$defs/Param"}, {"type": "null"}]}
+      }
+    },
+    "por_bloco": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {"$ref": "#/$defs/Param"}
+      }
+    },
+    "denominador_comum": {
+      "type": "object",
+      "additionalProperties": {"$ref": "#/$defs/Param"}
+    },
+
+    "regras": {"type": "array", "items": {"$ref": "#/$defs/Regra"}},
+    "regras_candidatas": {"type": "array", "items": {"$ref": "#/$defs/Regra"}},
+
+    "variantes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["ic", "faixa", "recursos", "overrides"],
+        "additionalProperties": false,
+        "properties": {
+          "ic": {"type": ["integer", "null"]},
+          "faixa": {"type": ["string", "null"]},
+          "recursos": {"type": "array", "items": {"type": "string"}},
+          "overrides": {
+            "type": "object",
+            "additionalProperties": {"$ref": "#/$defs/Param"}
+          }
+        }
+      }
+    },
+
+    "overlay_perfil": {"type": "object"},
+    "nao_medido": {"type": "array", "items": {"type": "string"}},
+    "avisos": {"type": "array", "items": {"type": "string"}}
+  },
+
+  "$defs": {
+    "Param": {
+      "type": "object",
+      "required": ["v", "agg", "n", "n_total", "disp", "conf", "fonte", "metodo",
+                   "por_ref", "faltou", "qualidade", "nota"],
+      "additionalProperties": false,
+      "properties": {
+        "v": {},
+        "agg": {"enum": ["mediana", "faixa", "moda", "uniao", "regra"]},
+        "n": {"type": "integer", "minimum": 0},
+        "n_total": {"type": "integer", "minimum": 0},
+        "disp": {"type": ["object", "null"]},
+        "conf": {"enum": ["alta", "media", "baixa"]},
+        "fonte": {"enum": ["medido", "semantico", "derivado"]},
+        "metodo": {"type": "string", "minLength": 1},
+        "por_ref": {"type": "object"},
+        "faltou": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["ref", "motivo"],
+            "additionalProperties": false,
+            "properties": {"ref": {"type": "string"}, "motivo": {"type": "string"}}
+          }
+        },
+        "qualidade": {"enum": ["ok", "suspeita"]},
+        "nota": {"type": ["string", "null"]}
+      }
+    },
+
+    "Regra": {
+      "type": "object",
+      "required": ["id", "tipo", "texto", "suporte", "de", "evidencia", "conf", "aplicavel_por"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "tipo": {"enum": ["quando-cortar", "o-que-destacar", "composicao", "humor", "ritmo-de-fala"]},
+        "texto": {"type": "string", "minLength": 1},
+        "suporte": {"type": "integer", "minimum": 0},
+        "de": {"type": "integer", "minimum": 1},
+        "evidencia": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["ref", "t_s", "citacao"],
+            "additionalProperties": false,
+            "properties": {
+              "ref": {"type": "string"},
+              "t_s": {"type": "number"},
+              "citacao": {"type": "string"}
+            }
+          }
+        },
+        "conf": {"enum": ["alta", "media", "baixa"]},
+        "aplicavel_por": {"enum": ["plano", "prompt", "codigo"]},
+        "motivo": {"type": ["string", "null"]}
+      }
+    }
+  },
+
+  "x_nucleo": [
+    "montagem.cortes_por_min",
+    "montagem.plano_mediano_s",
+    "plano.gramatica",
+    "plano.punch_ins_por_min",
+    "legenda.presente_pct",
+    "legenda.estilo",
+    "legenda.y_centro_pct",
+    "legenda.cor_base",
+    "grafismo.elementos_por_10s",
+    "grafismo.max_simultaneos",
+    "som.trilha_tipo",
+    "som.lufs_integrado"
+  ],
+
+  "x_chaves_de_formato": ["largura", "altura", "fps", "aspecto", "sr", "pix_fmt", "crf"],
+
+  "x_chaves_pixel": ["y_centro_pct", "cor_base", "cor_destaque", "altura_glifo_pct", "altura_glifo_px_1920", "paleta"],
+
+  "x_overlay_permitido": ["ritmo", "legenda", "audio.loudness", "cor.grade"],
+
+  "x_familia_ritmo_densidade": [
+    "montagem.cortes_por_min",
+    "montagem.plano_mediano_s",
+    "montagem.plano_medio_s",
+    "montagem.plano_max_s",
+    "plano.punch_ins_por_min",
+    "grafismo.elementos_por_10s",
+    "grafismo.max_simultaneos",
+    "grafismo.maior_janela_sem_elemento_s"
+  ],
+
+  "x_escala_complexidade": {
+    "versao": 1,
+    "_nota": "As âncoras são CONVENÇÃO DA ESCALA, não constante da natureza. Duas vêm de extremos medidos no repo (7,4 elem/10s em intelligence/edicao/ref-C-oferta.md; 27,9 cortes/min em data/advertisers/_ritmo/ref-G-var1.json) e as âncoras 8 e 30 são o teto redondo logo acima. As outras três são convenção. Esta é a ÚNICA fonte dos números — references/escala-complexidade.md explica, não redefine (o repo já pagou por divergência doc↔código: ACHADOS-DO-CODIGO §3.4).",
+    "componentes": {
+      "densidade":  {"campo": "elementos_por_10s", "ancora": 8.0,  "peso": 0.30},
+      "camadas":    {"campo": "max_simultaneos",   "ancora": 4.0,  "peso": 0.20},
+      "recursos":   {"campo": "recursos_distintos", "ancora": 10.0, "peso": 0.25},
+      "corte":      {"campo": "cortes_por_min",    "ancora": 30.0, "peso": 0.15},
+      "texto":      {"campo": "texto_fracao",      "ancora": 1.0,  "peso": 0.10}
+    },
+    "faixas": [
+      {"nome": "enxuto", "max": 30},
+      {"nome": "medio", "max": 60},
+      {"nome": "denso", "max": 101}
+    ]
+  },
+
+  "x_conf": {
+    "_nota": "A fórmula de §3.4, em dados. Um Param com qualidade=suspeita ou n<=1 é sempre baixa, antes de qualquer limiar.",
+    "escalar":   [{"n_min": 3, "cv_max": 0.20, "conf": "alta"},
+                  {"n_min": 3, "cv_max": 0.35, "conf": "media"},
+                  {"n_min": 2, "n_max": 2, "cv_max": 0.10, "conf": "media"}],
+    "categorico": [{"n_min": 3, "fracao_min": 0.70, "conf": "alta"},
+                   {"n_min": 3, "fracao_min": 0.50, "conf": "media"},
+                   {"n_min": 2, "n_max": 2, "fracao_min": 1.00, "conf": "media"}],
+    "cor":       [{"n_min": 3, "deltae_max": 8, "conf": "alta"},
+                  {"n_min": 3, "deltae_max": 18, "conf": "media"}],
+    "conjunto":  [{"n_min": 3, "presente_min": 0.80, "conf": "alta"},
+                  {"n_min": 2, "presente_min": 0.50, "conf": "media"}]
+  },
+
+  "x_limiares": {
+    "_nota": "Limiares de guarda medidos no repo, com os dois lados validados.",
+    "frac_camada_suspeita": 0.40,
+    "coerencia_pronto": 0.60,
+    "coerencia_incoerente": 0.30,
+    "variante_enxuta_presente_em": 0.80,
+    "variante_padrao_presente_em": 0.50,
+    "variante_densa_presente_em": 0.40,
+    "regra_suporte_min": 2,
+    "amostragem_semantica_peca_inteira_ate_s": 360,
+    "amostragem_semantica_janela_s": 90
+  }
+}

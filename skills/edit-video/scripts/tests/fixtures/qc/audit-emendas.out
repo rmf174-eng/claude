@@ -1,0 +1,9 @@
+--- stdout
+seg00 [0.28-1.80] 'um…dois' ok
+seg01 [1.80-3.49] 'tres…quatro' ok
+seg02 [3.49-5.58] 'cinco…sete' CLIP-FIM (fala a -25dB depois do corte)
+seg03 [5.39-7.18] 'sete…oito' ok
+seg04 [7.41-8.89] 'nove…dez' CLIP-INICIO (fala a -10dB antes do corte)
+seg05 [8.89-10.45] 'onze…doze' ok
+
+--- stderr

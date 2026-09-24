@@ -1,0 +1,22 @@
+{
+ "_porque": "SPEC-48 (H48-2). Fragmento em vez de editar bateria.json porque o `qc.py` já está declarado na §5 da SPEC-47, que rodou na mesma onda — um arquivo por registro é o que a SPEC-12 abriu para não se perder trabalho num merge.",
+ "itens": [
+  {
+   "id": "qc-respiro",
+   "titulo": "inspiração audível na faixa cega entre o piso e a fala",
+   "classe": "qc",
+   "tipo": "detector",
+   "estagios": ["montado"],
+   "exec": {"script": "qc-respiro.py", "argv": ["{dir}"]},
+   "requer": ["edl.json"],
+   "requer_perfil": null,
+   "unidade": "segmento",
+   "adaptador": "qc_respiro",
+   "depois_de": ["integridade-edl"],
+   "promove_falha": [],
+   "rebaixa_achado": ["RESPIRO"],
+   "custo_s": 20,
+   "nota_classe": "DETECTOR, e a distinção não é opinião: o item é selecionado por estar de um lado de um limiar de nível (entre −58 e −40 dB por 150 ms+), então ele está do lado errado POR CONSTRUÇÃO e nunca converge a zero — respirar é o que uma pessoa faz. Perseguir o número dele até zero corta fala. Ele existe porque o defeito que motivou a SPEC-48 (A-4, 2026-08-12) foi encontrado DE OUVIDO pelo creator com seis verificações verdes em cima: 300 ms de inspiração a −46 dB, acima do piso de silêncio (−52) e abaixo da fala (−20), invisível para o qc-cauda (procura silêncio), para o audit-emendas/qc-ataque (procuram fala) e para o qc-emendas-asr (procura palavra). O que ele descarta é o que coincide com palavra do ASR — e o fim da palavra é medido no ENVELOPE, não lido do ASR, porque o Deepgram atrasou um `end` em 450 ms e o timestamp caiu DENTRO da inspiração (A-4b)."
+  }
+ ]
+}

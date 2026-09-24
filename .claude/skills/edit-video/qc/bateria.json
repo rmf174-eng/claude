@@ -1,0 +1,751 @@
+{
+ "schema": "benchmark.qc-catalogo/v1",
+ "descricao": "A bateria é DADO, não código. Quem escolhe o que roda em cada estágio é este arquivo; o qc.py só executa, adapta e classifica. Ver ../qc/README.md.",
+ "estagios": {
+  "montado": {
+   "artefato": [
+    "v1-montado.mp4"
+   ],
+   "por_que": "é onde existem EDL + bruto + segs/; é o único momento em que borda de corte é verificável"
+  },
+  "compositado": {
+   "artefato": [
+    "graphics-alpha.mov",
+    "*-alpha.mov",
+    "*-alpha.webm"
+   ],
+   "por_que": "é onde existe camada alpha para varrer e onde o insert do omni-insert já entrou"
+  },
+  "final": {
+   "artefato": [
+    "v-final*.mp4",
+    "v2-final*.mp4"
+   ],
+   "por_que": "é o arquivo que sai; tags de cor, loudness e frame preto só valem medidos aqui"
+  }
+ },
+ "itens": [
+  {
+   "id": "integridade-edl",
+   "titulo": "a timeline persistida ainda descreve este corte",
+   "classe": "qc",
+   "tipo": "convergencia",
+   "estagios": [
+    "montado",
+    "compositado",
+    "final"
+   ],
+   "exec": {
+    "cmd": [
+     "{python}",
+     "{scripts}/edl_io.py",
+     "--ver",
+     "{dir}"
+    ]
+   },
+   "requer": [
+    "edl.json"
+   ],
+   "requer_perfil": null,
+   "unidade": "segmento",
+   "adaptador": "edl_ver",
+   "promove_falha": [
+    "TIMELINE-VELHA"
+   ],
+   "rebaixa_achado": [],
+   "depois_de": [],
+   "nota_classe": "referência = o fingerprint da EDL contra o que o render gravou; independe do corte. É o único QC que pega segmento órfão reusado (SKILL.md, o caso dos +6,25 s). `timeline_real` ausente é NÃO VERIFICADO, nunca ok.",
+   "custo_s": 2
+  },
+  {
+   "id": "cortes-do-bruto",
+   "titulo": "cortes que já existiam no bruto, e o plano curto que a EDL cria em cima deles",
+   "classe": "qc",
+   "tipo": "convergencia",
+   "estagios": [
+    "montado"
+   ],
+   "exec": {
+    "script": "cortes-do-bruto.py",
+    "argv": [
+     "{dir}"
+    ]
+   },
+   "requer": [
+    "edl.json",
+    "{srcs}"
+   ],
+   "requer_perfil": null,
+   "unidade": "bruto",
+   "adaptador": "cortes_do_bruto",
+   "promove_falha": [
+    "PLANO-CURTO"
+   ],
+   "rebaixa_achado": [
+    "COINCIDE"
+   ],
+   "depois_de": [
+    "integridade-edl"
+   ],
+   "nota_classe": "referência = os cortes do BRUTO, externos à nossa EDL. `✔ coincide` é troca de plano de graça, não defeito.",
+   "custo_s": 25
+  },
+  {
+   "id": "audit-emendas",
+   "titulo": "energia de fala nas bordas do corte",
+   "classe": "qc",
+   "tipo": "misto",
+   "estagios": [
+    "montado"
+   ],
+   "exec": {
+    "script": "audit-emendas.py",
+    "argv": [
+     "{dir}"
+    ]
+   },
+   "requer": [
+    "edl.json",
+    "{transcritos}",
+    "{srcs}"
+   ],
+   "requer_perfil": null,
+   "unidade": "segmento",
+   "adaptador": "audit_emendas",
+   "promove_falha": [
+    "SEM-PALAVRAS-MUDO",
+    "VAZA-PROX"
+   ],
+   "rebaixa_achado": [
+    "SEM-PALAVRAS-COM-ENERGIA",
+    "CLIP-FIM",
+    "CLIP-INICIO"
+   ],
+   "depois_de": [
+    "integridade-edl"
+   ],
+   "nota_classe": "MISTO: CLIP-FIM/CLIP-INICIO e energia sem token são achados revisáveis, nunca falha isolada. Com `--rel` ou `ritmo.floor auto` aparecem em quase todo segmento por construção (29/29 em peca-01 aprovada). Evidência lexical VAZA-PROX e segmento realmente mudo têm referência independente e são promovidos. O `--floor` sai do perfil desde a SPEC-00.",
+   "custo_s": 15
+  },
+  {
+   "id": "qc-ataque",
+   "titulo": "sílaba vazada: a emenda termina alto E SUBINDO",
+   "classe": "qc",
+   "tipo": "convergencia",
+   "estagios": [
+    "montado"
+   ],
+   "exec": {
+    "script": "qc-ataque.py",
+    "argv": [
+     "{dir}"
+    ]
+   },
+   "requer": [
+    "edl.json",
+    "segs/",
+    "{video}"
+   ],
+   "requer_perfil": null,
+   "unidade": "emenda",
+   "adaptador": "qc_ataque",
+   "promove_falha": [
+    "ATAQUE"
+   ],
+   "rebaixa_achado": [],
+   "depois_de": [
+    "integridade-edl"
+   ],
+   "nota_classe": "referência = piso local + INCLINAÇÃO (subindo é ataque da palavra seguinte; descendo é a soltura da última, que é o estilo). Ele PULA junção contígua no mesmo src (split de plano): `medidas < emendas` é o pulo legítimo, não buraco.",
+   "custo_s": 40
+  },
+  {
+   "id": "qc-fonemas",
+   "titulo": "fricativa surda vazada e oclusão de plosiva decepada",
+   "classe": "qc",
+   "tipo": "convergencia",
+   "estagios": [
+    "montado"
+   ],
+   "exec": {
+    "script": "qc-fonemas.py",
+    "argv": [
+     "{dir}"
+    ]
+   },
+   "requer": [
+    "edl.json",
+    "{srcs}"
+   ],
+   "requer_perfil": null,
+   "unidade": "segmento",
+   "adaptador": "qc_fonemas",
+   "promove_falha": [],
+   "rebaixa_achado": [
+    "HERDADO"
+   ],
+   "depois_de": [
+    "integridade-edl"
+   ],
+   "nota_classe": "referência = o CORPO DA PALAVRA VIZINHA, não o ponto de corte. Alerta marcado [HERDADO] é corte que já era do bruto: a creator montou, nossa EDL só passa por ali — achado, nunca falha.",
+   "custo_s": 25
+  },
+  {
+   "id": "qc-emendas-asr",
+   "titulo": "palavra que vazou ou sumiu na junção, transcrita isolada",
+   "classe": "qc",
+   "tipo": "misto",
+   "estagios": [
+    "montado"
+   ],
+   "exec": {
+    "script": "qc-emendas-asr.py",
+    "argv": [
+     "{dir}"
+    ]
+   },
+   "requer": [
+    "edl.json",
+    "{video}",
+    "env:DEEPGRAM_API_KEY"
+   ],
+   "requer_perfil": null,
+   "unidade": "emenda",
+   "adaptador": "qc_emendas_asr",
+   "promove_falha": [],
+   "rebaixa_achado": [
+    "VAZOU",
+    "SUMIU",
+    "ORDEM-BORDA",
+    "REVISAO-ASR"
+   ],
+   "depois_de": [
+    "integridade-edl"
+   ],
+   "nota_classe": "Toda divergência exclusivamente lexical vira revisão: janelas curtas do Deepgram podem alucinar ou omitir tokens. O produtor repete divergências numa janela maior e preserva SUMIU/VAZOU/ORDEM como evidência, mas só ataque, fonemas, cauda ou envelope podem bloquear por defeito acústico. Este é o único item da bateria que sai da máquina (Deepgram).",
+   "custo_s": 60
+  },
+  {
+   "id": "qc-cauda",
+   "titulo": "silêncio onde não deveria haver: a cauda do segmento",
+   "classe": "qc",
+   "tipo": "convergencia",
+   "estagios": [
+    "montado"
+   ],
+   "exec": {
+    "script": "qc-cauda.py",
+    "argv": [
+     "{dir}"
+    ]
+   },
+   "requer": [
+    "edl.json",
+    "{srcs}"
+   ],
+   "requer_perfil": null,
+   "unidade": "segmento",
+   "adaptador": "qc_cauda",
+   "promove_falha": [
+    "CAUDA-REPROVADA",
+    "CONTROLE-FALHOU"
+   ],
+   "rebaixa_achado": [
+    "CAUDA-LONGA"
+   ],
+   "depois_de": [
+    "integridade-edl"
+   ],
+   "nota_classe": "É o único QC que procura silêncio, e não fala. O alvo vem de `ritmo.cauda_alvo_s`/`ritmo.pads.post` do perfil; o veredito só grita em p90 > 3× o alvo. Exit 3 dele é MEDIÇÃO INVÁLIDA (piso fixo abaixo do ruído da sala): vira NÃO VERIFICADO, nunca ok.",
+   "custo_s": 20
+  },
+  {
+   "id": "qc-nivel-achado",
+   "titulo": "trechos de fala abaixo da mediana do próprio falante",
+   "classe": "qc",
+   "tipo": "detector",
+   "estagios": [
+    "montado"
+   ],
+   "exec": {
+    "script": "qc-nivel.py",
+    "argv": [
+     "achado",
+     "{dir}",
+     "--json"
+    ]
+   },
+   "requer": [
+    "edl.json",
+    "{srcs}"
+   ],
+   "requer_perfil": null,
+   "unidade": "janela",
+   "adaptador": "qc_nivel",
+   "promove_falha": [],
+   "rebaixa_achado": [],
+   "depois_de": [
+    "integridade-edl"
+   ],
+   "nota_classe": "DETECTOR por definição do próprio script: todo run listado está abaixo do limiar porque foi selecionado por isso. Perseguir o número até zero levanta ruído de sala. A aprovação é o `qc-nivel-balanco`.",
+   "custo_s": 25
+  },
+  {
+   "id": "qc-nivel-balanco",
+   "titulo": "balanço de nível: cada range contra a mediana dos OUTROS",
+   "classe": "qc",
+   "tipo": "convergencia",
+   "estagios": [
+    "montado",
+    "final"
+   ],
+   "exec": {
+    "script": "qc-nivel.py",
+    "argv": [
+     "balanco",
+     "{dir}",
+     "--video",
+     "{video}",
+     "--json"
+    ]
+   },
+   "requer": [
+    "edl.json",
+    "{video}"
+   ],
+   "requer_perfil": null,
+   "unidade": "range",
+   "adaptador": "qc_nivel",
+   "promove_falha": [
+    "NIVEL-BAIXO"
+   ],
+   "rebaixa_achado": [
+    "SEM-NIVEL",
+    "AMOSTRA-CURTA"
+   ],
+   "depois_de": [
+    "integridade-edl"
+   ],
+   "nota_classe": "referência = leave-one-out sobre os PARES, independente do critério que selecionou o range. É o teste de convergência do `gain_db`.",
+   "custo_s": 25
+  },
+  {
+   "id": "av-sync",
+   "titulo": "vale de energia por emenda contra a fronteira de frames",
+   "classe": "qc",
+   "tipo": "convergencia",
+   "estagios": [
+    "montado",
+    "final"
+   ],
+   "exec": {
+    "script": "qc-avsync.py",
+    "argv": [
+     "{dir}",
+     "--video",
+     "{video}",
+     "--json"
+    ]
+   },
+   "requer": [
+    "edl.json",
+    "{video}"
+   ],
+   "requer_perfil": null,
+   "unidade": "fronteira",
+   "adaptador": "avsync",
+   "promove_falha": [
+    "AVSYNC-MEDIANA",
+    "AVSYNC-TENDENCIA",
+    "JCUT-GAP"
+   ],
+   "rebaixa_achado": [
+    "SEM-MARCADOR"
+   ],
+   "depois_de": [
+    "integridade-edl"
+   ],
+   "nota_classe": "referência = a fronteira de frames, que é física. Fronteira SEM MARCADOR (contígua, ou `fade_modo so-descontinuidade`) não entra em ok: entra em sem_marcador. O alvo em ms vem de `qc.av_sync_ms` do perfil.",
+   "custo_s": 20
+  },
+  {
+   "id": "qc-jcut",
+   "titulo": "a sobreposição de takes fez o que o plano disse",
+   "classe": "qc",
+   "tipo": "convergencia",
+   "estagios": [
+    "montado"
+   ],
+   "exec": {
+    "script": "qc-jcut.py",
+    "argv": [
+     "{dir}",
+     "--video",
+     "{video}"
+    ]
+   },
+   "requer": [
+    "{video}"
+   ],
+   "requer_perfil": null,
+   "unidade": "teste",
+   "adaptador": "qc_jcut",
+   "promove_falha": [
+    "JCUT-REPROVA"
+   ],
+   "rebaixa_achado": [],
+   "depois_de": [
+    "integridade-edl"
+   ],
+   "nota_classe": "A DECISÃO do J-cut é obrigatória; o J-cut não. `jcut.json` é exigido SEMPRE no estágio montado: com `aplicar: true` ele é medido pelos 5 testes; com `aplicar: false` ele carrega quem decidiu, quando e por quê, e o QC sai ok sem medir. A AUSÊNCIA reprova — antes de 2026-08-10 ela saía `nao_verificado/insumo`, indistinguível de 'ninguém pensou no assunto', e foi assim que 15 emendas butt-join saíram sem ninguém saber que houve escolha (achado A15).",
+   "custo_s": 30
+  },
+  {
+   "id": "qc-alpha",
+   "titulo": "o arquivo TEM alpha, e o alpha vale alguma coisa",
+   "classe": "qc",
+   "tipo": "convergencia",
+   "estagios": [
+    "compositado"
+   ],
+   "exec": {
+    "script": "qc-alpha.py",
+    "argv": [
+     "{artefato}",
+     "--json"
+    ]
+   },
+   "requer": [
+    "{artefato}"
+   ],
+   "requer_perfil": null,
+   "unidade": "frame",
+   "adaptador": "qc_alpha",
+   "promove_falha": [
+    "ALPHA-REPROVADO"
+   ],
+   "rebaixa_achado": [],
+   "depois_de": [],
+   "nota_classe": "referência = varredura do CANAL, não o `pix_fmt` do ffprobe (que é estruturalmente cego pro alpha do WebM VP9, que mora em BlockAdditional).",
+   "custo_s": 15
+  },
+  {
+   "id": "flicker-scan",
+   "titulo": "saltos de luminância frame a frame por região",
+   "classe": "qc",
+   "tipo": "detector",
+   "estagios": [
+    "compositado",
+    "final"
+   ],
+   "exec": {
+    "script": "flicker-scan.py",
+    "argv": [
+     "{video}",
+     "0",
+     "15",
+     "2.0",
+     "--dir",
+     "{dir}"
+    ]
+   },
+   "requer": [
+    "{video}"
+   ],
+   "requer_perfil": null,
+   "unidade": "frame",
+   "adaptador": "flicker",
+   "promove_falha": [],
+   "rebaixa_achado": [],
+   "depois_de": [],
+   "nota_classe": "DETECTOR: ele lista Δ, e jump cut e movimento de cena são Δ legítimos. Desde a SPEC-00 as regiões são frações do quadro e o raster sai do perfil — o acoplamento de formato que a SPEC-12 previa aqui NÃO existe mais, por isso `requer_perfil` é null.",
+   "custo_s": 25
+  },
+  {
+   "id": "varredura-alpha",
+   "titulo": "varrer TODOS os frames do alpha: tinta condicional, transbordo, buraco de legenda",
+   "classe": "qc",
+   "tipo": "convergencia",
+   "estagios": [
+    "compositado"
+   ],
+   "exec": {
+    "sem_script": "consolidar os one-off de produção não é escopo desta bateria"
+   },
+   "requer": [
+    "{artefato}"
+   ],
+   "requer_perfil": null,
+   "unidade": "frame",
+   "adaptador": "generico",
+   "promove_falha": [
+    "VARREDURA"
+   ],
+   "rebaixa_achado": [],
+   "depois_de": [],
+   "prova_de_dentes": true,
+   "nota_classe": "Não existe script canônico para varrer TODOS os frames do alpha — só cópias divergentes presas em pastas de produção. Declare o seu em `<dir-producao>/qc/local.json` → `extras`. Sem isso o item sai em NÃO VERIFICADO/sem-script — que é o ponto: a ausência fica VISÍVEL em vez de virar silêncio.",
+   "custo_s": 60
+  },
+  {
+   "id": "qc-fala",
+   "titulo": "a fala devolvida pelo modo edit continua sendo a do creator",
+   "classe": "qc",
+   "tipo": "misto",
+   "estagios": [
+    "compositado"
+   ],
+   "exec": {
+    "script": "qc-fala.py",
+    "skill": "omni-insert",
+    "argv": [
+     "{insert.base}",
+     "{insert.editado}"
+    ]
+   },
+   "requer": [
+    "local:inserts"
+   ],
+   "requer_perfil": null,
+   "unidade": "par",
+   "adaptador": "qc_fala",
+   "promove_falha": [
+    "ACUSTICA"
+   ],
+   "rebaixa_achado": [
+    "ASR-DIFF"
+   ],
+   "depois_de": [],
+   "nota_classe": "O par original/editado não se adivinha: declare em `<dir>/qc/local.json` → `inserts`. O próprio script separa veredito (acústica) de indício (ASR) — respeite a separação.",
+   "custo_s": 40
+  },
+  {
+   "id": "qc-cor",
+   "titulo": "rótulo × pixel, por projeção no eixo da conversão",
+   "classe": "qc",
+   "tipo": "convergencia",
+   "estagios": [
+    "final"
+   ],
+   "exec": {
+    "script": "qc-cor.py",
+    "argv": [
+     "{dir}"
+    ]
+   },
+   "requer": [
+    "{video}"
+   ],
+   "requer_perfil": null,
+   "unidade": "arquivo",
+   "adaptador": "qc_cor",
+   "promove_falha": [
+    "COR-ROTULO",
+    "COR-ESTAGIO"
+   ],
+   "rebaixa_achado": [
+    "SECAO-NAO-MEDIDA"
+   ],
+   "depois_de": [],
+   "nota_classe": "NÃO passe `--ref`: desde a SPEC-11 a referência avconvert é chaveada pela IDENTIDADE do bruto (bytes+mtime), e passar caminho por fora desmonta esse amarre. Ele tem 4 seções e sai 0 mesmo pulando 2 — o adaptador conta os `⏭️ SKIP` e os reporta, senão o SKIP viraria aprovação.",
+   "custo_s": 90
+  },
+  {
+   "id": "preto",
+   "titulo": "frame preto no render",
+   "classe": "qc",
+   "tipo": "convergencia",
+   "estagios": [
+    "final"
+   ],
+   "exec": {
+    "cmd": [
+     "ffmpeg",
+     "-v",
+     "info",
+     "-stats",
+     "-nostdin",
+     "-i",
+     "{video}",
+     "-vf",
+     "blackdetect=d=0.05:pix_th=0.10",
+     "-an",
+     "-f",
+     "null",
+     "-"
+    ]
+   },
+   "requer": [
+    "{video}"
+   ],
+   "requer_perfil": null,
+   "unidade": "frame",
+   "adaptador": "preto",
+   "promove_falha": [
+    "PRETO"
+   ],
+   "rebaixa_achado": [],
+   "depois_de": [],
+   "nota_classe": "Mecanismo e os dois parâmetros vêm de uma verificação de corte de terceiro. Um corte nunca deve produzir preto — não há caso legítimo, então tudo aqui é falha.",
+   "custo_s": 20
+  },
+  {
+   "id": "loudness",
+   "titulo": "o entregável bate o alvo de loudness do perfil",
+   "classe": "qc",
+   "tipo": "convergencia",
+   "estagios": [
+    "final"
+   ],
+   "exec": {
+    "script": "loudness.py",
+    "argv": [
+     "{video}",
+     "--verificar",
+     "--perfil",
+     "{dir}/perfil.json"
+    ]
+   },
+   "requer": [
+    "{video}",
+    "perfil.json"
+   ],
+   "requer_perfil": null,
+   "unidade": "arquivo",
+   "adaptador": "loudness",
+   "promove_falha": [
+    "LOUDNESS"
+   ],
+   "rebaixa_achado": [],
+   "depois_de": [],
+   "nota_classe": "referência = alvo absoluto do contrato de entrega (`audio.loudness` do perfil). Sem perfil.json o script sai 2 e o item vira NÃO VERIFICADO/perfil: alvo de loudness não tem default (SPEC-02).",
+   "custo_s": 15
+  },
+  {
+   "id": "trilha",
+   "titulo": "a música fez com a voz o que o plano disse",
+   "classe": "qc",
+   "tipo": "convergencia",
+   "estagios": [
+    "final"
+   ],
+   "exec": {
+    "script": "trilha.py",
+    "argv": [
+     "verificar",
+     "{dir}"
+    ]
+   },
+   "requer": [
+    "trilha.json"
+   ],
+   "requer_perfil": null,
+   "unidade": "medicao",
+   "adaptador": "generico",
+   "promove_falha": [
+    "TRILHA"
+   ],
+   "rebaixa_achado": [],
+   "depois_de": [
+    "loudness"
+   ],
+   "nota_classe": "Sem `trilha.json` o item sai em NÃO VERIFICADO/insumo — trilha é opcional no caminho bruto→entregue. ⚠️ O QC de áudio (loudness, nível, cauda) roda na versão SEM trilha: música esconde defeito (o silêncio digital do end card da VSL só apareceu sem ela).",
+   "custo_s": 30
+  },
+  {
+   "id": "qc-split",
+   "titulo": "o split-screen enquadrou o rosto (b-roll sobre a cabeça, deslocamento aplicado, preto exposto, A/V)",
+   "classe": "qc",
+   "tipo": "convergencia",
+   "estagios": [
+    "final"
+   ],
+   "exec": {
+    "script": "qc-split.py",
+    "argv": [
+     "{dir}/v2-split.mp4",
+     "--plano",
+     "{dir}/split-plano.json"
+    ]
+   },
+   "requer": [
+    "split-plano.json",
+    "v2-split.mp4"
+   ],
+   "requer_perfil": "split != null",
+   "unidade": "amostra",
+   "adaptador": "generico",
+   "promove_falha": [
+    "BROLL-SOBRE-A-CABECA"
+   ],
+   "rebaixa_achado": [],
+   "depois_de": [],
+   "nota_classe": "SPEC-28. Convergência: a régua é a RAMPA DE ALPHA do perfil de peça, um alvo absoluto do contrato, independente de qualquer seleção — a cabeça está sob o b-roll ou não está. As três medidas que entram no veredito são independentes entre si e nenhuma é lida do plano: cabeça pelo matte de pessoa na BASE, deslocamento por correlação cruzada da base contra a SAÍDA (busca larga, não ancorada no valor planejado), máscara pelo perfil. Roda no estágio `final` sobre `v2-split.mp4` por NOME, e não por `{video}`, porque a saída do split não é artefato de estágio: sem plano e sem esse arquivo o item é NÃO VERIFICADO, que é o correto na esmagadora maioria das peças (o split é opcional). ⚠️ Usa o adaptador `generico`: um adaptador `qc_split` dedicado exigiria editar `scripts/qc.py`, que não está na §5 desta spec.",
+   "custo_s": 60
+  },
+  {
+   "id": "plano-visual",
+   "titulo": "o acabamento escolhido virou animações executadas e decisões sonoras explícitas",
+   "classe": "portao",
+   "tipo": "convergencia",
+   "estagios": [
+    "compositado",
+    "final"
+   ],
+   "exec": {
+    "cmd": [
+     "{python}",
+     "{scripts}/plano-visual.py",
+     "{dir}",
+     "--validar",
+     "entrega"
+    ]
+   },
+   "requer": [],
+   "requer_perfil": null,
+   "unidade": "evento",
+   "adaptador": "generico",
+   "promove_falha": [
+    "PLANO-VISUAL"
+   ],
+   "rebaixa_achado": [],
+   "depois_de": [
+    "integridade-edl"
+   ],
+   "nota_classe": "Portão da Fase 2: roda mesmo se plano ou autoridades estiverem ausentes, para a ausência virar FALHA estruturada em vez de NÃO VERIFICADO. Essencial exige zero eventos. Animada e Surpresa exigem preparo compilado, execução oficial do Remotion com props/public-dir vinculados, recibo por evento e render de vídeo real. Cada v-final reconhecido exige manifesto próprio de composição oficial; isso permite as versões com grade e sem filtro sem esconder uma terceira saída externa. Eventos com SFX exigem áudio gráfico misturado via amix. Captions renomeadas, MP4 externo, áudio apenas da base e mudança de estilo, corte, timeline, render ou plano reprovam.",
+   "custo_s": 1
+  },
+  {
+   "id": "preview-aconteceu",
+   "titulo": "o creator aprovou este corte NA TELA",
+   "classe": "portao",
+   "tipo": "detector",
+   "estagios": [
+    "final"
+   ],
+   "exec": {
+    "cmd": [
+     "{python}",
+     "{scripts}/qc-preview.py",
+     "{dir}"
+    ]
+   },
+   "requer": [],
+   "requer_perfil": null,
+   "unidade": "producao",
+   "adaptador": "generico",
+   "promove_falha": [
+    "SEM-APROVACAO-NA-TELA"
+   ],
+   "rebaixa_achado": [],
+   "depois_de": [],
+   "nota_classe": "A ilha tinha a UI inteira e nenhum item de bateria exigia que ela tivesse sido usada: o fluxo fechava verde com a tela nunca aberta (achado A9, medido em 2026-08-09). O rastro já existia todo — servidor.json, a fonte da aprovação, a marca de evento consumido sem servidor. Este item só COBRA o que já era registrado. Reprova também o caso pior: sessão de preview viva e aprovação vinda do terminal.",
+   "custo_s": 1
+  }
+ ],
+ "cegos": [
+  "ritmo e humor",
+  "escolha de música",
+  "o que só o ouvido pega"
+ ]
+}

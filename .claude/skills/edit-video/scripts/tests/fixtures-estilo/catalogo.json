@@ -1,0 +1,283 @@
+{
+ "contrato": "benchmark.catalogo-estilos/v1",
+ "gerado_em": "2026-08-08T00:00:00-03:00",
+ "gerador": "fixture da SPEC-24 §8.2",
+ "canvas": {
+  "largura": 1080,
+  "altura": 1920,
+  "fps": 30,
+  "escala": 0.3333
+ },
+ "estilos": [
+  {
+   "slug": "plano-fixo",
+   "grupo": "gramatica",
+   "nome": "plano-fixo",
+   "oQuePinta": "fixture",
+   "camada": "edl",
+   "estado": "pronto",
+   "perfis": [
+    "teste"
+   ],
+   "defaultDe": [
+    "teste"
+   ],
+   "origem": "fixture",
+   "parametros": [],
+   "duplicatas": [],
+   "preview": {
+    "durS": 1,
+    "placa": "retrato",
+    "frameCartao": 1,
+    "w": 64,
+    "h": 36,
+    "fps": 30,
+    "webm": "x.webm",
+    "poster": "x.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "000000000000"
+  },
+  {
+   "slug": "plano-alternado",
+   "grupo": "gramatica",
+   "nome": "plano-alternado",
+   "oQuePinta": "fixture",
+   "camada": "edl",
+   "estado": "pronto",
+   "perfis": [
+    "teste"
+   ],
+   "defaultDe": [],
+   "origem": "fixture",
+   "parametros": [],
+   "duplicatas": [],
+   "preview": {
+    "durS": 1,
+    "placa": "retrato",
+    "frameCartao": 1,
+    "w": 64,
+    "h": 36,
+    "fps": 30,
+    "webm": "x.webm",
+    "poster": "x.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "000000000000"
+  },
+  {
+   "slug": "hook-titulo-typeon",
+   "grupo": "gancho",
+   "nome": "hook-titulo-typeon",
+   "oQuePinta": "fixture",
+   "camada": "edl",
+   "estado": "pronto",
+   "perfis": [
+    "teste"
+   ],
+   "defaultDe": [
+    "teste"
+   ],
+   "origem": "fixture",
+   "parametros": [],
+   "duplicatas": [],
+   "preview": {
+    "durS": 1,
+    "placa": "retrato",
+    "frameCartao": 1,
+    "w": 64,
+    "h": 36,
+    "fps": 30,
+    "webm": "x.webm",
+    "poster": "x.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "000000000000"
+  },
+  {
+   "slug": "hook-titulo-fade",
+   "grupo": "gancho",
+   "nome": "hook-titulo-fade",
+   "oQuePinta": "fixture",
+   "camada": "edl",
+   "estado": "pronto",
+   "perfis": [
+    "teste"
+   ],
+   "defaultDe": [],
+   "origem": "fixture",
+   "parametros": [],
+   "duplicatas": [],
+   "preview": {
+    "durS": 1,
+    "placa": "retrato",
+    "frameCartao": 1,
+    "w": 64,
+    "h": 36,
+    "fps": 30,
+    "webm": "x.webm",
+    "poster": "x.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "000000000000"
+  },
+  {
+   "slug": "legenda-destaque-tema",
+   "grupo": "legenda",
+   "nome": "legenda-destaque-tema",
+   "oQuePinta": "fixture",
+   "camada": "edl",
+   "estado": "pronto",
+   "perfis": [
+    "teste"
+   ],
+   "defaultDe": [
+    "teste"
+   ],
+   "origem": "fixture",
+   "parametros": [],
+   "duplicatas": [],
+   "preview": {
+    "durS": 1,
+    "placa": "retrato",
+    "frameCartao": 1,
+    "w": 64,
+    "h": 36,
+    "fps": 30,
+    "webm": "x.webm",
+    "poster": "x.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "000000000000"
+  },
+  {
+   "slug": "legenda-chapada",
+   "grupo": "legenda",
+   "nome": "legenda-chapada",
+   "oQuePinta": "fixture",
+   "camada": "edl",
+   "estado": "pronto",
+   "perfis": [
+    "teste"
+   ],
+   "defaultDe": [],
+   "origem": "fixture",
+   "parametros": [
+    {
+     "nome": "fontSize",
+     "tipo": "px",
+     "padrao": 54,
+     "faixa": [
+      30,
+      90
+     ]
+    },
+    {
+     "nome": "yPct",
+     "tipo": "pct",
+     "padrao": 75,
+     "faixa": [
+      50,
+      95
+     ]
+    }
+   ],
+   "duplicatas": [],
+   "preview": {
+    "durS": 1,
+    "placa": "retrato",
+    "frameCartao": 1,
+    "w": 64,
+    "h": 36,
+    "fps": 30,
+    "webm": "x.webm",
+    "poster": "x.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "000000000000"
+  },
+  {
+   "slug": "tema-neutro",
+   "grupo": "tema",
+   "nome": "tema-neutro",
+   "oQuePinta": "fixture",
+   "camada": "edl",
+   "estado": "pronto",
+   "perfis": [
+    "teste"
+   ],
+   "defaultDe": [
+    "teste"
+   ],
+   "origem": "fixture",
+   "parametros": [],
+   "duplicatas": [],
+   "preview": {
+    "durS": 1,
+    "placa": "retrato",
+    "frameCartao": 1,
+    "w": 64,
+    "h": 36,
+    "fps": 30,
+    "webm": "x.webm",
+    "poster": "x.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "000000000000"
+  },
+  {
+   "slug": "postit",
+   "grupo": "grafismo",
+   "nome": "postit",
+   "oQuePinta": "fixture",
+   "camada": "edl",
+   "estado": "pronto",
+   "perfis": [
+    "teste"
+   ],
+   "defaultDe": [],
+   "origem": "fixture",
+   "parametros": [],
+   "duplicatas": [],
+   "preview": {
+    "durS": 1,
+    "placa": "retrato",
+    "frameCartao": 1,
+    "w": 64,
+    "h": 36,
+    "fps": 30,
+    "webm": "x.webm",
+    "poster": "x.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "000000000000"
+  },
+  {
+   "slug": "marca-texto",
+   "grupo": "grafismo",
+   "nome": "marca-texto",
+   "oQuePinta": "fixture",
+   "camada": "edl",
+   "estado": "pronto",
+   "perfis": [
+    "teste"
+   ],
+   "defaultDe": [],
+   "origem": "fixture",
+   "parametros": [],
+   "duplicatas": [],
+   "preview": {
+    "durS": 1,
+    "placa": "retrato",
+    "frameCartao": 1,
+    "w": 64,
+    "h": 36,
+    "fps": 30,
+    "webm": "x.webm",
+    "poster": "x.png"
+   },
+   "desde": "2026-08-08",
+   "sha": "000000000000"
+  }
+ ]
+}

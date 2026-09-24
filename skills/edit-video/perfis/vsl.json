@@ -1,0 +1,221 @@
+{
+ "contrato": "benchmark.perfil-peca/v1",
+ "nome": "vsl",
+ "descricao": "Video Sales Letter 16:9 para player web (VTurb/ConverteAI). Locução contínua, troca de plano em vez de corte de fala.",
+ "video": {
+  "aspecto": "16:9",
+  "largura": 1920,
+  "altura": 1080,
+  "fps": 30,
+  "unsharp": "unsharp=5:5:0.55:5:5:0.0"
+ },
+ "cor": {
+  "entrada_esperada": "auto",
+  "aplicar_em": "extracao"
+ },
+ "ritmo": {
+  "pads": {
+   "pre": 0.15,
+   "post": 0.25
+  },
+  "cap": 0.25,
+  "rel": 0.0,
+  "floor": -52.0,
+  "gap_min": 0.5,
+  "fade_modo": "so-descontinuidade",
+  "gramatica_plano": "punch-pontual",
+  "cauda_alvo_s": null
+ },
+ "audio": {
+  "canais": 2,
+  "loudness": {
+   "I": -14.0,
+   "TP": -1.5,
+   "LRA": 11.0
+  }
+ },
+ "legenda": {
+  "ativa": true,
+  "queimada": true,
+  "max_palavras_pagina": 12,
+  "fonte_palavras": "edl-bruto",
+  "estilo": {
+   "familia": "Montserrat",
+   "peso": 700,
+   "italico": false,
+   "tamanho_pct": 0.03,
+   "entreletras_pct": 0.0,
+   "altura_linha": 1.25,
+   "caixa": null
+  },
+  "agrupamento": {
+   "largura_max_pct": 0.62,
+   "linhas_max": 2,
+   "pausa_quebra_ms": 500,
+   "quebra_em_pontuacao": true,
+   "min_solo_ms": 700,
+   "penalidade_orfa_px": 200,
+   "orfas": [
+    "o",
+    "a",
+    "os",
+    "as",
+    "e",
+    "é",
+    "de",
+    "do",
+    "da",
+    "em",
+    "no",
+    "na",
+    "um",
+    "uma",
+    "que",
+    "se",
+    "ao",
+    "à",
+    "por",
+    "com"
+   ]
+  },
+  "diretor": {
+   "max_chars_manuscrito": 28,
+   "fpc_manuscrito": 0.9,
+   "bonus_creator": 0.15,
+   "pausa_frase_ms": 700,
+   "prosodia_ref": {
+    "realce_db": 2.5,
+    "alongamento": 2.0,
+    "pausa_ms": 350
+   },
+   "papel_para_componente": {
+    "numero": "AccentWord",
+    "negacao": "DrawStroke:strikePath",
+    "enumeracao": "StepTitleFlat",
+    "tese": "HandText",
+    "contraste": "MarkerHighlight",
+    "destaque": "DrawStroke:loopCirclePath"
+   },
+   "cor_por_papel": {
+    "numero": "highlight",
+    "tese": "ink",
+    "contraste": "highlight",
+    "enumeracao": "highlight",
+    "negacao": "ink",
+    "destaque": "highlight"
+   },
+   "zona_por_papel": {
+    "numero": "topo",
+    "tese": "pleno",
+    "contraste": "faixa-legenda",
+    "enumeracao": "lateral",
+    "negacao": "faixa-legenda",
+    "destaque": "faixa-legenda"
+   },
+   "sfx_por_papel": {
+    "numero": "pop-hi",
+    "tese": "pencil",
+    "contraste": "pop-lo",
+    "enumeracao": "pop",
+    "negacao": "scratch",
+    "destaque": "scratch"
+   },
+   "densidade_alvo_10s": 7.4,
+   "espacamento_min_s": 0.8,
+   "fracao_legenda_alvo": 0.34,
+   "pesos": {
+    "prosodia": 0.15,
+    "lexico": 0.3,
+    "posicao": 0.25,
+    "repeticao": 0.3
+   }
+  }
+ },
+ "zonas_ui": null,
+ "estrutura": {
+  "_origem": "intelligence/vsl-metodo-executado.md — 9 VSLs em execução, medidas como % da duração. São checagens do PLANO-EDICAO, não do corte: o perfil só carrega os números para a spec que validar não ter que inventá-los.",
+  "revelacao_produto": {
+   "min": 0.5
+  },
+  "preco": {
+   "min": 0.81,
+   "max": 0.91
+  },
+  "escassez_garantia": {
+   "min": 0.82,
+   "max": 0.93
+  },
+  "bonus": {
+   "depois_de": "preco"
+  },
+  "cta": {
+   "min": 0.94
+  }
+ },
+ "entregaveis": [
+  "v2-final.mp4"
+ ],
+ "broll": {
+  "imagem": {
+   "movimento": "zoom-in",
+   "dur_default_s": 6.0,
+   "zoom_max": 1.1,
+   "upscale_fator": 4
+  }
+ },
+ "apoio_visual": {
+  "janela_s": 3.0,
+  "max_por_min": 1.5,
+  "classes_off": []
+ },
+ "publicacao": {
+  "_motivo": "srt ON porque a transcrição da peça serve à landing e não custa render. capitulos OFF por decisão editorial, não omissão: (1) a VSL toca em player web (VTurb/ConverteAI), que não renderiza índice de capítulo; (2) o método medido em intelligence/vsl-metodo-executado.md põe o preço em 81-91% da duração, e um índice navegável é o convite para pular até lá. Reversível numa linha: --set publicacao.capitulos.gerar=true.",
+  "srt": {
+   "gerar": true
+  },
+  "capitulos": {
+   "gerar": false
+  }
+ },
+ "trilha": {
+  "ativa": false,
+  "engine": "lyria-3-pro",
+  "delta_voz_lu": 13.0,
+  "base_lufs": -24.0,
+  "base_tp": -9.0,
+  "base_lra": 7.0,
+  "duck_db": 5.0,
+  "duck_attack_ms": 25,
+  "duck_release_ms": 450,
+  "highpass_hz": 60,
+  "fade_in_s": 2.5,
+  "fade_out_s": 4.0,
+  "loop_crossfade_s": 1.5,
+  "mascara_max_pct": 0.2,
+  "mascara_max_db": 0.5,
+  "presenca_min_db": 3.0
+ },
+ "split": {
+  "_comentario": "SPEC-28. Em 16:9 a faixa de b-roll come proporcionalmente muito mais do enquadramento (o rosto vive numa altura menor): fim_pct menor e perda_base_max_pct apertado.",
+  "opaco_pct": 0.3,
+  "_opaco_pct": "fração da ALTURA até onde o b-roll é 100% opaco. Medido na referência ref-D.",
+  "fim_pct": 0.44,
+  "_fim_pct": "fração da altura onde o alpha do b-roll chega a zero. A diferença para `opaco_pct` É a rampa.",
+  "curva": "smooth",
+  "folga_topo_pct": 0.036,
+  "_folga_topo_pct": "respiro entre o fim da rampa e o topo da cabeça. 68,75/1920 = 3,58%, derivado dos defaults do ref-A (bandH 750, zoom 1,25, focusY 400, cabelo em y_src 455).",
+  "percentil_cabeca": 5,
+  "_percentil_cabeca": "p5 = a cabeça MAIS ALTA do segmento; é ela que tem que caber.",
+  "amostras_por_s": 4,
+  "escala_max": 1.04,
+  "_escala_max": "acima disto o upscale começa a aparecer em pele e cabelo. Estourar é exit 1, nunca clamp.",
+  "margem_queixo_pct": 0.05,
+  "perda_base_max_pct": 0.26,
+  "_perda_base_max_pct": "quanto da base pode sair pelo pé. É decisão EDITORIAL: o script avisa e exige --forcar, não decide.",
+  "encaixar_no_corte": true
+ },
+ "jcut": {
+  "modo": "medido",
+  "lead_max_ms": 100
+ }
+}

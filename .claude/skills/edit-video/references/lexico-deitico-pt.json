@@ -1,0 +1,197 @@
+{
+ "schema": "benchmark.lexico-deitico/v1",
+ "versao": "v1",
+ "idioma": "pt-BR",
+
+ "_leia_antes_de_editar": [
+  "O `padrao` casa contra TEXTO NORMALIZADO: minúsculo, sem acento (NFD + descarte de Mn), pontuação colapsada em espaço. Escrever acento no padrão NUNCA casa.",
+  "`posicao`: qualquer | inicio | fim | borda. `borda` = o começo OU o fim da frase (≤ 10 caracteres de cada ponta). É o que torna `olha` solto utilizável. Frase com menos de 3 palavras não recebe o teste de posição — `Olha` dentro de fragmento de 2 palavras é ruído de ASR.",
+  "`antes_nao` compara TOKEN A TOKEN (nunca substring: `ele` casaria dentro de `nele` e mataria `…de funil nele, olha isso aqui`, que é dêitico legítimo) e é CANCELADO por qualquer `,.;:!?` entre o token e o gatilho (`…ia atrás de você, olha, tivemos quatro…` é imperativo com vocativo antes).",
+  "`classe` e `sugestao` têm DOMÍNIO FECHADO — ver references/contrato-deiticos.md. Valor novo exige editar o contrato, não o léxico.",
+  "COMO UMA EXPRESSÃO NOVA ENTRA (é o mecanismo de extensibilidade, e ele é medido): (1) `deiticos.py --frequencia \"<regex>\" --corpus data creators`; (2) critério: ≥5 ocorrências em ≥3 arquivos distintos E uso ostensivo em ≥10 dos 15 contextos impressos — abaixo disso a entrada fica com `\"status\": \"candidata\"` e NÃO conta para o veredito, só aparece no relatório; (3) rode a bateria e compare a densidade antes/depois: se a p90 do corpus passar de 2,5/min a entrada é ruído, reverta ou aperte o padrão.",
+  "Creator com jargão próprio entra por `<creators>/<nome>/lexico-deitico.json` (`--creator <nome>`) ou por `--lexico <arquivo>` — nunca poluindo este arquivo. Perfil de peça desliga classe inteira por `apoio_visual.classes_off`."
+ ],
+
+ "corpus_de_calibracao": {
+  "transcripts": 200,
+  "transcripts_com_words": 200,
+  "palavras": 183052,
+  "data": "2026-08-08",
+  "comando": "deiticos.py --frequencia \"<padrao>\" --corpus data creators",
+  "nota": "`ocorrencias_corpus` é a contagem CRUA do `padrao` sobre o corpus inteiro — o `--frequencia` não aplica `posicao` nem `antes_nao`. Nas entradas com `posicao` diferente de `qualquer` o número de achados reais é bem menor (ver `ocorrencias_apos_filtros`)."
+ },
+
+ "padroes": [
+  {
+   "slug": "olha-ostensivo",
+   "padrao": "\\bolha (so|isso|aqui|essa|esse|esses|essas|pra|para|o|a|os|as|que)\\b",
+   "posicao": "qualquer",
+   "classe": "ostensivo",
+   "peso": 3,
+   "sugestao": "broll",
+   "antes_nao": ["voce", "vc", "gente", "ele", "ela", "eles", "elas", "quem", "ninguem", "alguem", "nao"],
+   "ocorrencias_corpus": 171,
+   "arquivos_corpus": 44,
+   "status": "ativo"
+  },
+  {
+   "slug": "isso-aqui",
+   "padrao": "\\b(isso|esse|essa|aquilo) aqui\\b",
+   "posicao": "qualquer",
+   "classe": "ostensivo",
+   "peso": 2,
+   "sugestao": "cartao",
+   "antes_nao": [],
+   "ocorrencias_corpus": 169,
+   "arquivos_corpus": 44,
+   "status": "ativo"
+  },
+  {
+   "slug": "aqui-o",
+   "padrao": "\\baqui (o|a|os|as|esse|essa|esta|estao)\\b",
+   "posicao": "qualquer",
+   "classe": "ostensivo",
+   "peso": 2,
+   "sugestao": "cartao",
+   "antes_nao": [],
+   "ocorrencias_corpus": 120,
+   "arquivos_corpus": 44,
+   "status": "ativo"
+  },
+  {
+   "slug": "por-exemplo",
+   "padrao": "\\bpor exemplo\\b",
+   "posicao": "qualquer",
+   "classe": "exemplo",
+   "peso": 1,
+   "sugestao": "cartao",
+   "antes_nao": [],
+   "ocorrencias_corpus": 113,
+   "arquivos_corpus": 34,
+   "status": "ativo"
+  },
+  {
+   "slug": "vou-mostrar",
+   "padrao": "\\b(vou (te |lhe )?mostrar|deixa eu (te )?mostrar|te mostro)\\b",
+   "posicao": "qualquer",
+   "classe": "anuncio",
+   "peso": 3,
+   "sugestao": "broll",
+   "antes_nao": [],
+   "ocorrencias_corpus": 80,
+   "arquivos_corpus": 35,
+   "status": "ativo"
+  },
+  {
+   "slug": "olha-solto",
+   "padrao": "\\bolha\\b",
+   "posicao": "borda",
+   "classe": "ostensivo",
+   "peso": 2,
+   "sugestao": "zoom",
+   "antes_nao": ["voce", "vc", "gente", "ele", "ela", "eles", "elas", "quem", "ninguem", "alguem", "nao"],
+   "ocorrencias_corpus": 350,
+   "arquivos_corpus": 66,
+   "nota": "`olha` é o gatilho mais frequente do corpus (448 ocorrências de `olha*`) e é AMBÍGUO: imperativo em \"o problema está aqui, olha\" e 3ª pessoa em \"quando a gente olha esse funil\". Quem desambigua são as duas guardas: `posicao: borda` (a fronteira de frase) e `antes_nao` (o token anterior).",
+   "status": "ativo"
+  },
+  {
+   "slug": "desse-jeito",
+   "padrao": "\\b(desse jeito|dessa forma|assim oh)\\b",
+   "posicao": "qualquer",
+   "classe": "ostensivo",
+   "peso": 2,
+   "sugestao": "broll",
+   "antes_nao": [],
+   "ocorrencias_corpus": 23,
+   "arquivos_corpus": 17,
+   "status": "ativo"
+  },
+  {
+   "slug": "esta-vendo",
+   "padrao": "\\b(voce |vc )?(esta|ta) vendo\\b",
+   "posicao": "qualquer",
+   "classe": "ostensivo",
+   "peso": 3,
+   "sugestao": "broll",
+   "antes_nao": ["gente", "ele", "ela", "eles", "elas", "quem", "ninguem", "alguem", "nao"],
+   "ocorrencias_corpus": 34,
+   "arquivos_corpus": 30,
+   "status": "ativo"
+  },
+  {
+   "slug": "presta-atencao",
+   "padrao": "\\bpresta[r]? atencao\\b",
+   "posicao": "qualquer",
+   "classe": "enfase",
+   "peso": 2,
+   "sugestao": "zoom",
+   "antes_nao": ["ele", "ela", "eles", "elas", "quem", "ninguem", "alguem", "nao"],
+   "ocorrencias_corpus": 33,
+   "arquivos_corpus": 14,
+   "status": "ativo"
+  },
+  {
+   "slug": "enumeracao",
+   "padrao": "\\b(primeiro|segundo|numero um|passo um)\\b",
+   "posicao": "inicio",
+   "classe": "enumeracao",
+   "peso": 1,
+   "sugestao": "cartao",
+   "antes_nao": [],
+   "ocorrencias_corpus": 85,
+   "arquivos_corpus": 7,
+   "nota": "Concentrado: 85 ocorrências em SÓ 7 arquivos, e 3 deles são aula longa. Por isso `posicao: inicio` (só quando abre a frase) e por isso `longform` desliga a classe inteira em `apoio_visual.classes_off` — em aula de 2 h `primeiro/segundo` é estrutura de fala o tempo todo, não apontamento.",
+   "status": "ativo"
+  },
+  {
+   "slug": "projecao",
+   "padrao": "\\b(imagina so|imagine so|pensa comigo)\\b",
+   "posicao": "qualquer",
+   "classe": "projecao",
+   "peso": 1,
+   "sugestao": "broll",
+   "antes_nao": [],
+   "ocorrencias_corpus": 10,
+   "arquivos_corpus": 9,
+   "status": "ativo"
+  },
+  {
+   "slug": "veja-repara",
+   "padrao": "\\b(veja|repara|observa|percebe) (so|bem|isso|aqui)\\b",
+   "posicao": "qualquer",
+   "classe": "ostensivo",
+   "peso": 3,
+   "sugestao": "broll",
+   "antes_nao": ["voce", "vc", "gente", "ele", "ela", "eles", "elas", "quem", "ninguem", "alguem", "nao"],
+   "ocorrencias_corpus": 4,
+   "arquivos_corpus": 4,
+   "nota": "CANDIDATA por medição, não por gosto: 4 ocorrências em 4 arquivos, abaixo do critério de ≥5 ocorrências. A versão com `nota` na alternação dava 6, mas 2 dos 6 eram falso positivo do substantivo (\"minha nota só dava pra cursar estatística\") — `nota` saiu e está registrado em `descartadas[]`.",
+   "status": "candidata"
+  },
+  {
+   "slug": "anota",
+   "padrao": "\\b(anota ai|escreve ai|guarda essa)\\b",
+   "posicao": "qualquer",
+   "classe": "enfase",
+   "peso": 2,
+   "sugestao": "cartao",
+   "antes_nao": [],
+   "ocorrencias_corpus": 3,
+   "arquivos_corpus": 3,
+   "nota": "CANDIDATA: 3 ocorrências em 3 arquivos, abaixo do critério de ≥5. Os 3 contextos são ostensivos de verdade (\"anota aí que são 3 sinais\"), então a expressão é boa — o corpus é que ainda não a sustenta. Promover quando passar de 5.",
+   "status": "candidata"
+  }
+ ],
+
+ "descartadas": [
+  {"padrao": "\\brepare\\b", "ocorrencias_corpus": 0,
+   "motivo": "em pt-BR falado o Deepgram escreve `repara`, nunca `repare`"},
+  {"padrao": "\\bcomo voce (pode|consegue) ver\\b", "ocorrencias_corpus": 0,
+   "motivo": "é a expressão da docstring do ref-A (helpers/watch_video.py:18-22) e é inglês traduzido; não aparece uma vez no corpus"},
+  {"padrao": "\\bpresta bem atencao\\b", "ocorrencias_corpus": 0,
+   "motivo": "coberta por `presta-atencao`"},
+  {"padrao": "\\bnota (so|bem|isso|aqui)\\b", "ocorrencias_corpus": 2,
+   "motivo": "2 de 2 são o SUBSTANTIVO, não o verbo (\"minha nota só dava pra cursar estatística\"). Saiu da alternação de `veja-repara`"}
+ ]
+}

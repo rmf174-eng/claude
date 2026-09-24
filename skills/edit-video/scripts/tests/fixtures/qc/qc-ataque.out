@@ -1,0 +1,7 @@
+--- stdout
+  ⚠️ ATAQUE b2               t=   5.33 pico  -31.2 piso  -71.2 incl  +274.2 dB/100ms
+          ok b3               t=   7.13 pico  -67.7 piso  -70.8 incl   -80.9 dB/100ms
+
+--- stderr
+
+5 emendas · 1 com sílaba vazada

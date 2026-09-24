@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0d0f12">
+<title>Ilha | revisão</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23ff6b3d'/%3E%3Cpath d='M10 8h4v16h-4zm8 0h4v7l-4 3z' fill='%23fff8f2'/%3E%3C/svg%3E">
+<script>if(!location.pathname.endsWith('/'))location.replace(location.pathname+'/'+location.search+location.hash)</script>
+<!-- Todos os caminhos ficam relativos ao token da sessão local. -->
+<link rel="stylesheet" href="app/app.css">
+<link rel="stylesheet" href="app/galeria/galeria.css">
+</head>
+<body>
+
+<header class="topo">
+  <div class="marca-produto" aria-label="Ilha, editor de vídeo">
+    <span class="marca-simbolo" aria-hidden="true"><i></i><i></i></span>
+    <span class="marca-texto">
+      <strong>ILHA</strong>
+      <small>editor</small>
+    </span>
+  </div>
+
+  <div class="estado-peca">
+    <span class="estado-rotulo">Projeto atual</span>
+    <strong id="titulo-peca">Carregando projeto</strong>
+    <span class="fraco" id="formato-peca"></span>
+  </div>
+
+  <div class="topo-acoes">
+    <span class="conexao" id="estado-conexao" data-estado="conectando" role="status"
+          title="Conexão entre esta tela e a sessão local de preview">
+      <i aria-hidden="true"></i><span>conectando</span>
+    </span>
+    <span class="pilula pilula-ok" id="pilula-aprovado" hidden></span>
+    <span class="pilula" id="pilula-pendente" hidden></span>
+    <button type="button" id="btn-atalhos" class="botao-icone ghost"
+            title="Ver atalhos" aria-label="Ver atalhos" aria-controls="atalhos"
+            aria-expanded="false">?</button>
+    <button type="button" id="btn-descartar" class="ghost" hidden
+            title="Descartar marcações não enviadas">Descartar</button>
+    <button type="button" id="btn-salvar" class="primario" hidden>Salvar</button>
+    <button type="button" id="btn-aprovar" class="aprovar" hidden>Aprovar corte</button>
+  </div>
+</header>
+
+<div class="fluxo">
+  <nav class="abas" id="abas" role="tablist" aria-label="Etapas da edição"></nav>
+  <div class="mensagem" id="mensagem-agente" role="status" hidden></div>
+</div>
+
+<section class="barra-transporte" aria-label="Controles de reprodução">
+  <div class="transporte transporte-principal">
+    <button type="button" id="btn-play" class="botao-play" title="Reproduzir ou pausar (espaço)"
+            aria-label="Reproduzir">▶</button>
+    <div class="relogio" aria-label="Tempo atual e duração">
+      <span class="tempo" id="tempo">0:00.000</span>
+      <span class="tempo-total" id="tempo-total"></span>
+    </div>
+    <button type="button" id="btn-in" class="marcar" title="Marcar entrada e saída (M)">IN</button>
+    <span class="dica-transporte">Marque o trecho e diga o que deve mudar</span>
+  </div>
+
+  <div class="transporte transporte-zoom" aria-label="Zoom da régua">
+    <span class="zoom-rotulo">Zoom</span>
+    <output id="zoom-valor" class="zoom-valor" for="zoom-slider">Ajustado</output>
+    <button type="button" id="btn-menos" class="botao-icone ghost" title="Diminuir zoom"
+            aria-label="Diminuir zoom">−</button>
+    <input type="range" id="zoom-slider" class="zoom-slider" min="0" max="1000"
+           value="0" title="Zoom da régua" aria-label="Zoom da régua"
+           aria-describedby="zoom-valor">
+    <button type="button" id="btn-mais" class="botao-icone ghost" title="Aumentar zoom"
+            aria-label="Aumentar zoom">+</button>
+    <button type="button" id="btn-fit" class="ghost" title="Ajustar toda a peça à largura">Ajustar</button>
+  </div>
+</section>
+
+<main class="palco" id="palco">
+  <section class="coluna-player" aria-label="Prévia do vídeo">
+    <div class="painel-cabecalho">
+      <div>
+        <strong>Prévia</strong>
+        <span>O quadro que você está aprovando</span>
+      </div>
+      <button type="button" id="btn-zonas" class="controle-segmentado" aria-pressed="true" hidden
+              title="Mostrar ou ocultar as áreas cobertas pela interface da rede social">
+        Zonas seguras
+      </button>
+    </div>
+    <div class="moldura" id="moldura">
+      <video id="player" preload="metadata" playsinline tabindex="-1"
+             aria-label="Prévia do corte"></video>
+      <div class="zonas" id="zonas" hidden></div>
+      <div class="sem-midia" id="sem-midia">
+        <span aria-hidden="true"></span>
+        <strong>Preparando a prévia</strong>
+        <small>Esta tela atualiza quando o primeiro render chegar.</small>
+      </div>
+    </div>
+  </section>
+
+  <section class="coluna-timeline" aria-label="Régua da edição">
+    <div class="painel-cabecalho timeline-cabecalho">
+      <div>
+        <strong>Régua da edição</strong>
+        <span>Arraste para navegar. Use M para marcar um trecho.</span>
+      </div>
+    </div>
+    <div class="regua-aviso" id="regua-aviso" hidden></div>
+    <div class="painel" id="painel" tabindex="0"
+         aria-label="Timeline. Arraste para navegar, use mais e menos para zoom">
+      <div class="pista" id="pista">
+        <div class="linha-regua" id="linha-regua"><canvas id="regua"></canvas></div>
+        <div class="trilhas" id="trilhas"></div>
+        <div class="agulha" id="agulha" aria-hidden="true"></div>
+        <div class="marca-pendente" id="marca-pendente" hidden aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="painel-aba" id="painel-aba" hidden></section>
+</main>
+
+<div class="caixa-nota" id="caixa-nota" hidden role="dialog" aria-modal="true"
+     aria-labelledby="caixa-titulo" tabindex="-1">
+  <div class="caixa-cabeca">
+    <div>
+      <strong id="caixa-titulo">Marcação</strong>
+      <span class="fraco" id="caixa-coord"></span>
+    </div>
+    <button type="button" id="caixa-cancelar" class="botao-icone ghost" aria-label="Fechar">×</button>
+  </div>
+  <div class="chips" id="caixa-chips"></div>
+  <label class="campo-nota" for="caixa-texto">O que deve mudar neste trecho?</label>
+  <textarea id="caixa-texto" rows="4"
+            placeholder="Ex.: corte a pausa e entre direto na próxima frase"></textarea>
+  <div class="caixa-pe">
+    <span class="fraco">⌘/Ctrl + Enter para anotar</span>
+    <div class="esticar"></div>
+    <button type="button" id="caixa-salvar" class="primario">Adicionar nota</button>
+  </div>
+</div>
+
+<div class="caixa-nota caixa-aprovar" id="caixa-aprovar" hidden
+     role="dialog" aria-modal="true" aria-labelledby="aprovar-titulo" tabindex="-1">
+  <div class="caixa-cabeca">
+    <div>
+      <strong id="aprovar-titulo">Aprovar o corte</strong>
+      <span class="fraco" id="aprovar-alvo"></span>
+    </div>
+    <button type="button" id="aprovar-cancelar" class="botao-icone ghost" aria-label="Fechar">×</button>
+  </div>
+  <p class="aprovar-prosa" id="aprovar-prosa"></p>
+  <label class="campo-nota" for="aprovar-texto">Recado para quem vai montar a próxima fase</label>
+  <textarea id="aprovar-texto" rows="3" placeholder="Opcional"></textarea>
+  <div class="caixa-pe">
+    <span class="fraco">⌘/Ctrl + Enter para confirmar</span>
+    <div class="esticar"></div>
+    <button type="button" id="aprovar-confirmar" class="aprovar">Confirmar aprovação</button>
+  </div>
+</div>
+
+<aside class="atalhos" id="atalhos" hidden aria-label="Atalhos do editor" tabindex="-1">
+  <div class="atalhos-cabecalho">
+    <div>
+      <strong>Atalhos</strong>
+      <span>Revise sem tirar a mão do teclado</span>
+    </div>
+    <button type="button" id="atalhos-fechar" class="botao-icone ghost"
+            aria-label="Fechar atalhos">×</button>
+  </div>
+  <table>
+    <tr><td><kbd>espaço</kbd></td><td>reproduzir ou pausar</td></tr>
+    <tr><td><kbd>←</kbd> <kbd>→</kbd></td><td>1 frame, com <kbd>shift</kbd>, 1 s</td></tr>
+    <tr><td><kbd>M</kbd></td><td>marcar entrada e saída</td></tr>
+    <tr><td><kbd>I</kbd> / <kbd>O</kbd></td><td>entrada e saída explícitas</td></tr>
+    <tr><td><kbd>Esc</kbd></td><td>cancelar ou fechar</td></tr>
+    <tr><td><kbd>⌘/Ctrl</kbd> + <kbd>Enter</kbd></td><td>salvar a nota</td></tr>
+    <tr><td><kbd>+</kbd> <kbd>−</kbd> <kbd>0</kbd></td><td>zoom e ajuste da timeline visível</td></tr>
+    <tr><td><kbd>Ctrl/⌘</kbd> + <kbd>+</kbd> <kbd>−</kbd></td><td>zoom com foco nos controles ou ponteiro sobre a timeline</td></tr>
+    <tr><td>pinça no trackpad</td><td>zoom no ponto sob os dedos</td></tr>
+  </table>
+</aside>
+
+<div class="torradeira" id="torradeira" role="status" aria-live="polite"></div>
+
+<script type="module" src="app/js/main.js"></script>
+<script type="module" src="app/js/estilos.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+# Ilha de edição — dependências Python.
+#
+#     python3 -m pip install -r requirements.txt
+#
+# 🔴 As duas de cima são OBRIGATÓRIAS: sem elas o import de topo de vários
+# scripts do caminho bruto → entregue estoura antes da primeira medição
+# (`edit-video/scripts/bordas.py`, `nivel.py`, `trilha.py`, `model-edit/scripts/
+# tipografia.py` e outros — 58 ocorrências de `numpy` e 16 de `PIL` no que
+# embarca, contadas na varredura da SPEC-46). Os pisos de versão são os da
+# máquina de referência, não uma exigência de API: qualquer versão recente serve.
+numpy>=1.26
+Pillow>=10.0
+
+# ── opcionais, cada um com o que ele destrava ────────────────────────────────
+# Nenhum destes está no caminho bruto → entregue. Instale só se for usar.
+#
+#   rembg          tools/remotion-compositor/scripts/layout-zones.py — mede as
+#                  zonas livres do quadro recortando a pessoa. Puxa onnxruntime
+#                  e baixa um modelo no primeiro uso.
+#   fonttools      tools/remotion-compositor/scripts/largura-fonte.py — REGENERA
+#                  as tabelas de largura de fonte. As tabelas já vêm medidas em
+#                  src/data/larguras/, então isto só serve para fonte nova.
+#   torch          transcribe/scripts/alinhar.py — o alinhador CTC, que refina a
+#   torchaudio     grade de tempo de 80 ms para 20 ms. Está DESLIGADO por padrão
+#                  e não transcreve nada: ele alinha palavras que o ASR já achou.
+#   pytest         as baterias rodam com `python3 <arquivo>` e não precisam dele;
+#                  test_galeria_estilos.py tem um shim para o caso de faltar.

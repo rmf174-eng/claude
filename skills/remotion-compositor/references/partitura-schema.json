@@ -1,0 +1,432 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "benchmark.partitura/v1",
+  "title": "Partitura tipográfica de uma peça",
+  "description": "SPEC-14. A camada tipográfica inteira como DADO: as páginas de legenda, as janelas em que ela sai do ar e os itens de ênfase — cada um com o motivo NUMÉRICO da eleição. Aditivo: nenhuma produção existente tem este arquivo e nenhuma passa a precisar dele. O que a partitura NÃO decide é posição (x/y): isso depende de zona livre medida, luminância do bolso e enquadramento, e continua sendo o passo seguinte.",
+  "type": "object",
+  "required": [
+    "contrato",
+    "_procedencia",
+    "paginas",
+    "legenda_off",
+    "itens",
+    "descartados"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "contrato": {
+      "const": "benchmark.partitura/v1"
+    },
+    "_procedencia": {
+      "type": "object",
+      "required": [
+        "captions",
+        "audio",
+        "audio_e_entregavel",
+        "perfil",
+        "orcamento",
+        "modo"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "captions": {
+          "type": "string",
+          "description": "o Caption[] de entrada. 🔴 Se ele veio do ASR do MONTADO, o problema já existe antes do diretor: o ASR lê a emenda como fala contínua e INVENTA palavra. O diretor consome e nunca transcreve — mas a origem fica registrada aqui."
+        },
+        "audio": {
+          "type": "string"
+        },
+        "audio_e_entregavel": {
+          "type": "boolean",
+          "description": "true = medido depois do alimiter e do loudnorm de 2 passes, que comprimem exatamente a dinâmica que o eixo prosódia mede. Medido na peca-02: o realce p90 cai de 2,83 dB no bruto para 1,92 dB no v1-graded."
+        },
+        "perfil": {
+          "type": "object",
+          "required": [
+            "nome"
+          ],
+          "additionalProperties": true
+        },
+        "tema": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "nome do Theme (themes.ts). A partitura grava CHAVE de cor, nunca hex — é o que faz a mesma partitura servir creator-2 e ref-C-oferta."
+        },
+        "lexico_creator": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "null = nenhum dos degraus da cadeia existia. Ausência é silêncio: um cliente do produto não tem creators/."
+        },
+        "usuario": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pesos": {
+          "type": "object"
+        },
+        "prosodia_ref": {
+          "type": "object"
+        },
+        "orcamento": {
+          "type": "object",
+          "required": [
+            "alvo_elem_10s",
+            "duracao_s",
+            "cota",
+            "candidatos",
+            "eleitos"
+          ],
+          "additionalProperties": true,
+          "description": "🔴 ORÇAMENTO, não limiar. Um limiar de ênfase produz densidade que varia com o quão animada foi a gravação — o oposto de dirigir.",
+          "properties": {
+            "alvo_elem_10s": {
+              "type": "number"
+            },
+            "duracao_s": {
+              "type": "number"
+            },
+            "cota": {
+              "type": "integer"
+            },
+            "candidatos": {
+              "type": "integer"
+            },
+            "eleitos": {
+              "type": "integer"
+            }
+          }
+        },
+        "paginacao": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "paginas": {
+              "type": "integer"
+            },
+            "fechamentos": {
+              "type": "object",
+              "description": "quantas páginas fecharam por largura / palavras / semântica / fim"
+            },
+            "fundidas": {
+              "type": "object",
+              "description": "solos fundidos com a vizinha (mecanismo da SPEC-13)"
+            },
+            "movidas": {
+              "type": "object",
+              "description": "solos resolvidos por DOAÇÃO DE FRONTEIRA — o passe desta spec. A SPEC-13 só podia fundir a página inteira e deixou 5 avisos na peca-02; mover uma palavra através da fronteira zera os 5 sem estourar o orçamento de largura."
+            },
+            "avisos": {
+              "type": "array",
+              "description": "o que sobrou de solo curto DEPOIS de fundir e doar. Fundir estourando o orçamento reintroduz o defeito que a SPEC-13 conserta."
+            }
+          }
+        },
+        "legenda": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "fracao_alvo": {
+              "type": "number"
+            },
+            "fracao_medida": {
+              "type": "number"
+            },
+            "janelas_off": {
+              "type": "integer"
+            }
+          }
+        },
+        "modo": {
+          "enum": [
+            "prosodia",
+            "so-texto"
+          ]
+        }
+      }
+    },
+    "paginas": {
+      "type": "array",
+      "description": "As páginas de legenda, decididas AQUI e não dentro do componente. É o que torna `legenda_off` ancorável: quem escrevia a janela à mão não sabia onde ficavam as fronteiras. Passa ao CaptionLayer pela prop `paginas`, que vence `agrupamento`.",
+      "items": {
+        "type": "object",
+        "required": [
+          "i",
+          "startMs",
+          "endMs",
+          "tokens"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "i": {
+            "type": "integer"
+          },
+          "startMs": {
+            "type": "number"
+          },
+          "endMs": {
+            "type": "number",
+            "description": "maior toMs dos tokens — é o valor que a regra de INTERSEÇÃO do CaptionLayer usa."
+          },
+          "duracaoEfetivaMs": {
+            "type": "number",
+            "description": "com a ponte anti-piscada aplicada. É esta — não end−start da palavra — que o piso de solo mede."
+          },
+          "larguraEstimada": {
+            "type": "number",
+            "description": "px pela tabela de advance widths do TTF. O mesmo medidor que o agrupar.ts usa fora do browser."
+          },
+          "motivo": {
+            "enum": [
+              "largura",
+              "palavras",
+              "semantica",
+              "fim"
+            ]
+          },
+          "text": {
+            "type": "string"
+          },
+          "tokens": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "text",
+                "fromMs",
+                "toMs"
+              ],
+              "properties": {
+                "text": {
+                  "type": "string"
+                },
+                "fromMs": {
+                  "type": "number"
+                },
+                "toMs": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "linhas": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "legenda_off": {
+      "type": "array",
+      "description": "Janelas [ini, fim] em SEGUNDOS onde a legenda não aparece, já ancoradas em fronteira de página. 🔴 Nunca amplie 'para garantir': foi assim que nasceram os dois buracos de 3,9 s e 2,1 s. Se a fronteira não couber, o certo é mover o elemento gráfico.",
+      "items": {
+        "type": "array",
+        "minItems": 2,
+        "maxItems": 2,
+        "items": {
+          "type": "number"
+        }
+      }
+    },
+    "legenda_off_detalhe": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "ini",
+          "fim",
+          "paginas"
+        ],
+        "additionalProperties": true
+      }
+    },
+    "itens": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "papel",
+          "componente",
+          "canal",
+          "texto",
+          "palavra",
+          "inS",
+          "outS",
+          "cor",
+          "score",
+          "por_que",
+          "travado"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[0-9]{3}-",
+            "description": "`<indice da palavra:03d>-<slug>`. Derivado do conteúdo: reordenar a peça MUDA o id, e isso é o comportamento certo — mudou a montagem, mudou a decisão."
+          },
+          "papel": {
+            "enum": [
+              "numero",
+              "negacao",
+              "enumeracao",
+              "tese",
+              "contraste",
+              "destaque"
+            ]
+          },
+          "componente": {
+            "type": "string",
+            "description": "nome do componente do MotionKit, ou `DrawStroke:<gerador>`. Vem de `legenda.diretor.papel_para_componente`, tabela no perfil e nunca `if` no script."
+          },
+          "canal": {
+            "enum": [
+              "texto",
+              "marca",
+              "traco",
+              "cartao"
+            ]
+          },
+          "texto": {
+            "type": "string"
+          },
+          "parafrasear": {
+            "type": "boolean",
+            "description": "true = o trecho passou de `max_chars_manuscrito` e precisa de mão humana. O diretor NÃO parafraseia sozinho: a máquina acha o beat, a pessoa escreve a frase. Medido na ref-C: 'essas vendas aqui aconteceram ontem' → escreve 'essas vendas aconteceram ontem'."
+          },
+          "palavra": {
+            "type": "object",
+            "required": [
+              "text",
+              "idx",
+              "fromMs",
+              "toMs"
+            ]
+          },
+          "inS": {
+            "type": "number"
+          },
+          "outS": {
+            "type": "number",
+            "description": "para componente que ESCREVE é `inS + writeDurationS(texto, fpc, fps)` — espelho de MotionKit.tsx:184. Se essa fórmula divergir do TSX, a partitura promete uma sequencialidade que a tela não cumpre."
+          },
+          "zona": {
+            "enum": [
+              "topo",
+              "lateral",
+              "faixa-legenda",
+              "pleno"
+            ],
+            "description": "DICA de zona, não posição. Decide também a supressão: só `faixa-legenda` e `pleno` disputam espaço com a legenda."
+          },
+          "cor": {
+            "type": "string",
+            "description": "CHAVE do Theme (`highlight`, `ink`, `postits.autoridade`). Nunca hex."
+          },
+          "sfx": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "suprime_legenda": {
+            "type": "boolean"
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "por_que": {
+            "type": "object",
+            "required": [
+              "prosodia",
+              "lexico",
+              "posicao",
+              "repeticao",
+              "medido"
+            ],
+            "description": "🔴 É AQUI QUE MORA O DIFERENCIAL VENDÁVEL: 'o editor te mostra por que escolheu cada destaque, com o número medido no áudio' é a frase que o ref-A não pode dizer. Não jogue os eixos fora para limpar a saída.",
+            "properties": {
+              "prosodia": {
+                "type": "number"
+              },
+              "lexico": {
+                "type": "number"
+              },
+              "posicao": {
+                "type": "number"
+              },
+              "repeticao": {
+                "type": "number"
+              },
+              "medido": {
+                "type": "object",
+                "required": [
+                  "realce_db",
+                  "alongamento"
+                ],
+                "additionalProperties": true
+              }
+            }
+          },
+          "travado": {
+            "type": "boolean",
+            "description": "decisão humana. Volta byte a byte na próxima execução e o orçamento é gasto ao redor dela."
+          },
+          "removido": {
+            "type": "boolean",
+            "description": "não volta, e o slot não é reocupado."
+          }
+        }
+      }
+    },
+    "descartados": {
+      "type": "array",
+      "description": "O que QUASE entrou, com o motivo. É isto que torna a partitura auditável.",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "score",
+          "motivo"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "score": {
+            "type": "number"
+          },
+          "motivo": {
+            "enum": [
+              "colisao-canal",
+              "curta-demais",
+              "espacamento",
+              "conectivo",
+              "nao-cabe-no-fim",
+              "fracao-legenda",
+              "reeleicao",
+              "travado-colide",
+              "orcamento"
+            ]
+          },
+          "medido": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+ "_porque": "SPEC-26. Fragmento em vez de edição de bateria.json: a SPEC-28 declara aquele arquivo na §5 dela e roda na mesma onda. Um arquivo por registro é o que a SPEC-12 abriu para não se perder trabalho num merge.",
+ "itens": [
+  {
+   "id": "corte-imagem",
+   "titulo": "a fronteira que a EDL afirma existe na imagem",
+   "classe": "qc",
+   "tipo": "convergencia",
+   "estagios": ["montado", "final"],
+   "exec": {"script": "qc-corte-imagem.py", "argv": ["{dir}", "--video", "{video}"]},
+   "requer": ["edl.json", "{video}"],
+   "requer_perfil": null,
+   "unidade": "fronteira",
+   "adaptador": "corte_imagem",
+   "depois_de": ["integridade-edl"],
+   "promove_falha": ["FRONTEIRA-SEM-IMAGEM", "DESLOCAMENTO-SISTEMATICO", "EDL-VS-SEGS", "SEM-CORRESPONDENCIA"],
+   "rebaixa_achado": ["DUVIDOSA", "SEM-MARCADOR", "IMAGEM-SEM-FRONTEIRA", "IMAGEM-SEM-FRONTEIRA-HERDADA"],
+   "prova_de_dentes": true,
+   "nota_classe": "convergência: a régua (a imagem) é independente do critério que escolheu o item (a EDL). Mas só vira FALHA onde esperado_visivel=sim (src diferente ou reenquadramento), porque só ali a física garante sinal. Jump cut de mesmo enquadramento é confirmação, não detector — medido 51/53 acima do limiar, 2 entre 6,0 e 7,6 em ovo-de-pascoa. Medido em 4 produções: 8.035 frames, 83 fronteiras, 81 confirmadas, 0 falso positivo, 0 deslocamento.",
+   "custo_s": 10
+  }
+ ]
+}

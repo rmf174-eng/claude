@@ -1,0 +1,167 @@
+{
+ "contrato": "benchmark.perfil-peca/v1",
+ "nome": "longform",
+ "descricao": "Vídeo longo 16:9 (YouTube, aula, podcast em câmera). Corte com ar: gap_min 0,8 s e pads largos.",
+ "video": {
+  "aspecto": "16:9",
+  "largura": 1920,
+  "altura": 1080,
+  "fps": 30,
+  "unsharp": null
+ },
+ "cor": {
+  "entrada_esperada": "auto",
+  "aplicar_em": "extracao"
+ },
+ "ritmo": {
+  "pads": {
+   "pre": 0.25,
+   "post": 0.4
+  },
+  "cap": 0.3,
+  "rel": 0.0,
+  "floor": -52.0,
+  "gap_min": 0.8,
+  "fade_modo": "so-descontinuidade",
+  "gramatica_plano": "fixa",
+  "cauda_alvo_s": null
+ },
+ "audio": {
+  "canais": 2,
+  "loudness": {
+   "I": -14.0,
+   "TP": -1.5,
+   "LRA": 11.0
+  }
+ },
+ "legenda": {
+  "ativa": true,
+  "queimada": false,
+  "max_palavras_pagina": 8,
+  "fonte_palavras": "transcript-montado",
+  "agrupamento": null,
+  "diretor": {
+   "max_chars_manuscrito": 28,
+   "fpc_manuscrito": 0.9,
+   "bonus_creator": 0.15,
+   "pausa_frase_ms": 700,
+   "prosodia_ref": {
+    "realce_db": 2.5,
+    "alongamento": 2.0,
+    "pausa_ms": 350
+   },
+   "papel_para_componente": {
+    "numero": "AccentWord",
+    "negacao": "DrawStroke:strikePath",
+    "enumeracao": "StepTitleFlat",
+    "tese": "HandText",
+    "contraste": "MarkerHighlight",
+    "destaque": "DrawStroke:loopCirclePath"
+   },
+   "cor_por_papel": {
+    "numero": "highlight",
+    "tese": "ink",
+    "contraste": "highlight",
+    "enumeracao": "highlight",
+    "negacao": "ink",
+    "destaque": "highlight"
+   },
+   "zona_por_papel": {
+    "numero": "topo",
+    "tese": "topo",
+    "contraste": "faixa-legenda",
+    "enumeracao": "lateral",
+    "negacao": "faixa-legenda",
+    "destaque": "faixa-legenda"
+   },
+   "sfx_por_papel": {
+    "numero": "pop-hi",
+    "tese": "pencil",
+    "contraste": "pop-lo",
+    "enumeracao": "pop",
+    "negacao": "scratch",
+    "destaque": "scratch"
+   },
+   "densidade_alvo_10s": 1.5,
+   "espacamento_min_s": 2.0,
+   "fracao_legenda_alvo": 1.0,
+   "pesos": {
+    "prosodia": 0.2,
+    "lexico": 0.3,
+    "posicao": 0.2,
+    "repeticao": 0.3
+   }
+  }
+ },
+ "zonas_ui": null,
+ "entregaveis": [
+  "v-final.mp4",
+  "captions.srt",
+  "chapters.txt"
+ ],
+ "broll": {
+  "imagem": {
+   "movimento": "zoom-in",
+   "dur_default_s": 6.0,
+   "zoom_max": 1.1,
+   "upscale_fator": 4
+  }
+ },
+ "apoio_visual": {
+  "janela_s": 4.0,
+  "max_por_min": 1.0,
+  "classes_off": [
+   "enumeracao"
+  ]
+ },
+ "publicacao": {
+  "_motivo": "é o destino que consome os dois: o .srt é a faixa de CC do YouTube e o bloco de capítulos transforma 20 minutos de barra de progresso em índice. `entregaveis` já lista captions.srt e chapters.txt.",
+  "srt": {
+   "gerar": true
+  },
+  "capitulos": {
+   "gerar": true
+  }
+ },
+ "trilha": {
+  "ativa": false,
+  "engine": "lyria-3-pro",
+  "delta_voz_lu": 14.0,
+  "base_lufs": -24.0,
+  "base_tp": -9.0,
+  "base_lra": 7.0,
+  "duck_db": 7.0,
+  "duck_attack_ms": 25,
+  "duck_release_ms": 600,
+  "highpass_hz": 60,
+  "fade_in_s": 2.5,
+  "fade_out_s": 4.0,
+  "loop_crossfade_s": 1.5,
+  "mascara_max_pct": 0.2,
+  "mascara_max_db": 0.5,
+  "presenca_min_db": 3.0
+ },
+ "split": {
+  "_comentario": "SPEC-28. Em 16:9 a faixa de b-roll come proporcionalmente muito mais do enquadramento (o rosto vive numa altura menor): fim_pct menor e perda_base_max_pct apertado.",
+  "opaco_pct": 0.3,
+  "_opaco_pct": "fração da ALTURA até onde o b-roll é 100% opaco. Medido na referência ref-D.",
+  "fim_pct": 0.44,
+  "_fim_pct": "fração da altura onde o alpha do b-roll chega a zero. A diferença para `opaco_pct` É a rampa.",
+  "curva": "smooth",
+  "folga_topo_pct": 0.036,
+  "_folga_topo_pct": "respiro entre o fim da rampa e o topo da cabeça. 68,75/1920 = 3,58%, derivado dos defaults do ref-A (bandH 750, zoom 1,25, focusY 400, cabelo em y_src 455).",
+  "percentil_cabeca": 5,
+  "_percentil_cabeca": "p5 = a cabeça MAIS ALTA do segmento; é ela que tem que caber.",
+  "amostras_por_s": 4,
+  "escala_max": 1.04,
+  "_escala_max": "acima disto o upscale começa a aparecer em pele e cabelo. Estourar é exit 1, nunca clamp.",
+  "margem_queixo_pct": 0.05,
+  "perda_base_max_pct": 0.26,
+  "_perda_base_max_pct": "quanto da base pode sair pelo pé. É decisão EDITORIAL: o script avisa e exige --forcar, não decide.",
+  "encaixar_no_corte": true
+ },
+ "jcut": {
+  "modo": "medido",
+  "lead_max_ms": 100
+ }
+}

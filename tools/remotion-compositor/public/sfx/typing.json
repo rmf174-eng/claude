@@ -1,0 +1,35 @@
+{
+ "schema": "benchmark.sfx/v1",
+ "nome": "typing",
+ "classe": "textura",
+ "origem": {
+  "tipo": "arquivo",
+  "caminho": "_historico/typing-69a8e417.wav",
+  "sha256": "69a8e417460751b54ce5f7f4553cdbfbb4fe55de0717e77313f546ba5fd1379e",
+  "licenca": null,
+  "fonte": "migrado por sfx-preparar.py",
+  "seed": null
+ },
+ "antes": {
+  "onset_ms": 98.0,
+  "corpo_ms": 2070.0,
+  "lufs": -29.3,
+  "pico_dbfs": -2.2
+ },
+ "depois": {
+  "onset_ms": 3.0,
+  "corpo_ms": 2070.0,
+  "lufs": -27.9,
+  "pico_dbfs": -1.0
+ },
+ "sha256_wav": "27cbe69b17f995ff7091b3eb626d84b8e696049ab4db97cadadfd40985c6524c",
+ "gerado_em": "2026-08-09T00:35:06-03:00",
+ "gerado_por": "sfx-preparar.py",
+ "ganho_db": 1.2,
+ "corte_s": [
+  0.095,
+  2.2
+ ],
+ "reprocessado": true,
+ "ganho_limitado_por": "pico: ganho 9.10 dB reduzido para 1.20 dB"
+}

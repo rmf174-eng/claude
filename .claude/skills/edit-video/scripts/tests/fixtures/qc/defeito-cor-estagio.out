@@ -1,0 +1,25 @@
+--- stdout
+⚠️ sem cor.json nesta produção — o estágio é medido só pelos pixels e o rótulo esperado vem de — / perfil.json. Rode `detect-cor.py resolver <dir> --bruto <bruto>` para fechar o contrato.
+═══ 1. COERÊNCIA DE RÓTULO NA CADEIA (segs → montado) ═══
+  rótulo dos 29 segmentos: bt2020nc,arib-std-b67,bt2020
+  ❌ v1-montado.mp4                     bt709,bt709,bt709  (difere dos segs)
+  varreu 29 segmento(s) + 1 montado(s) — 1 incoerente(s)
+
+═══ 2. AVANÇO POR PIXEL (rótulo × pixel, por projeção) ═══
+  bruto      bf 0.0421 · wc 0.8310 · sat 0.1104   (pré-conversão)
+  referência bf 0.0180 · wc 0.9502 · sat 0.1691   (pós-conversão)
+  eixo da conversão Δ = (-0.0241, +0.1192, +0.0587) · |Δ| = 1.2033 (mínimo 0.500)
+  varreu 3 arquivo(s) — 2 ok, 1 reprovado(s). `segs/*` fora
+
+═══ 3. TAGS DE COR, por ESTÁGIO da cadeia ═══
+  perfil reels · esperado pré-conversão bt2020nc,arib-std-b67,bt2020 (cor.json) · pós-conversão bt709,bt709,bt709 (perfil.json)
+  ❌ v1-montado.mp4                     bt709,bt709,bt709  │ estágio pré-conversão ⇒ esperado bt2020nc,arib-std-b67,bt2020
+  varreu 3 arquivo(s) — 1 com rótulo do estágio errado, 0 indefinido(s)
+
+  🔴 PIXELS AINDA NÃO CONVERTIDOS carregando rótulo de saída — é o defeito simétrico
+    · v1-montado.mp4                   tem bt709,bt709,bt709, os pixels são pré-conversão (avanço t +0.220)
+
+═══ 4. FIDELIDADE AO ORIGINAL (referência Apple/Edits) ═══
+  amostras: 7 instantes em 96.0s de referência (perfil qc.amostras_cor_pct)
+  varreu 3 arquivo(s) nesta região
+--- stderr

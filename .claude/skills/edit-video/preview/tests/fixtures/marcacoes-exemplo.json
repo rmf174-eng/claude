@@ -1,0 +1,71 @@
+{
+ "schema": "benchmark.preview-evento/v1",
+ "tipo": "marcacoes",
+ "salvo_em": "2026-08-08T17:41:09-03:00",
+ "origem": {"ua": "Mozilla/5.0 (Macintosh)", "token": "exemplo"},
+ "payload": {
+  "contrato": "benchmark.edit-marcacoes/v1",
+  "salvo_em": "2026-08-08T17:41:09-03:00",
+  "revisao_base": 7,
+  "fingerprint_corte": "sha1:9f2c1a5e0b7d4c3a2f1e0d9c8b7a6958473625140",
+  "fingerprint_render": "sha1:3ba07e14c2d5f6980a1b2c3d4e5f60718293a4b5",
+  "render_alvo": "v-final.mp4",
+  "formato": {"largura": null, "altura": null, "fps": 30.0, "fonte": "perfil"},
+  "timeline_real_ausente": false,
+  "app": "preview/app v1",
+
+  "notas": [
+   {
+    "id": "m1754680869123-1",
+    "tipo": "intervalo",
+    "fase": 1,
+    "trilha": "legenda",
+    "ref": null,
+    "rascunho": {"ini": 41.573, "fim": 45.333},
+    "render": {"ini": 41.573, "fim": 45.333},
+    "render_frames": [1247, 1360],
+    "sid": "faz-de-novo#1",
+    "sid_confianca": "exata",
+    "marcado_invertido": false,
+    "texto": "essa legenda tá cobrindo o rosto dela nesse trecho, sobe",
+    "contexto": {
+     "palavras": [{"t": 41.62, "w": "e"}, {"t": 41.78, "w": "ele"},
+                  {"t": 41.94, "w": "faz"}, {"t": 42.11, "w": "de"},
+                  {"t": 42.26, "w": "novo"}],
+     "trilhas_com_conteudo": ["video", "audio", "legenda", "enquadramento"]
+    }
+   },
+   {
+    "id": "m1754680871004-2",
+    "tipo": "ponto",
+    "fase": 2,
+    "trilha": null,
+    "ref": null,
+    "rascunho": {"ini": 58.1, "fim": 58.1},
+    "render": {"ini": 58.1, "fim": 58.1},
+    "render_frames": [1743, 1743],
+    "sid": "muleta#1",
+    "sid_confianca": "aproximada",
+    "marcado_invertido": false,
+    "texto": "aqui falta um cartão dizendo o número",
+    "contexto": {"palavras": [], "trilhas_com_conteudo": ["video", "audio"]}
+   },
+   {
+    "id": "m1754680874550-3",
+    "tipo": "intervalo",
+    "fase": 1,
+    "trilha": "corte",
+    "ref": {"tipo": "segmento", "sid": "gancho-p1#1"},
+    "rascunho": {"ini": 2.0, "fim": 4.5},
+    "render": {"ini": 2.0, "fim": 4.5},
+    "render_frames": [60, 135],
+    "sid": "gancho-p1#1",
+    "sid_confianca": "exata",
+    "marcado_invertido": true,
+    "texto": "o corte come o começo do 'porque' — sobra 3 frames antes",
+    "contexto": {"palavras": [{"t": 2.02, "w": "creator-2,"}],
+                 "trilhas_com_conteudo": ["video", "audio", "legenda"]}
+   }
+  ]
+ }
+}

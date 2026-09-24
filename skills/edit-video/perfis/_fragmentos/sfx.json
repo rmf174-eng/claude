@@ -1,0 +1,14 @@
+{
+  "_porque": "SPEC-26 §4.4. Insumo do `perfil.py patch --bloco sfx` — nunca editar _base.json à mão. `sfx` é chave de topo NOVA, então não colide com bloco de ninguém. Nenhum destes números descreve o formato da peça: são tolerância percebida e alvo de nível.",
+  "tolerancia_frames": 1,
+  "_tolerancia_frames": "o agendador do Remotion põe o SFX em `Math.round(atS*fps)`: `from` é inteiro em frames, e meio frame não existe. A tolerância vive em frames e é resolvida contra video.fps.",
+  "piso_ms": 20.0,
+  "_piso_ms": "sem piso, uma peça a 120 fps exigiria 8 ms de precisão que o agendador não tem. atraso_max = max(1000*tolerancia_frames/fps, piso_ms).",
+  "corpo_acento_max_ms": 400,
+  "_corpo_acento_max_ms": "separa `acento` de `textura` pelo corpo MEDIDO. Na biblioteca real separa limpo: 36–348 ms de um lado, 1.715–2.070 ms do outro, ninguém perto da linha.",
+  "lufs_alvo": [-21.0, -19.0],
+  "_lufs_alvo": "a faixa que a remotion-compositor/SKILL.md:236 já prescrevia, agora executada com ebur128 em loop x16 (loudnorm de passe único erra ~3 LU em clipe sub-segundo).",
+  "lufs_tolerancia_lu": 1.0,
+  "pico_min_dbfs": -18.0,
+  "_pico_min_dbfs": "abaixo disto o efeito não é ouvido na mixagem. Calibrado contra o nosso pencil.mp3 bruto a -21,5 dBFS e o click2.mp3 a -25 dB que o ref-A entregou inaudível."
+}

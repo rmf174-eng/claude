@@ -1,0 +1,28 @@
+--- stdout
+t=1.57 [legenda] Δ=+2.7
+t=2.97 [legenda] Δ=-2.0
+t=3.00 [legenda] Δ=-2.6
+t=3.03 [legenda] Δ=-2.4
+t=3.07 [legenda] Δ=-2.0
+t=3.10 [legenda] Δ=-2.0
+t=3.13 [legenda] Δ=-2.0
+t=3.17 [legenda] Δ=-2.3
+t=3.27 [legenda] Δ=+3.7
+t=3.33 [legenda] Δ=+2.0
+t=3.37 [legenda] Δ=+2.2
+t=3.40 [legenda] Δ=+2.0
+t=3.43 [legenda] Δ=+2.0
+t=5.90 [legenda] Δ=-2.1
+t=5.93 [legenda] Δ=-2.1
+t=7.17 [legenda] Δ=-13.7
+t=7.20 [legenda] Δ=-2.1
+t=7.30 [legenda] Δ=+2.2
+t=7.33 [legenda] Δ=+2.3
+t=7.37 [legenda] Δ=+2.1
+t=7.40 [legenda] Δ=+2.0
+
+--- stderr
+varrendo 240 frames a 30fps em 64x114 · regiões {'legenda': (7, 79, 56, 100), 'meio': (7, 39, 56, 62)} · limiar 2.0
+<skill>/scripts/flicker-scan.py:40: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+  px = list(im.crop(box).getdata()); return sum(px) / len(px)
+21 salto(s) acima de 2.0 em 240 frames

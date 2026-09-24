@@ -1,0 +1,209 @@
+--- stdout
+{
+ "schema": "benchmark.qc-nivel/v1",
+ "modo": "achado",
+ "gerado_em": "2026-08-08T23:31:55-03:00",
+ "fonte": "input/take-a.mp4",
+ "medicao": {
+  "sample_rate": 48000,
+  "janela_rms_s": 0.02,
+  "mascara": "transcript+piso",
+  "piso_db": -70.2,
+  "piso_metodo": "p15",
+  "mediana_falante_db": -21.3,
+  "mediana_metodo": "p50-janelas",
+  "n_frases": 1,
+  "drop_db": 5.0,
+  "n_janelas": 558,
+  "n_janelas_mascaradas": 328,
+  "min_janelas_por_span": 20,
+  "mediana_por_quem": {}
+ },
+ "frases": [
+  {
+   "start": 0.4,
+   "end": 10.25,
+   "texto": "um dois tres quatro cinco seis sete oito nove dez onze doze",
+   "n_janelas": 328,
+   "nivel_db": -14.4,
+   "delta_db": 6.9,
+   "flag": "ok"
+  }
+ ],
+ "runs": [
+  {
+   "start": 0.64,
+   "end": 1.04,
+   "nivel_db": -31.4,
+   "n_janelas": 5,
+   "delta_db": -10.1,
+   "texto": "um dois",
+   "ganho_sugerido_db": 8.6
+  },
+  {
+   "start": 1.36,
+   "end": 1.94,
+   "nivel_db": -30.5,
+   "n_janelas": 14,
+   "delta_db": -9.2,
+   "texto": "dois tres",
+   "ganho_sugerido_db": 7.7
+  },
+  {
+   "start": 2.2,
+   "end": 2.78,
+   "nivel_db": -30.6,
+   "n_janelas": 14,
+   "delta_db": -9.3,
+   "texto": "tres quatro",
+   "ganho_sugerido_db": 7.8
+  },
+  {
+   "start": 3.24,
+   "end": 3.78,
+   "nivel_db": -28.6,
+   "n_janelas": 12,
+   "delta_db": -7.3,
+   "texto": "quatro cinco",
+   "ganho_sugerido_db": 5.8
+  },
+  {
+   "start": 4.2,
+   "end": 4.76,
+   "nivel_db": -28.6,
+   "n_janelas": 13,
+   "delta_db": -7.3,
+   "texto": "cinco seis",
+   "ganho_sugerido_db": 5.8
+  },
+  {
+   "start": 4.96,
+   "end": 5.68,
+   "nivel_db": -29.9,
+   "n_janelas": 21,
+   "delta_db": -8.6,
+   "texto": "seis sete",
+   "ganho_sugerido_db": 7.1
+  },
+  {
+   "start": 7.76,
+   "end": 8.14,
+   "nivel_db": -43.5,
+   "n_janelas": 4,
+   "delta_db": -22.2,
+   "texto": "nove dez",
+   "ganho_sugerido_db": 12.0
+  },
+  {
+   "start": 8.46,
+   "end": 9.02,
+   "nivel_db": -30.1,
+   "n_janelas": 13,
+   "delta_db": -8.8,
+   "texto": "dez onze",
+   "ganho_sugerido_db": 7.3
+  },
+  {
+   "start": 9.38,
+   "end": 9.78,
+   "nivel_db": -31.3,
+   "n_janelas": 5,
+   "delta_db": -10.0,
+   "texto": "onze doze",
+   "ganho_sugerido_db": 8.5
+  }
+ ],
+ "segmentos": [
+  {
+   "i": 0,
+   "beat": "b0",
+   "src": "input/take-a.mp4",
+   "start": 0.28,
+   "end": 1.803,
+   "quem": null,
+   "n_janelas": 46,
+   "gain_db_atual": 0.0,
+   "pior_delta_db": -10.1,
+   "nivel_db": -12.7,
+   "delta_db": 8.6,
+   "flag": "ok"
+  },
+  {
+   "i": 1,
+   "beat": "b1",
+   "src": "input/take-a.mp4",
+   "start": 1.803,
+   "end": 3.488,
+   "quem": null,
+   "n_janelas": 54,
+   "gain_db_atual": 0.0,
+   "pior_delta_db": -9.3,
+   "nivel_db": -15.2,
+   "delta_db": 6.0,
+   "flag": "ok"
+  },
+  {
+   "i": 2,
+   "beat": "b2",
+   "src": "input/take-a.mp4",
+   "start": 3.488,
+   "end": 5.575,
+   "quem": null,
+   "n_janelas": 69,
+   "gain_db_atual": 0.0,
+   "pior_delta_db": -8.6,
+   "nivel_db": -16.1,
+   "delta_db": 5.1,
+   "flag": "ok"
+  },
+  {
+   "i": 3,
+   "beat": "b3",
+   "src": "input/take-a.mp4",
+   "start": 5.395,
+   "end": 7.185,
+   "quem": null,
+   "n_janelas": 60,
+   "gain_db_atual": 0.0,
+   "pior_delta_db": -8.6,
+   "nivel_db": -15.2,
+   "delta_db": 6.1,
+   "flag": "ok"
+  },
+  {
+   "i": 4,
+   "beat": "b4",
+   "src": "input/take-a.mp4",
+   "start": 7.405,
+   "end": 8.892,
+   "quem": null,
+   "n_janelas": 50,
+   "gain_db_atual": 0.0,
+   "pior_delta_db": -22.2,
+   "nivel_db": -14.5,
+   "delta_db": 6.8,
+   "flag": "ok"
+  },
+  {
+   "i": 5,
+   "beat": "b5",
+   "src": "input/take-a.mp4",
+   "start": 8.892,
+   "end": 10.45,
+   "quem": null,
+   "n_janelas": 48,
+   "gain_db_atual": 0.0,
+   "pior_delta_db": -10.0,
+   "nivel_db": -13.4,
+   "delta_db": 7.9,
+   "flag": "ok"
+  }
+ ],
+ "veredito": {
+  "n_low": 0,
+  "aprovado": null,
+  "nota": "achado não aprova — ver modo balanco"
+ }
+}
+
+--- stderr

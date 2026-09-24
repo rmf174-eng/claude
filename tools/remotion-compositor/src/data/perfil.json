@@ -1,0 +1,291 @@
+{
+ "contrato": "benchmark.perfil-peca/v1",
+ "nome": "reels",
+ "descricao": "Reel/TikTok/Short vertical, talking-head, feed do Instagram.",
+ "video": {
+  "aspecto": "9:16",
+  "largura": 1080,
+  "altura": 1920,
+  "fps": 30,
+  "pix_fmt": "yuv420p",
+  "crf": 16,
+  "preset_x264": "medium",
+  "escala_flags": null,
+  "unsharp": null
+ },
+ "cor": {
+  "entrada_esperada": "hlg",
+  "lut": "hlg2sdr.cube",
+  "tags_saida": {
+   "color_primaries": "bt709",
+   "color_trc": "bt709",
+   "colorspace": "bt709"
+  },
+  "aplicar_tags_por": "setparams",
+  "grade": null,
+  "aplicar_em": "extracao"
+ },
+ "ritmo": {
+  "pads": {
+   "pre": 0.12,
+   "post": 0.2
+  },
+  "cap": 0.25,
+  "rel": 0.0,
+  "floor": -52.0,
+  "gap_min": 0.35,
+  "fade_borda_s": 0.015,
+  "fade_modo": "por-segmento",
+  "gramatica_plano": "fixa",
+  "zoom_alternado": [
+   1.0,
+   1.27
+  ],
+  "plano_max_s": 8.0,
+  "cauda_alvo_s": null
+ },
+ "audio": {
+  "sr": 48000,
+  "canais": 1,
+  "loudness": {
+   "I": -14.0,
+   "TP": -1.5,
+   "LRA": 11.0
+  },
+  "passes_loudnorm": 2,
+  "codec": "aac",
+  "bitrate": "192k"
+ },
+ "legenda": {
+  "ativa": true,
+  "queimada": true,
+  "max_palavras_pagina": 6,
+  "y_pct": 0.755,
+  "fonte_palavras": "edl-bruto",
+  "suprimir_por": "intersecao",
+  "estilo": {
+   "familia": "Montserrat",
+   "peso": 700,
+   "italico": false,
+   "tamanho_pct": 0.0537,
+   "entreletras_pct": 0.0,
+   "altura_linha": 1.25,
+   "caixa": null
+  },
+  "agrupamento": {
+   "largura_max_pct": 0.83333,
+   "linhas_max": 1,
+   "pausa_quebra_ms": 450,
+   "quebra_em_pontuacao": true,
+   "min_solo_ms": 700,
+   "penalidade_orfa_px": 200,
+   "orfas": [
+    "o",
+    "a",
+    "os",
+    "as",
+    "e",
+    "é",
+    "de",
+    "do",
+    "da",
+    "em",
+    "no",
+    "na",
+    "um",
+    "uma",
+    "que",
+    "se",
+    "ao",
+    "à",
+    "por",
+    "com"
+   ]
+  },
+  "diretor": {
+   "max_chars_manuscrito": 28,
+   "fpc_manuscrito": 0.9,
+   "bonus_creator": 0.15,
+   "pausa_frase_ms": 700,
+   "prosodia_ref": {
+    "realce_db": 2.5,
+    "alongamento": 2.0,
+    "pausa_ms": 350
+   },
+   "papel_para_componente": {
+    "numero": "AccentWord",
+    "negacao": "DrawStroke:strikePath",
+    "enumeracao": "StepTitleFlat",
+    "tese": "HandText",
+    "contraste": "MarkerHighlight",
+    "destaque": "DrawStroke:loopCirclePath"
+   },
+   "cor_por_papel": {
+    "numero": "highlight",
+    "tese": "ink",
+    "contraste": "highlight",
+    "enumeracao": "highlight",
+    "negacao": "ink",
+    "destaque": "highlight"
+   },
+   "zona_por_papel": {
+    "numero": "topo",
+    "tese": "topo",
+    "contraste": "faixa-legenda",
+    "enumeracao": "lateral",
+    "negacao": "faixa-legenda",
+    "destaque": "faixa-legenda"
+   },
+   "sfx_por_papel": {
+    "numero": "pop-hi",
+    "tese": "pencil",
+    "contraste": "pop-lo",
+    "enumeracao": "pop",
+    "negacao": "scratch",
+    "destaque": "scratch"
+   },
+   "densidade_alvo_10s": 2.7,
+   "espacamento_min_s": 0.6,
+   "fracao_legenda_alvo": 1.0,
+   "pesos": {
+    "prosodia": 0.2,
+    "lexico": 0.3,
+    "posicao": 0.2,
+    "repeticao": 0.3
+   }
+  }
+ },
+ "zonas_ui": {
+  "topo_pct": 0.151,
+  "fundo_pct": 0.7813,
+  "direita_pct": 0.8556
+ },
+ "estrutura": null,
+ "entregaveis": [
+  "v-final.mp4",
+  "v-final-sem-filtro.mp4"
+ ],
+ "qc": {
+  "obrigatorios": [
+   "qc-cor",
+   "qc-fonemas",
+   "qc-emendas-asr",
+   "av-sync",
+   "varredura-alpha"
+  ],
+  "av_sync_ms": 3.0,
+  "amostras_cor_pct": [
+   0.02,
+   0.15,
+   0.3,
+   0.45,
+   0.6,
+   0.75,
+   0.9
+  ],
+  "preset_referencia": "Preset1920x1080"
+ },
+ "broll": {
+  "imagem": {
+   "movimento": "zoom-in",
+   "dur_default_s": 4.0,
+   "zoom_max": 1.15,
+   "upscale_fator": 4
+  }
+ },
+ "apoio_visual": {
+  "lexico": "lexico-deitico-pt.json",
+  "janela_s": 2.0,
+  "pre_s": 0.15,
+  "max_por_min": 2.0,
+  "classes_off": [],
+  "antes_nao_k": 3
+ },
+ "publicacao": {
+  "srt": {
+   "gerar": false,
+   "arquivo": "captions.srt",
+   "formatos": [
+    "srt"
+   ],
+   "max_chars_linha": 42,
+   "linhas": 2,
+   "cps_max": 17.0,
+   "dur_min_s": 0.833,
+   "dur_max_s": 7.0,
+   "gap_quebra_s": 0.7,
+   "gap_entre_cues_frames": 2,
+   "caixa": "original",
+   "fonte_palavras": "edl-bruto"
+  },
+  "capitulos": {
+   "gerar": false,
+   "arquivo": "chapters.txt",
+   "minimo": 3,
+   "dur_min_s": 10.0,
+   "titulo_abertura": "Introdução",
+   "max_chars_titulo": 100
+  },
+  "_motivo": "legenda queimada no feed (legenda.queimada=true) e o feed não consome .srt nem índice de capítulo — os dois entregáveis seriam arquivo morto ao lado do mp4."
+ },
+ "split": {
+  "_comentario": "SPEC-28. Só REGRA e política, nunca o VALOR do enquadramento: `deslocamento_px` e `escala` são MEDIDOS por peça e vivem no split-plano.json. Um perfil que carregasse `deslocamento: 25%` seria o defeito de hoje com outro nome.",
+  "opaco_pct": 0.34,
+  "_opaco_pct": "fração da ALTURA até onde o b-roll é 100% opaco. Medido na referência ref-D.",
+  "fim_pct": 0.51,
+  "_fim_pct": "fração da altura onde o alpha do b-roll chega a zero. A diferença para `opaco_pct` É a rampa.",
+  "curva": "smooth",
+  "folga_topo_pct": 0.036,
+  "_folga_topo_pct": "respiro entre o fim da rampa e o topo da cabeça. 68,75/1920 = 3,58%, derivado dos defaults do ref-A (bandH 750, zoom 1,25, focusY 400, cabelo em y_src 455).",
+  "percentil_cabeca": 5,
+  "_percentil_cabeca": "p5 = a cabeça MAIS ALTA do segmento; é ela que tem que caber.",
+  "amostras_por_s": 4,
+  "escala_max": 1.08,
+  "_escala_max": "acima disto o upscale começa a aparecer em pele e cabelo. Estourar é exit 1, nunca clamp.",
+  "margem_queixo_pct": 0.05,
+  "perda_base_max_pct": 0.36,
+  "_perda_base_max_pct": "quanto da base pode sair pelo pé. É decisão EDITORIAL: o script avisa e exige --forcar, não decide.",
+  "encaixar_no_corte": true
+ },
+ "sfx": {
+  "_porque": "SPEC-26 §4.4. Insumo do `perfil.py patch --bloco sfx` — nunca editar _base.json à mão. `sfx` é chave de topo NOVA, então não colide com bloco de ninguém. Nenhum destes números descreve o formato da peça: são tolerância percebida e alvo de nível.",
+  "tolerancia_frames": 1,
+  "_tolerancia_frames": "o agendador do Remotion põe o SFX em `Math.round(atS*fps)`: `from` é inteiro em frames, e meio frame não existe. A tolerância vive em frames e é resolvida contra video.fps.",
+  "piso_ms": 20.0,
+  "_piso_ms": "sem piso, uma peça a 120 fps exigiria 8 ms de precisão que o agendador não tem. atraso_max = max(1000*tolerancia_frames/fps, piso_ms).",
+  "corpo_acento_max_ms": 400,
+  "_corpo_acento_max_ms": "separa `acento` de `textura` pelo corpo MEDIDO. Na biblioteca real separa limpo: 36–348 ms de um lado, 1.715–2.070 ms do outro, ninguém perto da linha.",
+  "lufs_alvo": [
+   -21.0,
+   -19.0
+  ],
+  "_lufs_alvo": "a faixa que a remotion-compositor/SKILL.md:236 já prescrevia, agora executada com ebur128 em loop x16 (loudnorm de passe único erra ~3 LU em clipe sub-segundo).",
+  "lufs_tolerancia_lu": 1.0,
+  "pico_min_dbfs": -18.0,
+  "_pico_min_dbfs": "abaixo disto o efeito não é ouvido na mixagem. Calibrado contra o nosso pencil.mp3 bruto a -21,5 dBFS e o click2.mp3 a -25 dB que o ref-A entregou inaudível."
+ },
+ "trilha": {
+  "ativa": false,
+  "engine": "lyria-3-pro",
+  "delta_voz_lu": 13.0,
+  "base_lufs": -24.0,
+  "base_tp": -9.0,
+  "base_lra": 7.0,
+  "duck_db": 9.0,
+  "duck_attack_ms": 25,
+  "duck_release_ms": 450,
+  "highpass_hz": 60,
+  "fade_in_s": 1.0,
+  "fade_out_s": 2.0,
+  "loop_crossfade_s": 1.5,
+  "mascara_max_pct": 0.2,
+  "mascara_max_db": 0.5,
+  "presenca_min_db": 3.0
+ },
+ "jcut": {
+  "modo": "medido",
+  "lead_max_ms": 165
+ },
+ "_procedencia": "fixture do produto",
+ "_producao": null
+}

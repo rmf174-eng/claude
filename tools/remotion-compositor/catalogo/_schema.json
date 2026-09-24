@@ -1,0 +1,310 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "benchmark.catalogo-estilos/v1",
+ "title": "Catálogo de estilos versionado (SPEC-15 §4.1)",
+ "description": "Artefato GERADO por scripts/gerar-previews.py. Ninguém edita à mão: a fonte de verdade é src/catalogo/estilos.ts. As 5 regras do fim da §4.1 que JSON Schema não expressa (slug único no catálogo inteiro, defaultDe ⊆ perfis, um default por grupo×perfil, candidato exige bloqueio e não tem preview, preview relativo a catalogo/) são conferidas por `gerar-previews.py --validar`.",
+ "type": "object",
+ "required": [
+  "contrato",
+  "gerado_em",
+  "gerador",
+  "canvas",
+  "estilos"
+ ],
+ "additionalProperties": false,
+ "properties": {
+  "contrato": {
+   "const": "benchmark.catalogo-estilos/v1"
+  },
+  "gerado_em": {
+   "type": "string",
+   "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}"
+  },
+  "gerador": {
+   "type": "string",
+   "minLength": 1
+  },
+  "canvas": {
+   "type": "object",
+   "description": "Canvas em que os previews foram renderizados — vem do perfil de peça (SPEC-00), nunca de literal no código. Entra no sha: trocar de perfil invalida todo preview.",
+   "required": [
+    "largura",
+    "altura",
+    "fps",
+    "escala"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "largura": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "altura": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "fps": {
+     "type": "number",
+     "minimum": 1
+    },
+    "escala": {
+     "type": "number",
+     "minimum": 0.01,
+     "maximum": 1
+    }
+   }
+  },
+  "estilos": {
+   "type": "array",
+   "minItems": 1,
+   "items": {
+    "$ref": "#/$defs/estilo"
+   }
+  }
+ },
+ "$defs": {
+  "param": {
+   "type": "object",
+   "required": [
+    "nome",
+    "tipo",
+    "padrao"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "nome": {
+     "type": "string",
+     "minLength": 1
+    },
+    "tipo": {
+     "enum": [
+      "px",
+      "s",
+      "cor",
+      "fator",
+      "texto",
+      "bool",
+      "enum"
+     ]
+    },
+    "padrao": {},
+    "faixa": {
+     "type": "array",
+     "minItems": 2,
+     "maxItems": 2,
+     "items": {
+      "type": "number"
+     }
+    },
+    "valores": {
+     "type": "array",
+     "minItems": 1,
+     "items": {
+      "type": "string"
+     }
+    },
+    "nota": {
+     "type": "string"
+    }
+   }
+  },
+  "medido": {
+   "type": "object",
+   "required": [
+    "fonte",
+    "data"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "fonte": {
+     "type": "string",
+     "minLength": 1
+    },
+    "ficha": {
+     "type": "string",
+     "pattern": "^[^/].*\\.md$"
+    },
+    "data": {
+     "type": "string",
+     "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    }
+   },
+   "_ficha_opcional": "`ficha` é OPCIONAL no PRODUTO, e isto é medido (2026-08-12, H47-7). O export poda `medido.ficha` de propósito: ela aponta para `intelligence/edicao/*.md`, que é instância nossa e nunca sai — a poda é declarada em `export.campos_podados` com dono e teto. Enquanto `required` a exigia, o pacote embarcava um schema que o próprio catálogo do pacote violava: um agente externo mediu 10 de 46 estilos reprovando o `--validar` no clone, e aqui no dev os 11 com `medido` têm ficha, então nunca víamos. Duas verdades sobre o mesmo arquivo é o defeito; a que vale é a do cliente."
+  },
+  "preview": {
+   "type": "object",
+   "required": [
+    "durS",
+    "placa",
+    "frameCartao",
+    "w",
+    "h",
+    "fps"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "durS": {
+     "type": "number",
+     "minimum": 0.1,
+     "maximum": 30
+    },
+    "placa": {
+     "enum": [
+      "vazia",
+      "retrato",
+      "paisagem",
+      "screencast"
+     ]
+    },
+    "frameCartao": {
+     "type": "integer",
+     "minimum": 0
+    },
+    "w": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "h": {
+     "type": "integer",
+     "minimum": 1
+    },
+    "fps": {
+     "type": "number",
+     "minimum": 1
+    },
+    "webm": {
+     "type": "string",
+     "pattern": "^previews/[a-z0-9-]+\\.webm$"
+    },
+    "poster": {
+     "type": "string",
+     "pattern": "^previews/[a-z0-9-]+\\.png$"
+    }
+   }
+  },
+  "estilo": {
+   "type": "object",
+   "required": [
+    "slug",
+    "grupo",
+    "nome",
+    "oQuePinta",
+    "camada",
+    "estado",
+    "perfis",
+    "defaultDe",
+    "origem",
+    "parametros",
+    "preview",
+    "sha",
+    "desde"
+   ],
+   "additionalProperties": false,
+   "properties": {
+    "slug": {
+     "type": "string",
+     "pattern": "^[a-z0-9]+(-[a-z0-9]+)*$"
+    },
+    "grupo": {
+     "enum": [
+      "gramatica",
+      "gancho",
+      "legenda",
+      "grafismo",
+      "tema"
+     ]
+    },
+    "nome": {
+     "type": "string",
+     "minLength": 1
+    },
+    "oQuePinta": {
+     "type": "string",
+     "minLength": 10
+    },
+    "camada": {
+     "enum": [
+      "edl",
+      "pixel",
+      "alpha"
+     ]
+    },
+    "estado": {
+     "enum": [
+      "pronto",
+      "candidato"
+     ]
+    },
+    "bloqueio": {
+     "type": "string",
+     "minLength": 10
+    },
+    "perfis": {
+     "type": "array",
+     "minItems": 1,
+     "uniqueItems": true,
+     "items": {
+      "type": "string",
+      "minLength": 1
+     }
+    },
+    "defaultDe": {
+     "type": "array",
+     "uniqueItems": true,
+     "items": {
+      "type": "string",
+      "minLength": 1
+     }
+    },
+    "origem": {
+     "type": "string",
+     "pattern": "^[^/][^:]*:[^:]+$"
+    },
+    "acento": {
+     "type": "object",
+     "description": "SPEC-19 §3.8 — qual prop recebe a cor de destaque do tema. Ausente = o estilo não pinta acento. Nunca booleano: o renderizador precisa do NOME do parâmetro, e `acento_usado` é derivado daqui (dono único, sem lista espelhada).",
+     "required": [
+      "param"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "param": {
+       "type": "string",
+       "minLength": 1
+      }
+     }
+    },
+    "previewProps": {
+     "type": "object"
+    },
+    "parametros": {
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/param"
+     }
+    },
+    "medido": {
+     "$ref": "#/$defs/medido"
+    },
+    "duplicatas": {
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^[^/][^:]*:[0-9]+$"
+     }
+    },
+    "preview": {
+     "$ref": "#/$defs/preview"
+    },
+    "sha": {
+     "type": "string",
+     "pattern": "^[0-9a-f]{12}$"
+    },
+    "desde": {
+     "type": "string",
+     "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    }
+   }
+  }
+ }
+}

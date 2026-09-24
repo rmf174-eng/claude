@@ -1,0 +1,296 @@
+{
+ "contrato": "benchmark.galeria-estilos/v1",
+ "_nota": "FIXTURE (SPEC-19 §8.4). Sintética de propósito: tem um CANDIDATO (esmaecido, não selecionável, com o bloqueio visível), um grupo com UMA opção (fantasma 'mais estilos em breve') e um grupo VAZIO — que continua aparecendo, porque grupo sem opção não pode fazer o portão sumir. Os caminhos de preview de nível 0 são os do CATÁLOGO, e o `--fixture` copia esses arquivos para o destino: o card pinta de verdade. O de nível 1 (`peca/…`) não existe fora de uma peça renderizada, e o `--fixture` o converte em `preview: null` — que é o que exercita o card SEM MÍDIA, com a placa 'prévia ainda não renderizada'. Até 2026-08-11 esta nota afirmava que apontar para arquivo inexistente era o teste do card sem mídia; era falso, e o preço eram 9 requisições 404 e ícones de imagem quebrada (achado A-F6). Em 2026-08-11 (SPEC-44, achado A-G2) os `interruptores` e o `gerador_versao` passaram a sair do MESMO lugar que o gerador usa (`preview/app/galeria/interruptores.json`, filtrado pelo perfil daqui): a fixture carregava a forma velha — 5 itens, `aplica` em voz de dev, sem `tecnico` — então a página de teste era o único lugar do produto onde o jargão continuava visível, e a varredura \"0 jargão na tela\" não valia nela. Fixture que não exercita a forma corrente não é teste; quem mexer nos interruptores refaz este bloco.",
+ "gerado_em": "2026-08-08T23:40:00-03:00",
+ "gerador": "previews-peca.py",
+ "gerador_versao": 2,
+ "catalogo_gerado_em": "2026-08-08T23:18:00-03:00",
+ "producao": {
+  "slug": "fixture",
+  "creator": null
+ },
+ "perfil": {
+  "nome": "reels",
+  "vocabulario": "reels",
+  "fonte": "perfil.json",
+  "largura": 1080,
+  "altura": 1920,
+  "fps": 30,
+  "zonas_ui": {
+   "topo_pct": 0.151,
+   "fundo_pct": 0.7813,
+   "direita_pct": 0.8556
+  }
+ },
+ "texto": {
+  "fonte": "captions",
+  "legenda_frase": "Enquanto você discute sobre",
+  "legenda_chars": 27,
+  "gancho": "Você sabia que a maioria das brigas"
+ },
+ "tema_default": "tema-neutro",
+ "acento_default": "#d14e72",
+ "grupos": [
+  {
+   "id": "gramatica",
+   "titulo": "Gramática de plano",
+   "seletor": "unico",
+   "estilos": [
+    {
+     "slug": "plano-fixo",
+     "nome": "Plano fixo",
+     "estado": "pronto",
+     "padrao": true,
+     "oQuePinta": "Um enquadramento só, do começo ao fim.",
+     "acento": null,
+     "parametros": [],
+     "aplica": {
+      "perfil_campo": "ritmo.gramatica_plano",
+      "valor": "fixa"
+     },
+     "preview": {
+      "nivel": 0,
+      "webm": "previews/plano-fixo.webm",
+      "poster": "previews/plano-fixo.png",
+      "w": 360,
+      "h": 640,
+      "durS": 3.0
+     }
+    },
+    {
+     "slug": "plano-alternado",
+     "nome": "Plano alternado",
+     "estado": "pronto",
+     "padrao": false,
+     "oQuePinta": "Alterna enquadramento nativo e punch-in a cada frase.",
+     "acento": null,
+     "parametros": [
+      {
+       "nome": "zoomB",
+       "tipo": "fator",
+       "padrao": 1.27,
+       "faixa": [
+        1.1,
+        1.6
+       ]
+      }
+     ],
+     "aplica": {
+      "perfil_campo": "ritmo.gramatica_plano",
+      "valor": "alternada"
+     },
+     "preview": {
+      "nivel": 0,
+      "webm": "previews/plano-alternado.webm",
+      "poster": "previews/plano-alternado.png",
+      "w": 360,
+      "h": 640,
+      "durS": 3.0
+     }
+    }
+   ]
+  },
+  {
+   "id": "tema",
+   "titulo": "Tema e cor de destaque",
+   "seletor": "unico",
+   "estilos": [
+    {
+     "slug": "tema-neutro",
+     "nome": "Neutro",
+     "estado": "pronto",
+     "padrao": true,
+     "oQuePinta": "Paleta neutra, sem identidade de creator.",
+     "acento": null,
+     "parametros": [],
+     "preview": {
+      "nivel": 0,
+      "webm": "previews/tema-neutro.webm",
+      "poster": "previews/tema-neutro.png",
+      "w": 360,
+      "h": 640,
+      "durS": 3.0
+     }
+    }
+   ]
+  },
+  {
+   "id": "gancho",
+   "titulo": "Gancho",
+   "seletor": "unico",
+   "estilos": []
+  },
+  {
+   "id": "legenda",
+   "titulo": "Legenda",
+   "seletor": "unico",
+   "estilos": [
+    {
+     "slug": "legenda-destaque-tema",
+     "nome": "Branca com destaque do tema",
+     "oQuePinta": "Legenda branca grande com a palavra ativa na cor de destaque do tema.",
+     "estado": "pronto",
+     "padrao": true,
+     "acento": {
+      "param": "highlight"
+     },
+     "parametros": [
+      {
+       "nome": "fontSize",
+       "tipo": "px",
+       "padrao": 58,
+       "faixa": [
+        24,
+        96
+       ]
+      },
+      {
+       "nome": "yPct",
+       "tipo": "fator",
+       "padrao": 75,
+       "faixa": [
+        40,
+        85
+       ]
+      }
+     ],
+     "preview": {
+      "nivel": 1,
+      "webm": "peca/legenda-destaque-tema.webm",
+      "poster": "peca/legenda-destaque-tema.png",
+      "w": 360,
+      "h": 640,
+      "durS": 3.0,
+      "chave": "fixture0000000000"
+     }
+    },
+    {
+     "slug": "legenda-chapada",
+     "nome": "Chapada",
+     "oQuePinta": "Duas a quatro palavras, brancas, sem palavra ativa.",
+     "estado": "pronto",
+     "padrao": false,
+     "acento": null,
+     "parametros": [
+      {
+       "nome": "fontSize",
+       "tipo": "px",
+       "padrao": 46,
+       "faixa": [
+        24,
+        96
+       ]
+      }
+     ],
+     "preview": {
+      "nivel": 0,
+      "webm": "previews/legenda-chapada.webm",
+      "poster": "previews/legenda-chapada.png",
+      "w": 360,
+      "h": 640,
+      "durS": 3.0
+     }
+    },
+    {
+     "slug": "chip",
+     "nome": "Chip",
+     "estado": "candidato",
+     "padrao": false,
+     "oQuePinta": "Rótulo curto em cápsula, entrando por baixo da legenda.",
+     "bloqueio": "importa vsl/theme.ts:49-58, que crava 1280x720 — precisa receber o canvas por prop antes de virar pronto.",
+     "acento": null,
+     "parametros": [],
+     "preview": null
+    }
+   ]
+  },
+  {
+   "id": "grafismo",
+   "titulo": "Grafismos liberados",
+   "seletor": "multi",
+   "estilos": [
+    {
+     "slug": "postit",
+     "nome": "Post-it",
+     "estado": "pronto",
+     "padrao": false,
+     "oQuePinta": "Cartão amarelo que entra com pop discreto.",
+     "acento": null,
+     "parametros": [],
+     "preview": {
+      "nivel": 0,
+      "webm": "previews/postit.webm",
+      "poster": "previews/postit.png",
+      "w": 360,
+      "h": 640,
+      "durS": 3.0
+     }
+    },
+    {
+     "slug": "marca-texto",
+     "nome": "Marca-texto",
+     "estado": "pronto",
+     "padrao": false,
+     "oQuePinta": "Traço de marca-texto passando por baixo da palavra.",
+     "acento": null,
+     "parametros": [],
+     "preview": {
+      "nivel": 0,
+      "webm": "previews/marca-texto.webm",
+      "poster": "previews/marca-texto.png",
+      "w": 360,
+      "h": 640,
+      "durS": 3.0
+     }
+    }
+   ]
+  }
+ ],
+ "interruptores": [
+  {
+   "id": "sfx",
+   "nome": "SFX nos beats",
+   "padrao": true,
+   "aplica": "os efeitos sonoros marcados no plano entram na mixagem",
+   "tecnico": "SFX do plano entram no amix da composição"
+  },
+  {
+   "id": "trilha",
+   "nome": "Trilha com ducking",
+   "padrao": false,
+   "aplica": "entra música de fundo, e ela abaixa sozinha quando você fala",
+   "tecnico": "trilha licenciada + ducking calibrado pelo integrado pós-ducking (SPEC-20)"
+  },
+  {
+   "id": "split_broll",
+   "nome": "Split-screen com b-roll",
+   "padrao": false,
+   "aplica": "a tela se divide: a imagem de apoio em cima, você embaixo",
+   "tecnico": "split-broll.py — camada PIXEL, fora do Remotion"
+  },
+  {
+   "id": "flash_no_corte",
+   "nome": "Flash na transição",
+   "padrao": false,
+   "aplica": "um clarão branco rapidíssimo na emenda entre dois cortes",
+   "tecnico": "1 frame branco a 70% de opacidade na emenda"
+  },
+  {
+   "id": "legenda_ativa",
+   "nome": "Legenda queimada",
+   "padrao": true,
+   "aplica": "a legenda fica gravada na imagem do vídeo, não em arquivo separado",
+   "tecnico": "perfil.legenda.ativa"
+  },
+  {
+   "id": "tracking",
+   "nome": "Punch que segue o rosto",
+   "padrao": false,
+   "aplica": "o zoom acompanha o seu rosto quando você se mexe; sem isso ele fica preso no centro do quadro e corta a sua cabeça",
+   "tecnico": "rastrear-rosto.py grava track-rosto.json e o punch entra por MotionKit.CameraSegue track="
+  }
+ ],
+ "vigente": null,
+ "pendentes": 0,
+ "avisos": []
+}

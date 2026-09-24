@@ -1,0 +1,17 @@
+{
+ "contrato": "benchmark.edit-estilo/v1",
+ "salvo_em": "2026-08-08T15:41:19-03:00",
+ "revisao_base": 7,
+ "rerender": false,
+ "legenda": "legenda-chapada",
+ "headline": "hook-titulo-fade",
+ "acento": "#4ADE80",
+ "acento_usado": true,
+ "elementos": {
+  "postit": false,
+  "marca-texto": true,
+  "sfx": true
+ },
+ "gramatica_plano": "alternada",
+ "observacao": "legenda um pouco mais baixa"
+}

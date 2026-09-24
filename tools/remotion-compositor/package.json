@@ -1,0 +1,28 @@
+{
+  "name": "remotion-compositor",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render Main",
+    "catalogo": "python3 scripts/gerar-previews.py",
+    "qc-galeria": "node scripts/qc-galeria-decodifica.mjs",
+    "qc-fixture-legenda": "node scripts/qc-fixture-legenda.mjs",
+    "test-plano-visual": "node scripts/teste-plano-visual.mjs",
+    "previas": "python3 ../../skills/edit-video/scripts/previews-peca.py"
+  },
+  "dependencies": {
+    "@remotion/captions": "latest",
+    "@remotion/cli": "latest",
+    "@remotion/google-fonts": "latest",
+    "@remotion/layout-utils": "4.0.496",
+    "@remotion/media": "latest",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "remotion": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "typescript": "^5.5.0"
+  }
+}

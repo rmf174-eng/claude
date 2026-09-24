@@ -1,0 +1,1040 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "benchmark.perfil-peca/v1",
+ "title": "Perfil de peça — o formato de saída da ilha de edição",
+ "description": "Descreve o TIPO DE PEÇA (formato), não o creator nem a produção. Regra de ouro: nenhum script pode conter um valor de formato. Se um número descreve COMO A PEÇA É (dimensão, fps, sample rate, pad, alvo de loudness, zona de UI), ele vem daqui. Se descreve FÍSICA (RMS em janelas de 10 ms, piso de silêncio = percentil 15 num raio de 0,6 s), pode ficar no script. Blocos de topo desconhecidos são ACEITOS de propósito: specs seguintes acrescentam `trilha`, `publicacao`, `legenda.diretor`, `ritmo.cauda_alvo_s` via `perfil.py patch`, e um schema fechado obrigaria a editar este arquivo em 7 specs concorrentes.",
+ "type": "object",
+ "required": [
+  "contrato",
+  "nome",
+  "video",
+  "audio",
+  "ritmo"
+ ],
+ "additionalProperties": true,
+ "properties": {
+  "contrato": {
+   "const": "benchmark.perfil-peca/v1"
+  },
+  "nome": {
+   "type": "string",
+   "minLength": 1
+  },
+  "descricao": {
+   "type": "string"
+  },
+  "video": {
+   "type": "object",
+   "required": [
+    "largura",
+    "altura",
+    "fps"
+   ],
+   "additionalProperties": true,
+   "properties": {
+    "aspecto": {
+     "type": "string",
+     "description": "informativo/validação; largura×altura é que manda"
+    },
+    "largura": {
+     "type": "integer",
+     "minimum": 16,
+     "maximum": 7680
+    },
+    "altura": {
+     "type": "integer",
+     "minimum": 16,
+     "maximum": 7680
+    },
+    "fps": {
+     "description": "48000 % fps TEM que ser inteiro, senão a deriva de A/V volta. NTSC fracionário (23.976 / 29.97 / 59.94) é REJEITADO, nunca aproximado — ver §9 da SPEC-00.",
+     "enum": [
+      24,
+      25,
+      30,
+      32,
+      40,
+      48,
+      50,
+      60,
+      75,
+      80,
+      96,
+      100,
+      120
+     ]
+    },
+    "pix_fmt": {
+     "type": "string"
+    },
+    "crf": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 51
+    },
+    "preset_x264": {
+     "type": "string"
+    },
+    "escala_flags": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "flags do filtro scale (bicubic, lanczos…). null = não passa flag nenhuma (default do ffmpeg)."
+    },
+    "unsharp": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "string de filtro ffmpeg, aplicada SÓ quando o crop é MENOR que a saída (unsharp compensa upscale; sobre downscale injeta halo)."
+    }
+   }
+  },
+  "cor": {
+   "type": "object",
+   "additionalProperties": true,
+   "properties": {
+    "entrada_esperada": {
+     "description": "Entrada aceita pela peça. `auto` registra a detecção sem restringir; uma lista aceita explicitamente mais de um perfil sem relabelar ou converter a fonte em silêncio.",
+     "anyOf": [
+      {
+       "enum": [
+        "hlg",
+        "sdr",
+        "auto"
+       ]
+      },
+      {
+       "type": "array",
+       "minItems": 1,
+       "maxItems": 2,
+       "items": {
+        "enum": [
+         "hlg",
+         "sdr"
+        ]
+       }
+      }
+     ]
+    },
+    "lut": {
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "tags_saida": {
+     "type": "object",
+     "additionalProperties": true,
+     "properties": {
+      "color_primaries": {
+       "type": "string"
+      },
+      "color_trc": {
+       "type": "string"
+      },
+      "colorspace": {
+       "type": "string"
+      }
+     }
+    },
+    "aplicar_tags_por": {
+     "enum": [
+      "setparams",
+      "opcoes-de-saida",
+      "nenhum"
+     ],
+     "description": "setparams = o único que funciona neste build (medido em qc-cor.py:24-30: -color_primaries e -color_trc são SILENCIOSAMENTE ignoradas). `opcoes-de-saida` existe SÓ para o FALLBACK reproduzir o comportamento histórico byte a byte — nunca use em perfil novo."
+    },
+    "grade": {
+     "type": [
+      "string",
+      "null"
+     ],
+     "description": "filtro ffmpeg do look do creator; preenchido por perfil-overrides.json, nunca pelo perfil"
+    }
+   }
+  },
+  "ritmo": {
+   "type": "object",
+   "required": [
+    "pads"
+   ],
+   "additionalProperties": true,
+   "properties": {
+    "pads": {
+     "type": "object",
+     "required": [
+      "pre",
+      "post"
+     ],
+     "additionalProperties": true,
+     "properties": {
+      "pre": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 2
+      },
+      "post": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 2
+      }
+     }
+    },
+    "cap": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 2
+    },
+    "rel": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 60
+    },
+    "floor": {
+     "description": "piso de silêncio em dB, ou \"auto\" (piso_local percentil 15 + 10 dB) — obrigatório em bruto gravado em lugar público",
+     "anyOf": [
+      {
+       "type": "number",
+       "minimum": -90,
+       "maximum": 0
+      },
+      {
+       "const": "auto"
+      }
+     ]
+    },
+    "gap_min": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 5
+    },
+    "fade_borda_s": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 0.5
+    },
+    "fade_modo": {
+     "enum": [
+      "por-segmento",
+      "so-descontinuidade"
+     ],
+     "description": "so-descontinuidade: borda só recebe fade quando o vizinho NÃO é contíguo no mesmo src. Numa EDL de troca-de-plano (VSL) o modo por-segmento cria um dip audível por emenda."
+    },
+    "gramatica_plano": {
+     "enum": [
+      "fixa",
+      "alternada",
+      "punch-pontual"
+     ]
+    },
+    "zoom_alternado": {
+     "type": "array",
+     "minItems": 2,
+     "maxItems": 2,
+     "items": {
+      "type": "number",
+      "minimum": 1.0,
+      "maximum": 4.0
+     }
+    },
+    "plano_max_s": {
+     "type": "number",
+     "minimum": 1,
+     "maximum": 120
+    },
+    "cauda_alvo_s": {
+     "description": "Quanto AR fica depois da última palavra de cada segmento, em segundos. null = medir e NÃO aparar (default de todo perfil). É ritmo, não formato: o mesmo número vale em 24, 30 ou 60 fps — o ref-A apara 'até 2 frames', que erra de fps em fps. Consumido por bordas.py --cauda auto e por qc-cauda.py.",
+     "anyOf": [
+      {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 2
+      },
+      {
+       "type": "null"
+      }
+     ]
+    },
+    "orcamento_pausa": {
+     "type": "object",
+     "description": "Limite do gap lexical que permanece na montagem. Mede a pausa entre asr_fim da janela anterior e asr_ini da próxima, separado de decay/cauda. `ativo: false` só registra; `ativo: true` ajusta dentro das proteções fonéticas e de cortes herdados.",
+     "required": [
+      "ativo",
+      "min_s",
+      "alvo_s",
+      "max_s",
+      "protecao_fim_s",
+      "protecao_inicio_s",
+      "min_frames_corte_herdado"
+     ],
+     "additionalProperties": false,
+     "properties": {
+      "ativo": {
+       "type": "boolean"
+      },
+      "min_s": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 2
+      },
+      "alvo_s": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 2
+      },
+      "max_s": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 2
+      },
+      "protecao_fim_s": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "protecao_inicio_s": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1
+      },
+      "min_frames_corte_herdado": {
+       "type": "integer",
+       "minimum": 0,
+       "maximum": 120
+      }
+     }
+    }
+   }
+  },
+  "audio": {
+   "type": "object",
+   "required": [
+    "sr",
+    "canais"
+   ],
+   "additionalProperties": true,
+   "properties": {
+    "sr": {
+     "type": "integer",
+     "enum": [
+      44100,
+      48000,
+      96000
+     ]
+    },
+    "canais": {
+     "type": "integer",
+     "enum": [
+      1,
+      2
+     ]
+    },
+    "loudness": {
+     "type": "object",
+     "additionalProperties": true,
+     "properties": {
+      "I": {
+       "type": "number",
+       "minimum": -40,
+       "maximum": 0
+      },
+      "TP": {
+       "type": "number",
+       "minimum": -9,
+       "maximum": 0
+      },
+      "LRA": {
+       "type": "number",
+       "minimum": 1,
+       "maximum": 30
+      }
+     }
+    },
+    "passes_loudnorm": {
+     "type": "integer",
+     "enum": [
+      1,
+      2
+     ]
+    },
+    "codec": {
+     "type": "string"
+    },
+    "bitrate": {
+     "type": "string"
+    }
+   }
+  },
+  "trilha": {
+   "description": "SPEC-20 — trilha sonora. `ativa` nasce false em TODO perfil: trilha é decisão editorial que passa pelo PLANO-EDICAO.md, não default silencioso. O `trilha.py` EXIGE o bloco completo e recusa rodar sem ele — por isso não há `required` aqui: um creator-override legítimo traz só a folha que ele muda (ex.: `duck_db`), e `required` no schema o reprovaria.",
+   "type": "object",
+   "additionalProperties": true,
+   "properties": {
+    "ativa": {
+     "type": "boolean"
+    },
+    "engine": {
+     "type": "string",
+     "minLength": 1,
+     "description": "lyria-3-pro | lyria-3-clip | arquivo. NÃO é enum de propósito: quem instalar o produto com outro fornecedor acrescenta uma função ao dicionário MOTORES do musica-gerar.py, e um enum aqui reprovaria o perfil dele."
+    },
+    "delta_voz_lu": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 40,
+     "description": "integrado da trilha = I_voz − este número. É a grandeza que governa trilha; LUFS absoluto só vale para uma peça. Faixa medida como boa: 12–15 LU."
+    },
+    "base_lufs": {
+     "type": "number",
+     "minimum": -40,
+     "maximum": 0,
+     "description": "ponto de partida antes do ducking (interno)."
+    },
+    "base_tp": {
+     "type": "number",
+     "minimum": -20,
+     "maximum": 0,
+     "description": "teto do loudnorm de partida. Fica bem abaixo do teto do programa porque o passo 7 ainda vai somar o ganho de compensação."
+    },
+    "base_lra": {
+     "type": "number",
+     "minimum": 1,
+     "maximum": 30
+    },
+    "duck_db": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 19,
+     "description": "quantos dB a música cede no pico da fala. ratio = 20/(20−duck_db), SEM piso — o piso de 2,0 do código antigo engolia todo pedido ≤10 dB e aplicava sempre 10."
+    },
+    "duck_attack_ms": {
+     "type": "number",
+     "minimum": 0.01,
+     "maximum": 2000
+    },
+    "duck_release_ms": {
+     "type": "number",
+     "minimum": 0.01,
+     "maximum": 9000
+    },
+    "highpass_hz": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 2000
+    },
+    "fade_in_s": {
+     "type": "number",
+     "minimum": 0
+    },
+    "fade_out_s": {
+     "type": "number",
+     "minimum": 0
+    },
+    "loop_crossfade_s": {
+     "type": "number",
+     "minimum": 0
+    },
+    "mascara_max_pct": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1,
+     "description": "seleção de faixa: fração da energia em 300–3400 Hz acima da qual a candidata é eliminada. Dois pontos medidos: 11,9 % aprovada, 29,6 % eliminada de ouvido."
+    },
+    "mascara_max_db": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 20,
+     "description": "QC de efeito: quanto a trilha pode somar na fala densa."
+    },
+    "presenca_min_db": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 40,
+     "description": "QC de efeito: quanto ela TEM que somar na pausa."
+    }
+   }
+  },
+  "legenda": {
+   "type": "object",
+   "additionalProperties": true,
+   "properties": {
+    "ativa": {
+     "type": "boolean"
+    },
+    "queimada": {
+     "type": "boolean"
+    },
+    "max_palavras_pagina": {
+     "type": "integer",
+     "minimum": 1,
+     "maximum": 20
+    },
+    "y_pct": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "fonte_palavras": {
+     "enum": [
+      "edl-bruto",
+      "transcript-montado"
+     ],
+     "description": "transcript-montado é PROIBIDO em talking-head: o ASR do montado INVENTA palavra na emenda. Existe para longform, onde a legenda é .srt do corte final."
+    },
+    "suprimir_por": {
+     "type": "string"
+    },
+    "estilo": {
+     "description": "SPEC-13 — tipografia da legenda. Tudo em FRAÇÃO DA LARGURA do quadro, nunca px: px morrem quando a resolução muda (mesma razão de zonas_ui). A conversão para px acontece no render, em agrupamentoDoPerfil().",
+     "type": "object",
+     "required": [
+      "familia",
+      "tamanho_pct"
+     ],
+     "additionalProperties": true,
+     "properties": {
+      "familia": {
+       "type": "string",
+       "minLength": 1
+      },
+      "peso": {
+       "type": "integer",
+       "minimum": 100,
+       "maximum": 900
+      },
+      "italico": {
+       "type": "boolean"
+      },
+      "tamanho_pct": {
+       "type": "number",
+       "minimum": 0.0001,
+       "maximum": 1
+      },
+      "entreletras_pct": {
+       "type": "number",
+       "minimum": -0.01,
+       "maximum": 0.05
+      },
+      "altura_linha": {
+       "type": "number",
+       "minimum": 0.5,
+       "maximum": 3
+      },
+      "caixa": {
+       "enum": [
+        "uppercase",
+        null
+       ]
+      },
+      "cor": {
+       "type": "string",
+       "description": "cor do corpo da legenda. É LOOK de creator: quem escreve é perfil-overrides.json, não o perfil."
+      },
+      "destaque": {
+       "type": [
+        "string",
+        "null"
+       ],
+       "description": "cor da palavra ativa. `null` desliga o highlight (página toda na mesma cor) — é o que faz a legenda sumir e o ritmo de corte virar protagonista."
+      },
+      "sombra": {
+       "type": "string",
+       "description": "textShadow CSS. ⚠️ contorno fraco faz a palavra ativa SUMIR sobre fundo claro: medido no rosé #FF8FA3 da creator-2, razão de contraste 1,06 contra pele/parede (peca-02.tsx:1148-1151)."
+      }
+     }
+    },
+    "agrupamento": {
+     "description": "SPEC-13 — a página de legenda fechada por LARGURA MEDIDA. `null` = a peça não usa o CaptionLayer (longform: legenda é .srt não queimada, cuja quebra é por caracteres e convenção de broadcast). O teto de palavras é `max_palavras_pagina`, aqui ao lado: é GUARDA-CORPO, não o critério primário — com teto baixo ele volta a mandar e a dispersão de largura não cai.",
+     "type": [
+      "object",
+      "null"
+     ],
+     "required": [
+      "largura_max_pct",
+      "linhas_max",
+      "min_solo_ms"
+     ],
+     "additionalProperties": true,
+     "properties": {
+      "largura_max_pct": {
+       "type": "number",
+       "minimum": 0.0001,
+       "maximum": 1,
+       "description": "orçamento POR LINHA. Com linhas_max 2, cada linha tem que caber nele — não só a soma."
+      },
+      "linhas_max": {
+       "enum": [
+        1,
+        2
+       ]
+      },
+      "pausa_quebra_ms": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 5000
+      },
+      "quebra_em_pontuacao": {
+       "type": "boolean"
+      },
+      "min_solo_ms": {
+       "description": "piso de duração EFETIVA (já esticada pela ponte anti-piscada) de uma página de 1 palavra. DERIVADO por scripts/medir-assentamento.mjs a partir do spring da nossa animação — nunca escrito à mão, e nunca copiado dos 340 ms do ref-A, que mede a duração da palavra e não a da cue. `null` = ERRO em tempo de composição.",
+       "anyOf": [
+        {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 5000
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "penalidade_orfa_px": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 2000
+      },
+      "orfas": {
+       "type": "array",
+       "items": {
+        "type": "string"
+       }
+      }
+     }
+    },
+    "diretor": {
+     "description": "SPEC-14 — o DIRETOR DE LEGENDA. OPCIONAL: sem este bloco o script usa o DIRETOR_FALLBACK embutido (valores do reels) e avisa no stderr. Ele decide QUE PALAVRA vira tipografia, com que componente e em que canal, a partir de prosódia medida no áudio + classe gramatical + posição na frase + repetição. ⚠️ `min_solo_ms` NÃO mora aqui: quando não declarado, HERDA de `legenda.agrupamento.min_solo_ms` (SPEC-13). Dois números diferentes para o mesmo limiar é como a legenda e a partitura passam a discordar sobre o que é solo.",
+     "type": "object",
+     "additionalProperties": true,
+     "properties": {
+      "densidade_alvo_10s": {
+       "type": "number",
+       "minimum": 0.1,
+       "maximum": 30,
+       "description": "elementos de texto por 10 s. É ORÇAMENTO, não limiar: um limiar de ênfase produz densidade que varia com o quão animada foi a gravação, que é o oposto de dirigir. reels 2,7 (medido: 21 elementos em 79,07 s da peca-02) · vsl 7,4 (ref-C-oferta.md:45)."
+      },
+      "espacamento_min_s": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 30,
+       "description": "distância mínima entre dois eleitos. reels 0,6 — MEDIDO na peça aprovada: os 21 elementos da peca-02 têm intervalo mínimo de 0,64 s e 3 dos 20 intervalos ficam abaixo de 1,2 s. Um piso de 1,2 proibiria o que a peça publicada faz."
+      },
+      "min_solo_ms": {
+       "type": [
+        "number",
+        "null"
+       ],
+       "description": "não declare: herda de legenda.agrupamento.min_solo_ms (SPEC-13)."
+      },
+      "pausa_frase_ms": {
+       "type": "number",
+       "minimum": 80,
+       "maximum": 5000,
+       "description": "fronteira de FRASE para o realce (a referência do realce é a frase, não a peça: contra a mediana global reelege-se sempre o trecho gravado mais alto). Nunca abaixo de 80 ms — é a quantização de timestamp do Deepgram."
+      },
+      "max_chars_manuscrito": {
+       "type": "integer",
+       "minimum": 4,
+       "maximum": 200,
+       "description": "acima disto o item `tese` sai com `parafrasear: true`. A máquina acha o beat; a pessoa escreve a frase."
+      },
+      "fpc_manuscrito": {
+       "type": "number",
+       "minimum": 0.05,
+       "maximum": 10,
+       "description": "frames por caractere do write-on. Espelho de MotionKit.tsx:184 (writeDurationS); entra na JANELA do item, que é o que o invariante de canal mede."
+      },
+      "bonus_creator": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 2,
+       "description": "multiplicador do vocabulário de marca do creator (lexico-creator.json). Score × (1 + bonus) em `marca`, × (1 − bonus) em `evitar`."
+      },
+      "fracao_legenda_alvo": {
+       "type": "number",
+       "minimum": 0,
+       "maximum": 1,
+       "description": "quanto do tempo a legenda TEM que ficar no ar. É RESTRIÇÃO, não decoração: se a eleição desligar mais que isso, o item de menor score que suprime é descartado com motivo `fracao-legenda`. reels 1,0 — as duas produções aprovadas da creator-2 têm CAPTION_OFF vazio (Toalha.tsx:1172, MaeDoMarido.tsx:909) e nas duas o conflito com o gráfico foi resolvido movendo a GEOMETRIA. vsl 0,34 (ref-C-oferta.md:27)."
+      },
+      "pesos": {
+       "type": "object",
+       "additionalProperties": false,
+       "required": [
+        "prosodia",
+        "lexico",
+        "posicao",
+        "repeticao"
+       ],
+       "properties": {
+        "prosodia": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 1,
+         "description": ""
+        },
+        "lexico": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 1,
+         "description": ""
+        },
+        "posicao": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 1,
+         "description": ""
+        },
+        "repeticao": {
+         "type": "number",
+         "minimum": 0,
+         "maximum": 1,
+         "description": ""
+        }
+       },
+       "description": "⚠️ `prosodia` vale 0,20 e NÃO 0,45 como a SPEC-14 §3.5 propunha. Medido em 2026-08-08 contra o ground truth da peca-02 (19 beats aprovados): o realce das 52 palavras que o editor humano escolheu é −0,46 dB contra −0,21 dB das outras 205 (t de Welch −0,90; no áudio do bruto, −0,13 × −0,09, t −0,10). O eixo prosódia sozinho recupera 10,5% dos beats, ABAIXO do acaso (19,9% ± 7,8 em 4000 sorteios de 21). `repeticao` é o único eixo acima do p95 do acaso (36,8% × 31,6%), e é por isso que ele subiu para 0,30."
+      },
+      "prosodia_ref": {
+       "type": "object",
+       "additionalProperties": true,
+       "required": [
+        "realce_db",
+        "alongamento",
+        "pausa_ms"
+       ],
+       "properties": {
+        "realce_db": {
+         "type": "number",
+         "minimum": 0.1,
+         "maximum": 60,
+         "description": "o valor que satura o eixo de realce. 2,5 dB MEDIDO (p95 do realce em 391 palavras de 2 produções: 2,33 e 2,95). Os 6,0 dB que a spec propunha comprimiriam o eixo inteiro em [0; 0,63]."
+        },
+        "alongamento": {
+         "type": "number",
+         "minimum": 1.001,
+         "maximum": 20,
+         "description": "2,0× — p90 medido nas mesmas 2 produções."
+        },
+        "pausa_ms": {
+         "type": "number",
+         "minimum": 80,
+         "maximum": 5000,
+         "description": "350 ms. Não desça: o Deepgram quantiza em 80 ms e 94% das palavras destas peças têm pausa_depois = 0."
+        }
+       },
+       "description": "denominador de cada termo do eixo prosódia, com clamp em [0,1]."
+      },
+      "papel_para_componente": {
+       "type": "object",
+       "additionalProperties": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "description": "papel → componente do MotionKit. Tabela, não `if` no script: é o que permite trocar a gramática de uma peça sem tocar em código. `DrawStroke:<gerador>` nomeia o gerador de traço (underlinePath, loopCirclePath, strikePath, ...)."
+      },
+      "cor_por_papel": {
+       "type": "object",
+       "additionalProperties": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "description": "papel → CHAVE do Theme (`highlight`, `ink`, `postits.autoridade`), NUNCA hex. É o que faz a mesma partitura servir creator-2 (#FF8FA3) e ref-C-oferta (#FCED65)."
+      },
+      "zona_por_papel": {
+       "type": "object",
+       "additionalProperties": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "description": "papel → dica de zona (`topo` | `lateral` | `faixa-legenda` | `pleno`). A partitura NÃO decide x/y: posição depende de zona livre medida, luminância do bolso e enquadramento. 🔴 A zona decide a supressão de legenda: só item em `faixa-legenda`/`pleno` disputa espaço com ela."
+      },
+      "sfx_por_papel": {
+       "type": "object",
+       "additionalProperties": {
+        "type": [
+         "string",
+         "null"
+        ]
+       },
+       "description": "papel → nome do SFX (public/sfx/*.wav), ou null."
+      }
+     }
+    }
+   }
+  },
+  "zonas_ui": {
+   "description": "FRAÇÕES do quadro, nunca px — em px quebram no instante em que a resolução muda. null = a peça não toca em feed nenhum (player web, YouTube).",
+   "type": [
+    "object",
+    "null"
+   ],
+   "additionalProperties": true,
+   "properties": {
+    "topo_pct": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "fundo_pct": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    },
+    "direita_pct": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 1
+    }
+   }
+  },
+  "estrutura": {
+   "description": "checkpoints de roteiro como percentual da duração (só VSL usa hoje). São checagens do PLANO-EDICAO, não do corte.",
+   "type": [
+    "object",
+    "null"
+   ],
+   "additionalProperties": true
+  },
+  "entregaveis": {
+   "type": "array",
+   "items": {
+    "type": "string"
+   }
+  },
+  "qc": {
+   "type": "object",
+   "additionalProperties": true,
+   "properties": {
+    "obrigatorios": {
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "av_sync_ms": {
+     "type": "number",
+     "minimum": 0,
+     "maximum": 100
+    },
+    "amostras_cor_pct": {
+     "type": "array",
+     "items": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+     },
+     "description": "% da duração, não segundos fixos: numa VSL de 25 min segundos fixos amostram só o começo"
+    },
+    "preset_referencia": {
+     "type": "string",
+     "description": "preset do avconvert usado para gerar a referência Apple/Edits do qc-cor. É nomeado pela forma paisagem e preserva o aspecto da fonte, então uma peça 9:16 Full HD usa o mesmo nome de uma 16:9 Full HD."
+    }
+   }
+  },
+  "split": {
+   "type": [
+    "object",
+    "null"
+   ],
+   "description": "SPEC-28. Split-screen com b-roll: a REGRA de enquadramento, nunca o VALOR. `deslocamento_px` e `escala` são MEDIDOS por peça (split-plano.json) — um perfil que carregasse `deslocamento: 25%` seria o defeito de hoje com outro nome. `null` = este tipo de peça não usa split (screencast: cobrir o topo é esconder a demonstração).",
+   "additionalProperties": true,
+   "properties": {
+    "opaco_pct": {
+     "type": "number",
+     "minimum": 0.0,
+     "maximum": 1.0,
+     "description": "fração da ALTURA até onde o b-roll é 100% opaco"
+    },
+    "fim_pct": {
+     "type": "number",
+     "minimum": 0.0,
+     "maximum": 1.0,
+     "description": "fração da altura onde o alpha do b-roll chega a zero; a diferença para opaco_pct É a rampa"
+    },
+    "curva": {
+     "enum": [
+      "linear",
+      "smooth"
+     ]
+    },
+    "folga_topo_pct": {
+     "type": [
+      "number",
+      "null"
+     ],
+     "minimum": 0.0,
+     "maximum": 0.5,
+     "description": "respiro entre o fim da rampa e o topo da cabeça. null = o planejador AVISA em vez de fingir que sabe o alvo."
+    },
+    "percentil_cabeca": {
+     "type": "integer",
+     "minimum": 0,
+     "maximum": 50
+    },
+    "amostras_por_s": {
+     "type": "number",
+     "minimum": 0.5,
+     "maximum": 60
+    },
+    "escala_max": {
+     "type": "number",
+     "minimum": 1.0,
+     "maximum": 2.0,
+     "description": "teto do upscale da base. Estourar é exit 1 com motivo `teto`, NUNCA min(z, teto) em silêncio."
+    },
+    "margem_queixo_pct": {
+     "type": "number",
+     "minimum": 0.0,
+     "maximum": 1.0,
+     "description": "margem no pé do quadro que o queixo não pode invadir"
+    },
+    "perda_base_max_pct": {
+     "type": "number",
+     "minimum": 0.0,
+     "maximum": 1.0,
+     "description": "quanto da base pode sair pelo pé. Decisão editorial: o script avisa e exige --forcar."
+    },
+    "encaixar_no_corte": {
+     "type": "boolean",
+     "description": "a janela do split vai para a fronteira de segmento do timeline_real (SPEC-05), nunca do Σ(end−start)"
+    }
+   }
+  },
+  "_procedencia": {
+   "description": "gravado pelo `perfil.py resolver` no snapshot da produção; não existe nos perfis do catálogo",
+   "type": "object",
+   "additionalProperties": true
+  },
+  "_producao": {
+   "description": "dados da produção corrente (duracao_s do v1-montado.mp4, quando existir)",
+   "type": [
+    "object",
+    "null"
+   ],
+   "additionalProperties": true
+  },
+  "publicacao": {
+   "type": "object",
+   "additionalProperties": false,
+   "description": "SPEC-21 — os entregáveis de PUBLICAÇÃO em texto: `.srt`/`.vtt` não queimada e o bloco de capítulos do YouTube. Quem decide se saem é o perfil (`gerar`); os scripts `srt.py`/`capitulos.py` leem daqui e não carregam valor de formato. Perfil sem esta chave resolve para o PADRAO_PUBLICACAO embutido no palavras.py.",
+   "properties": {
+    "_motivo": {
+     "type": "string"
+    },
+    "srt": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "_motivo": {
+       "type": "string"
+      },
+      "gerar": {
+       "type": "boolean"
+      },
+      "arquivo": {
+       "type": "string",
+       "minLength": 1
+      },
+      "formatos": {
+       "type": "array",
+       "minItems": 1,
+       "items": {
+        "enum": [
+         "srt",
+         "vtt"
+        ]
+       }
+      },
+      "max_chars_linha": {
+       "type": "integer",
+       "minimum": 10,
+       "maximum": 120
+      },
+      "linhas": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 3
+      },
+      "cps_max": {
+       "type": "number",
+       "minimum": 1.0,
+       "description": "teto de caracteres por segundo. Valor alto (99) desliga o passe de CPS na prática — é escolha do operador, não erro."
+      },
+      "dur_min_s": {
+       "type": "number",
+       "minimum": 0.1,
+       "maximum": 5.0
+      },
+      "dur_max_s": {
+       "type": "number",
+       "minimum": 1.0
+      },
+      "gap_quebra_s": {
+       "type": "number",
+       "minimum": 0.05,
+       "maximum": 5.0
+      },
+      "gap_entre_cues_frames": {
+       "type": "integer",
+       "minimum": 0,
+       "maximum": 10
+      },
+      "caixa": {
+       "enum": [
+        "original",
+        "maiuscula"
+       ]
+      },
+      "fonte_palavras": {
+       "const": "edl-bruto",
+       "description": "único valor aceito. `transcript-montado` NÃO existe aqui: o ASR lê a emenda como fala contínua e inventa palavra — defeito já entregue."
+      }
+     }
+    },
+    "capitulos": {
+     "type": "object",
+     "additionalProperties": false,
+     "properties": {
+      "_motivo": {
+       "type": "string"
+      },
+      "gerar": {
+       "type": "boolean"
+      },
+      "arquivo": {
+       "type": "string",
+       "minLength": 1
+      },
+      "minimo": {
+       "type": "integer",
+       "minimum": 1,
+       "maximum": 50
+      },
+      "dur_min_s": {
+       "type": "number",
+       "minimum": 1.0,
+       "maximum": 600.0
+      },
+      "titulo_abertura": {
+       "type": "string",
+       "minLength": 1
+      },
+      "max_chars_titulo": {
+       "type": "integer",
+       "minimum": 10,
+       "maximum": 200
+      }
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,14 @@
+--- stdout
+[00→01]    1.53s               b0 | b1              
+         ouvido: um dois tres quatro
+[01→02]    3.23s               b1 | b2              
+         ouvido: tres quatro cinco seis
+[02→03]    5.33s               b2 | b3              
+         ouvido: cinco seis sete oito
+[03→04]    7.13s               b3 | b4              
+         ouvido: sete oito nove dez
+[04→05]    8.89s               b4 | b5              
+         ouvido: nove dez onze doze
+--- stderr
+
+5 emendas · 0 com flag

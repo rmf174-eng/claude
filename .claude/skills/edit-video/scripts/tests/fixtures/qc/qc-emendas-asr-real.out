@@ -1,0 +1,16 @@
+--- stdout
+[00→01]    1.53s               b0 | b1              
+         ouvido: 2, 3, 4.  ⚠️ SUMIU ['dois', 'tres']
+[01→02]    3.23s               b1 | b2              
+         ouvido: 4 5  ⚠️ SUMIU ['quatro', 'cinco']
+[02→03]    5.33s               b2 | b3              
+         ouvido: 6 7  ⚠️ SUMIU ['seis', 'sete']
+[03→04]    7.13s               b3 | b4              
+         ouvido: 8, 9, 10.  ⚠️ SUMIU ['oito', 'nove']
+[04→05]    8.63s               b4 | b5              
+         ouvido: 10, 11, 12.  ⚠️ SUMIU ['dez', 'onze']
+
+--- stderr
+fronteiras por frames reais: última = 10.200s (a soma nominal da EDL daria 10.130s — 70 ms de deriva acumulada)
+
+5 emendas · 5 com flag

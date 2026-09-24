@@ -1,0 +1,18 @@
+{
+  "name": "ilha",
+  "version": "0.17.0",
+  "description": "Ilha de edição local com montagem, direção visual, aprovação e QC de vídeo.",
+  "author": {
+    "name": "Ilha"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Ilha de edição",
+    "shortDescription": "Edite e aprove vídeos com um agente local.",
+    "longDescription": "Transforma brutos em uma peça editada, conduz a aprovação do corte e do look em uma interface local e fecha a entrega com verificações técnicas.",
+    "developerName": "Ilha",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": "Edite os vídeos desta pasta com a Ilha. Abra a interface de aprovação antes de começar e não avance de fase sem meu aceite na tela."
+  }
+}

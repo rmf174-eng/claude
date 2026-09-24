@@ -1,0 +1,27 @@
+{
+  "_leia": [
+    "Configuração de painel de preview do Claude Code. Copie para `.claude/launch.json`",
+    "na RAIZ do seu projeto e ajuste `--dir` para o diretório da produção.",
+    "",
+    "Onde o harness tem `preview_start`, isto abre a UI de aprovação num PAINEL,",
+    "ao lado da conversa. Onde não tem (a CLI de terminal, por exemplo), este",
+    "arquivo simplesmente não é lido e o preview abre no browser — o mesmo",
+    "servidor, a mesma UI, uma janela em vez de um painel.",
+    "",
+    "`autoPort: true` não é enfeite: o servidor escolhe uma porta efêmera por",
+    "sessão e duas produções abertas ao mesmo tempo colidiriam numa porta fixa.",
+    "O harness passa a porta que reservou em $PORT, e o servidor a aceita por flag."
+  ],
+  "configurations": [
+    {
+      "name": "ilha-preview",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "exec python3 .claude/skills/edit-video/preview/servidor.py servir --dir '<DIR-DA-PRODUCAO>' --porta \"$PORT\""
+      ],
+      "autoPort": true,
+      "port": 4830
+    }
+  ]
+}

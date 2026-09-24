@@ -1,0 +1,19 @@
+{
+  "contrato": "benchmark.edit-estilo/v1",
+  "salvo_em": "2026-08-08T15:52:03-03:00",
+  "revisao_base": 2,
+  "rerender": false,
+  "legenda": "karaoke",
+  "headline": "realce",
+  "acento": "#D14E72",
+  "acento_usado": true,
+  "elementos": {
+    "punch_alternado": true,
+    "split_broll": false,
+    "sfx": true,
+    "trilha": false,
+    "flash_no_corte": false
+  },
+  "gramatica_plano": "alternada",
+  "observacao": "o cartão do CTA pode entrar mais tarde"
+}

@@ -1,0 +1,1521 @@
+[
+{
+"text": "a",
+"startMs": 0,
+"endMs": 300,
+"timestampMs": 150,
+"confidence": 0.99
+},
+{
+"text": " montagem",
+"startMs": 370,
+"endMs": 670,
+"timestampMs": 520,
+"confidence": 0.99
+},
+{
+"text": " entra",
+"startMs": 740,
+"endMs": 1040,
+"timestampMs": 890,
+"confidence": 0.99
+},
+{
+"text": " no",
+"startMs": 1110,
+"endMs": 1410,
+"timestampMs": 1260,
+"confidence": 0.99
+},
+{
+"text": " corte",
+"startMs": 1480,
+"endMs": 1780,
+"timestampMs": 1630,
+"confidence": 0.99
+},
+{
+"text": " e",
+"startMs": 1850,
+"endMs": 2150,
+"timestampMs": 2000,
+"confidence": 0.99
+},
+{
+"text": " o",
+"startMs": 2220,
+"endMs": 2520,
+"timestampMs": 2370,
+"confidence": 0.99
+},
+{
+"text": " plano",
+"startMs": 2590,
+"endMs": 2890,
+"timestampMs": 2740,
+"confidence": 0.99
+},
+{
+"text": " segue",
+"startMs": 2960,
+"endMs": 3260,
+"timestampMs": 3110,
+"confidence": 0.99
+},
+{
+"text": " na",
+"startMs": 3330,
+"endMs": 3630,
+"timestampMs": 3480,
+"confidence": 0.99
+},
+{
+"text": " mesma",
+"startMs": 3700,
+"endMs": 4000,
+"timestampMs": 3850,
+"confidence": 0.99
+},
+{
+"text": " direção",
+"startMs": 4070,
+"endMs": 4370,
+"timestampMs": 4220,
+"confidence": 0.99
+},
+{
+"text": " enquanto",
+"startMs": 4440,
+"endMs": 4740,
+"timestampMs": 4590,
+"confidence": 0.99
+},
+{
+"text": " a",
+"startMs": 4810,
+"endMs": 5110,
+"timestampMs": 4960,
+"confidence": 0.99
+},
+{
+"text": " legenda",
+"startMs": 5180,
+"endMs": 5480,
+"timestampMs": 5330,
+"confidence": 0.99
+},
+{
+"text": " acompanha",
+"startMs": 5550,
+"endMs": 5850,
+"timestampMs": 5700,
+"confidence": 0.99
+},
+{
+"text": " a",
+"startMs": 5920,
+"endMs": 6220,
+"timestampMs": 6070,
+"confidence": 0.99
+},
+{
+"text": " fala",
+"startMs": 6290,
+"endMs": 6590,
+"timestampMs": 6440,
+"confidence": 0.99
+},
+{
+"text": " sem",
+"startMs": 6660,
+"endMs": 6960,
+"timestampMs": 6810,
+"confidence": 0.99
+},
+{
+"text": " cortar",
+"startMs": 7030,
+"endMs": 7330,
+"timestampMs": 7180,
+"confidence": 0.99
+},
+{
+"text": " palavra",
+"startMs": 7400,
+"endMs": 7700,
+"timestampMs": 7550,
+"confidence": 0.99
+},
+{
+"text": " nenhuma",
+"startMs": 7770,
+"endMs": 8070,
+"timestampMs": 7920,
+"confidence": 0.99
+},
+{
+"text": " no",
+"startMs": 8140,
+"endMs": 8440,
+"timestampMs": 8290,
+"confidence": 0.99
+},
+{
+"text": " meio",
+"startMs": 8510,
+"endMs": 8810,
+"timestampMs": 8660,
+"confidence": 0.99
+},
+{
+"text": " da",
+"startMs": 8880,
+"endMs": 9180,
+"timestampMs": 9030,
+"confidence": 0.99
+},
+{
+"text": " linha",
+"startMs": 9250,
+"endMs": 9550,
+"timestampMs": 9400,
+"confidence": 0.99
+},
+{
+"text": " do",
+"startMs": 9620,
+"endMs": 9920,
+"timestampMs": 9770,
+"confidence": 0.99
+},
+{
+"text": " quadro",
+"startMs": 9990,
+"endMs": 10290,
+"timestampMs": 10140,
+"confidence": 0.99
+},
+{
+"text": " o",
+"startMs": 10880,
+"endMs": 11180,
+"timestampMs": 11030,
+"confidence": 0.99
+},
+{
+"text": " corte",
+"startMs": 11250,
+"endMs": 11550,
+"timestampMs": 11400,
+"confidence": 0.99
+},
+{
+"text": " respeita",
+"startMs": 11620,
+"endMs": 11920,
+"timestampMs": 11770,
+"confidence": 0.99
+},
+{
+"text": " a",
+"startMs": 11990,
+"endMs": 12290,
+"timestampMs": 12140,
+"confidence": 0.99
+},
+{
+"text": " respiração",
+"startMs": 12360,
+"endMs": 12660,
+"timestampMs": 12510,
+"confidence": 0.99
+},
+{
+"text": " de",
+"startMs": 12730,
+"endMs": 13030,
+"timestampMs": 12880,
+"confidence": 0.99
+},
+{
+"text": " quem",
+"startMs": 13100,
+"endMs": 13400,
+"timestampMs": 13250,
+"confidence": 0.99
+},
+{
+"text": " fala",
+"startMs": 13470,
+"endMs": 13770,
+"timestampMs": 13620,
+"confidence": 0.99
+},
+{
+"text": " e",
+"startMs": 13840,
+"endMs": 14140,
+"timestampMs": 13990,
+"confidence": 0.99
+},
+{
+"text": " não",
+"startMs": 14210,
+"endMs": 14510,
+"timestampMs": 14360,
+"confidence": 0.99
+},
+{
+"text": " a",
+"startMs": 14580,
+"endMs": 14880,
+"timestampMs": 14730,
+"confidence": 0.99
+},
+{
+"text": " régua",
+"startMs": 14950,
+"endMs": 15250,
+"timestampMs": 15100,
+"confidence": 0.99
+},
+{
+"text": " de",
+"startMs": 15320,
+"endMs": 15620,
+"timestampMs": 15470,
+"confidence": 0.99
+},
+{
+"text": " quem",
+"startMs": 15690,
+"endMs": 15990,
+"timestampMs": 15840,
+"confidence": 0.99
+},
+{
+"text": " monta.",
+"startMs": 16060,
+"endMs": 16360,
+"timestampMs": 16210,
+"confidence": 0.99
+},
+{
+"text": " a",
+"startMs": 16950,
+"endMs": 17250,
+"timestampMs": 17100,
+"confidence": 0.99
+},
+{
+"text": " legenda",
+"startMs": 17320,
+"endMs": 17620,
+"timestampMs": 17470,
+"confidence": 0.99
+},
+{
+"text": " cabe",
+"startMs": 17690,
+"endMs": 17990,
+"timestampMs": 17840,
+"confidence": 0.99
+},
+{
+"text": " na",
+"startMs": 18060,
+"endMs": 18360,
+"timestampMs": 18210,
+"confidence": 0.99
+},
+{
+"text": " largura",
+"startMs": 18430,
+"endMs": 18730,
+"timestampMs": 18580,
+"confidence": 0.99
+},
+{
+"text": " que",
+"startMs": 18800,
+"endMs": 19100,
+"timestampMs": 18950,
+"confidence": 0.99
+},
+{
+"text": " o",
+"startMs": 19170,
+"endMs": 19470,
+"timestampMs": 19320,
+"confidence": 0.99
+},
+{
+"text": " perfil",
+"startMs": 19540,
+"endMs": 19840,
+"timestampMs": 19690,
+"confidence": 0.99
+},
+{
+"text": " de",
+"startMs": 19910,
+"endMs": 20210,
+"timestampMs": 20060,
+"confidence": 0.99
+},
+{
+"text": " peça",
+"startMs": 20280,
+"endMs": 20580,
+"timestampMs": 20430,
+"confidence": 0.99
+},
+{
+"text": " declara,",
+"startMs": 20650,
+"endMs": 20950,
+"timestampMs": 20800,
+"confidence": 0.99
+},
+{
+"text": " sempre.",
+"startMs": 21020,
+"endMs": 21320,
+"timestampMs": 21170,
+"confidence": 0.99
+},
+{
+"text": " olha.",
+"startMs": 21910,
+"endMs": 22210,
+"timestampMs": 22060,
+"confidence": 0.99
+},
+{
+"text": " o",
+"startMs": 22380,
+"endMs": 22680,
+"timestampMs": 22530,
+"confidence": 0.99
+},
+{
+"text": " plano",
+"startMs": 22750,
+"endMs": 23050,
+"timestampMs": 22900,
+"confidence": 0.99
+},
+{
+"text": " alterna",
+"startMs": 23120,
+"endMs": 23420,
+"timestampMs": 23270,
+"confidence": 0.99
+},
+{
+"text": " quando",
+"startMs": 23490,
+"endMs": 23790,
+"timestampMs": 23640,
+"confidence": 0.99
+},
+{
+"text": " o",
+"startMs": 23860,
+"endMs": 24160,
+"timestampMs": 24010,
+"confidence": 0.99
+},
+{
+"text": " assunto",
+"startMs": 24230,
+"endMs": 24530,
+"timestampMs": 24380,
+"confidence": 0.99
+},
+{
+"text": " muda",
+"startMs": 24600,
+"endMs": 24900,
+"timestampMs": 24750,
+"confidence": 0.99
+},
+{
+"text": " de",
+"startMs": 24970,
+"endMs": 25270,
+"timestampMs": 25120,
+"confidence": 0.99
+},
+{
+"text": " lado",
+"startMs": 25340,
+"endMs": 25640,
+"timestampMs": 25490,
+"confidence": 0.99
+},
+{
+"text": " da",
+"startMs": 25710,
+"endMs": 26010,
+"timestampMs": 25860,
+"confidence": 0.99
+},
+{
+"text": " tela.",
+"startMs": 26080,
+"endMs": 26380,
+"timestampMs": 26230,
+"confidence": 0.99
+},
+{
+"text": " pronto.",
+"startMs": 26970,
+"endMs": 27270,
+"timestampMs": 27120,
+"confidence": 0.99
+},
+{
+"text": " a",
+"startMs": 27440,
+"endMs": 27740,
+"timestampMs": 27590,
+"confidence": 0.99
+},
+{
+"text": " cor",
+"startMs": 27810,
+"endMs": 28110,
+"timestampMs": 27960,
+"confidence": 0.99
+},
+{
+"text": " sai",
+"startMs": 28180,
+"endMs": 28480,
+"timestampMs": 28330,
+"confidence": 0.99
+},
+{
+"text": " do",
+"startMs": 28550,
+"endMs": 28850,
+"timestampMs": 28700,
+"confidence": 0.99
+},
+{
+"text": " catálogo",
+"startMs": 28920,
+"endMs": 29220,
+"timestampMs": 29070,
+"confidence": 0.99
+},
+{
+"text": " e",
+"startMs": 29290,
+"endMs": 29590,
+"timestampMs": 29440,
+"confidence": 0.99
+},
+{
+"text": " nunca",
+"startMs": 29660,
+"endMs": 29960,
+"timestampMs": 29810,
+"confidence": 0.99
+},
+{
+"text": " do",
+"startMs": 30030,
+"endMs": 30330,
+"timestampMs": 30180,
+"confidence": 0.99
+},
+{
+"text": " gosto",
+"startMs": 30400,
+"endMs": 30700,
+"timestampMs": 30550,
+"confidence": 0.99
+},
+{
+"text": " de",
+"startMs": 30770,
+"endMs": 31070,
+"timestampMs": 30920,
+"confidence": 0.99
+},
+{
+"text": " quem",
+"startMs": 31140,
+"endMs": 31440,
+"timestampMs": 31290,
+"confidence": 0.99
+},
+{
+"text": " está",
+"startMs": 31510,
+"endMs": 31810,
+"timestampMs": 31660,
+"confidence": 0.99
+},
+{
+"text": " montando",
+"startMs": 31880,
+"endMs": 32180,
+"timestampMs": 32030,
+"confidence": 0.99
+},
+{
+"text": " a",
+"startMs": 32250,
+"endMs": 32550,
+"timestampMs": 32400,
+"confidence": 0.99
+},
+{
+"text": " peça.",
+"startMs": 32620,
+"endMs": 32920,
+"timestampMs": 32770,
+"confidence": 0.99
+},
+{
+"text": " veja.",
+"startMs": 33510,
+"endMs": 33810,
+"timestampMs": 33660,
+"confidence": 0.99
+},
+{
+"text": " o",
+"startMs": 33980,
+"endMs": 34280,
+"timestampMs": 34130,
+"confidence": 0.99
+},
+{
+"text": " teste",
+"startMs": 34350,
+"endMs": 34650,
+"timestampMs": 34500,
+"confidence": 0.99
+},
+{
+"text": " planta",
+"startMs": 34720,
+"endMs": 35020,
+"timestampMs": 34870,
+"confidence": 0.99
+},
+{
+"text": " o",
+"startMs": 35090,
+"endMs": 35390,
+"timestampMs": 35240,
+"confidence": 0.99
+},
+{
+"text": " defeito",
+"startMs": 35460,
+"endMs": 35760,
+"timestampMs": 35610,
+"confidence": 0.99
+},
+{
+"text": " que",
+"startMs": 35830,
+"endMs": 36130,
+"timestampMs": 35980,
+"confidence": 0.99
+},
+{
+"text": " o",
+"startMs": 36200,
+"endMs": 36500,
+"timestampMs": 36350,
+"confidence": 0.99
+},
+{
+"text": " portão",
+"startMs": 36570,
+"endMs": 36870,
+"timestampMs": 36720,
+"confidence": 0.99
+},
+{
+"text": " tem",
+"startMs": 36940,
+"endMs": 37240,
+"timestampMs": 37090,
+"confidence": 0.99
+},
+{
+"text": " que",
+"startMs": 37310,
+"endMs": 37610,
+"timestampMs": 37460,
+"confidence": 0.99
+},
+{
+"text": " acusar,",
+"startMs": 37680,
+"endMs": 37980,
+"timestampMs": 37830,
+"confidence": 0.99
+},
+{
+"text": " e",
+"startMs": 38050,
+"endMs": 38350,
+"timestampMs": 38200,
+"confidence": 0.99
+},
+{
+"text": " mede",
+"startMs": 38420,
+"endMs": 38720,
+"timestampMs": 38570,
+"confidence": 0.99
+},
+{
+"text": " quanto",
+"startMs": 38790,
+"endMs": 39090,
+"timestampMs": 38940,
+"confidence": 0.99
+},
+{
+"text": " varreu.",
+"startMs": 39160,
+"endMs": 39460,
+"timestampMs": 39310,
+"confidence": 0.99
+},
+{
+"text": " o",
+"startMs": 40050,
+"endMs": 40350,
+"timestampMs": 40200,
+"confidence": 0.99
+},
+{
+"text": " formato",
+"startMs": 40420,
+"endMs": 40720,
+"timestampMs": 40570,
+"confidence": 0.99
+},
+{
+"text": " da",
+"startMs": 40790,
+"endMs": 41090,
+"timestampMs": 40940,
+"confidence": 0.99
+},
+{
+"text": " peça",
+"startMs": 41160,
+"endMs": 41460,
+"timestampMs": 41310,
+"confidence": 0.99
+},
+{
+"text": " é",
+"startMs": 41530,
+"endMs": 41830,
+"timestampMs": 41680,
+"confidence": 0.99
+},
+{
+"text": " dado,",
+"startMs": 41900,
+"endMs": 42200,
+"timestampMs": 42050,
+"confidence": 0.99
+},
+{
+"text": " não",
+"startMs": 42270,
+"endMs": 42570,
+"timestampMs": 42420,
+"confidence": 0.99
+},
+{
+"text": " código,",
+"startMs": 42640,
+"endMs": 42940,
+"timestampMs": 42790,
+"confidence": 0.99
+},
+{
+"text": " e",
+"startMs": 43010,
+"endMs": 43310,
+"timestampMs": 43160,
+"confidence": 0.99
+},
+{
+"text": " mora",
+"startMs": 43380,
+"endMs": 43680,
+"timestampMs": 43530,
+"confidence": 0.99
+},
+{
+"text": " no",
+"startMs": 43750,
+"endMs": 44050,
+"timestampMs": 43900,
+"confidence": 0.99
+},
+{
+"text": " perfil",
+"startMs": 44120,
+"endMs": 44420,
+"timestampMs": 44270,
+"confidence": 0.99
+},
+{
+"text": " dela.",
+"startMs": 44490,
+"endMs": 44790,
+"timestampMs": 44640,
+"confidence": 0.99
+},
+{
+"text": " toda",
+"startMs": 45380,
+"endMs": 45680,
+"timestampMs": 45530,
+"confidence": 0.99
+},
+{
+"text": " medição",
+"startMs": 45750,
+"endMs": 46050,
+"timestampMs": 45900,
+"confidence": 0.99
+},
+{
+"text": " que",
+"startMs": 46120,
+"endMs": 46420,
+"timestampMs": 46270,
+"confidence": 0.99
+},
+{
+"text": " vira",
+"startMs": 46490,
+"endMs": 46790,
+"timestampMs": 46640,
+"confidence": 0.99
+},
+{
+"text": " número",
+"startMs": 46860,
+"endMs": 47160,
+"timestampMs": 47010,
+"confidence": 0.99
+},
+{
+"text": " aqui",
+"startMs": 47230,
+"endMs": 47530,
+"timestampMs": 47380,
+"confidence": 0.99
+},
+{
+"text": " foi",
+"startMs": 47600,
+"endMs": 47900,
+"timestampMs": 47750,
+"confidence": 0.99
+},
+{
+"text": " feita",
+"startMs": 47970,
+"endMs": 48270,
+"timestampMs": 48120,
+"confidence": 0.99
+},
+{
+"text": " numa",
+"startMs": 48340,
+"endMs": 48640,
+"timestampMs": 48490,
+"confidence": 0.99
+},
+{
+"text": " máquina,",
+"startMs": 48710,
+"endMs": 49010,
+"timestampMs": 48860,
+"confidence": 0.99
+},
+{
+"text": " com",
+"startMs": 49080,
+"endMs": 49380,
+"timestampMs": 49230,
+"confidence": 0.99
+},
+{
+"text": " um",
+"startMs": 49450,
+"endMs": 49750,
+"timestampMs": 49600,
+"confidence": 0.99
+},
+{
+"text": " comando.",
+"startMs": 49820,
+"endMs": 50120,
+"timestampMs": 49970,
+"confidence": 0.99
+},
+{
+"text": " quem",
+"startMs": 50710,
+"endMs": 51010,
+"timestampMs": 50860,
+"confidence": 0.99
+},
+{
+"text": " lê",
+"startMs": 51080,
+"endMs": 51380,
+"timestampMs": 51230,
+"confidence": 0.99
+},
+{
+"text": " o",
+"startMs": 51450,
+"endMs": 51750,
+"timestampMs": 51600,
+"confidence": 0.99
+},
+{
+"text": " relatório",
+"startMs": 51820,
+"endMs": 52120,
+"timestampMs": 51970,
+"confidence": 0.99
+},
+{
+"text": " precisa",
+"startMs": 52190,
+"endMs": 52490,
+"timestampMs": 52340,
+"confidence": 0.99
+},
+{
+"text": " saber",
+"startMs": 52560,
+"endMs": 52860,
+"timestampMs": 52710,
+"confidence": 0.99
+},
+{
+"text": " o",
+"startMs": 52930,
+"endMs": 53230,
+"timestampMs": 53080,
+"confidence": 0.99
+},
+{
+"text": " que",
+"startMs": 53300,
+"endMs": 53600,
+"timestampMs": 53450,
+"confidence": 0.99
+},
+{
+"text": " não",
+"startMs": 53670,
+"endMs": 53970,
+"timestampMs": 53820,
+"confidence": 0.99
+},
+{
+"text": " foi",
+"startMs": 54040,
+"endMs": 54340,
+"timestampMs": 54190,
+"confidence": 0.99
+},
+{
+"text": " medido,",
+"startMs": 54410,
+"endMs": 54710,
+"timestampMs": 54560,
+"confidence": 0.99
+},
+{
+"text": " e",
+"startMs": 54780,
+"endMs": 55080,
+"timestampMs": 54930,
+"confidence": 0.99
+},
+{
+"text": " por",
+"startMs": 55150,
+"endMs": 55450,
+"timestampMs": 55300,
+"confidence": 0.99
+},
+{
+"text": " quê.",
+"startMs": 55520,
+"endMs": 55820,
+"timestampMs": 55670,
+"confidence": 0.99
+},
+{
+"text": " um",
+"startMs": 56410,
+"endMs": 56710,
+"timestampMs": 56560,
+"confidence": 0.99
+},
+{
+"text": " portão",
+"startMs": 56780,
+"endMs": 57080,
+"timestampMs": 56930,
+"confidence": 0.99
+},
+{
+"text": " que",
+"startMs": 57150,
+"endMs": 57450,
+"timestampMs": 57300,
+"confidence": 0.99
+},
+{
+"text": " varre",
+"startMs": 57520,
+"endMs": 57820,
+"timestampMs": 57670,
+"confidence": 0.99
+},
+{
+"text": " zero",
+"startMs": 57890,
+"endMs": 58190,
+"timestampMs": 58040,
+"confidence": 0.99
+},
+{
+"text": " e",
+"startMs": 58260,
+"endMs": 58560,
+"timestampMs": 58410,
+"confidence": 0.99
+},
+{
+"text": " sai",
+"startMs": 58630,
+"endMs": 58930,
+"timestampMs": 58780,
+"confidence": 0.99
+},
+{
+"text": " zero",
+"startMs": 59000,
+"endMs": 59300,
+"timestampMs": 59150,
+"confidence": 0.99
+},
+{
+"text": " é",
+"startMs": 59370,
+"endMs": 59670,
+"timestampMs": 59520,
+"confidence": 0.99
+},
+{
+"text": " igual",
+"startMs": 59740,
+"endMs": 60040,
+"timestampMs": 59890,
+"confidence": 0.99
+},
+{
+"text": " a",
+"startMs": 60110,
+"endMs": 60410,
+"timestampMs": 60260,
+"confidence": 0.99
+},
+{
+"text": " um",
+"startMs": 60480,
+"endMs": 60780,
+"timestampMs": 60630,
+"confidence": 0.99
+},
+{
+"text": " portão",
+"startMs": 60850,
+"endMs": 61150,
+"timestampMs": 61000,
+"confidence": 0.99
+},
+{
+"text": " quebrado.",
+"startMs": 61220,
+"endMs": 61520,
+"timestampMs": 61370,
+"confidence": 0.99
+},
+{
+"text": " a",
+"startMs": 62110,
+"endMs": 62410,
+"timestampMs": 62260,
+"confidence": 0.99
+},
+{
+"text": " fixture",
+"startMs": 62480,
+"endMs": 62780,
+"timestampMs": 62630,
+"confidence": 0.99
+},
+{
+"text": " do",
+"startMs": 62850,
+"endMs": 63150,
+"timestampMs": 63000,
+"confidence": 0.99
+},
+{
+"text": " produto",
+"startMs": 63220,
+"endMs": 63520,
+"timestampMs": 63370,
+"confidence": 0.99
+},
+{
+"text": " existe",
+"startMs": 63590,
+"endMs": 63890,
+"timestampMs": 63740,
+"confidence": 0.99
+},
+{
+"text": " para",
+"startMs": 63960,
+"endMs": 64260,
+"timestampMs": 64110,
+"confidence": 0.99
+},
+{
+"text": " o",
+"startMs": 64330,
+"endMs": 64630,
+"timestampMs": 64480,
+"confidence": 0.99
+},
+{
+"text": " exemplo",
+"startMs": 64700,
+"endMs": 65000,
+"timestampMs": 64850,
+"confidence": 0.99
+},
+{
+"text": " abrir",
+"startMs": 65070,
+"endMs": 65370,
+"timestampMs": 65220,
+"confidence": 0.99
+},
+{
+"text": " num",
+"startMs": 65440,
+"endMs": 65740,
+"timestampMs": 65590,
+"confidence": 0.99
+},
+{
+"text": " clone",
+"startMs": 65810,
+"endMs": 66110,
+"timestampMs": 65960,
+"confidence": 0.99
+},
+{
+"text": " novo.",
+"startMs": 66180,
+"endMs": 66480,
+"timestampMs": 66330,
+"confidence": 0.99
+},
+{
+"text": " nada",
+"startMs": 67070,
+"endMs": 67370,
+"timestampMs": 67220,
+"confidence": 0.99
+},
+{
+"text": " de",
+"startMs": 67440,
+"endMs": 67740,
+"timestampMs": 67590,
+"confidence": 0.99
+},
+{
+"text": " fala",
+"startMs": 67810,
+"endMs": 68110,
+"timestampMs": 67960,
+"confidence": 0.99
+},
+{
+"text": " de",
+"startMs": 68180,
+"endMs": 68480,
+"timestampMs": 68330,
+"confidence": 0.99
+},
+{
+"text": " pessoa",
+"startMs": 68550,
+"endMs": 68850,
+"timestampMs": 68700,
+"confidence": 0.99
+},
+{
+"text": " real",
+"startMs": 68920,
+"endMs": 69220,
+"timestampMs": 69070,
+"confidence": 0.99
+},
+{
+"text": " entra",
+"startMs": 69290,
+"endMs": 69590,
+"timestampMs": 69440,
+"confidence": 0.99
+},
+{
+"text": " num",
+"startMs": 69660,
+"endMs": 69960,
+"timestampMs": 69810,
+"confidence": 0.99
+},
+{
+"text": " arquivo",
+"startMs": 70030,
+"endMs": 70330,
+"timestampMs": 70180,
+"confidence": 0.99
+},
+{
+"text": " que",
+"startMs": 70400,
+"endMs": 70700,
+"timestampMs": 70550,
+"confidence": 0.99
+},
+{
+"text": " embarca",
+"startMs": 70770,
+"endMs": 71070,
+"timestampMs": 70920,
+"confidence": 0.99
+},
+{
+"text": " no",
+"startMs": 71140,
+"endMs": 71440,
+"timestampMs": 71290,
+"confidence": 0.99
+},
+{
+"text": " pacote.",
+"startMs": 71510,
+"endMs": 71810,
+"timestampMs": 71660,
+"confidence": 0.99
+},
+{
+"text": " a",
+"startMs": 72400,
+"endMs": 72700,
+"timestampMs": 72550,
+"confidence": 0.99
+},
+{
+"text": " régua",
+"startMs": 72770,
+"endMs": 73070,
+"timestampMs": 72920,
+"confidence": 0.99
+},
+{
+"text": " da",
+"startMs": 73140,
+"endMs": 73440,
+"timestampMs": 73290,
+"confidence": 0.99
+},
+{
+"text": " legenda",
+"startMs": 73510,
+"endMs": 73810,
+"timestampMs": 73660,
+"confidence": 0.99
+},
+{
+"text": " é",
+"startMs": 73880,
+"endMs": 74180,
+"timestampMs": 74030,
+"confidence": 0.99
+},
+{
+"text": " a",
+"startMs": 74250,
+"endMs": 74550,
+"timestampMs": 74400,
+"confidence": 0.99
+},
+{
+"text": " tabela",
+"startMs": 74620,
+"endMs": 74920,
+"timestampMs": 74770,
+"confidence": 0.99
+},
+{
+"text": " de",
+"startMs": 74990,
+"endMs": 75290,
+"timestampMs": 75140,
+"confidence": 0.99
+},
+{
+"text": " larguras",
+"startMs": 75360,
+"endMs": 75660,
+"timestampMs": 75510,
+"confidence": 0.99
+},
+{
+"text": " da",
+"startMs": 75730,
+"endMs": 76030,
+"timestampMs": 75880,
+"confidence": 0.99
+},
+{
+"text": " fonte,",
+"startMs": 76100,
+"endMs": 76400,
+"timestampMs": 76250,
+"confidence": 0.99
+},
+{
+"text": " medida",
+"startMs": 76470,
+"endMs": 76770,
+"timestampMs": 76620,
+"confidence": 0.99
+},
+{
+"text": " do",
+"startMs": 76840,
+"endMs": 77140,
+"timestampMs": 76990,
+"confidence": 0.99
+},
+{
+"text": " arquivo.",
+"startMs": 77210,
+"endMs": 77510,
+"timestampMs": 77360,
+"confidence": 0.99
+},
+{
+"text": " o",
+"startMs": 78100,
+"endMs": 78400,
+"timestampMs": 78250,
+"confidence": 0.99
+},
+{
+"text": " agrupamento",
+"startMs": 78470,
+"endMs": 78770,
+"timestampMs": 78620,
+"confidence": 0.99
+},
+{
+"text": " fecha",
+"startMs": 78840,
+"endMs": 79140,
+"timestampMs": 78990,
+"confidence": 0.99
+},
+{
+"text": " página",
+"startMs": 79210,
+"endMs": 79510,
+"timestampMs": 79360,
+"confidence": 0.99
+},
+{
+"text": " por",
+"startMs": 79580,
+"endMs": 79880,
+"timestampMs": 79730,
+"confidence": 0.99
+},
+{
+"text": " largura,",
+"startMs": 79950,
+"endMs": 80250,
+"timestampMs": 80100,
+"confidence": 0.99
+},
+{
+"text": " por",
+"startMs": 80320,
+"endMs": 80620,
+"timestampMs": 80470,
+"confidence": 0.99
+},
+{
+"text": " pausa",
+"startMs": 80690,
+"endMs": 80990,
+"timestampMs": 80840,
+"confidence": 0.99
+},
+{
+"text": " e",
+"startMs": 81060,
+"endMs": 81360,
+"timestampMs": 81210,
+"confidence": 0.99
+},
+{
+"text": " por",
+"startMs": 81430,
+"endMs": 81730,
+"timestampMs": 81580,
+"confidence": 0.99
+},
+{
+"text": " pontuação.",
+"startMs": 81800,
+"endMs": 82100,
+"timestampMs": 81950,
+"confidence": 0.99
+},
+{
+"text": " duas",
+"startMs": 82690,
+"endMs": 82990,
+"timestampMs": 82840,
+"confidence": 0.99
+},
+{
+"text": " janelas",
+"startMs": 83060,
+"endMs": 83360,
+"timestampMs": 83210,
+"confidence": 0.99
+},
+{
+"text": " coladas",
+"startMs": 83430,
+"endMs": 83730,
+"timestampMs": 83580,
+"confidence": 0.99
+},
+{
+"text": " viram",
+"startMs": 83800,
+"endMs": 84100,
+"timestampMs": 83950,
+"confidence": 0.99
+},
+{
+"text": " corte",
+"startMs": 84170,
+"endMs": 84470,
+"timestampMs": 84320,
+"confidence": 0.99
+},
+{
+"text": " na",
+"startMs": 84540,
+"endMs": 84840,
+"timestampMs": 84690,
+"confidence": 0.99
+},
+{
+"text": " fronteira,",
+"startMs": 84910,
+"endMs": 85210,
+"timestampMs": 85060,
+"confidence": 0.99
+},
+{
+"text": " e",
+"startMs": 85280,
+"endMs": 85580,
+"timestampMs": 85430,
+"confidence": 0.99
+},
+{
+"text": " isso",
+"startMs": 85650,
+"endMs": 85950,
+"timestampMs": 85800,
+"confidence": 0.99
+},
+{
+"text": " é",
+"startMs": 86020,
+"endMs": 86320,
+"timestampMs": 86170,
+"confidence": 0.99
+},
+{
+"text": " decisão",
+"startMs": 86390,
+"endMs": 86690,
+"timestampMs": 86540,
+"confidence": 0.99
+},
+{
+"text": " editorial.",
+"startMs": 86760,
+"endMs": 87060,
+"timestampMs": 86910,
+"confidence": 0.99
+},
+{
+"text": " sim.",
+"startMs": 89150,
+"endMs": 89450,
+"timestampMs": 89300,
+"confidence": 0.99
+},
+{
+"text": " certo.",
+"startMs": 92520,
+"endMs": 92820,
+"timestampMs": 92670,
+"confidence": 0.99
+}
+]

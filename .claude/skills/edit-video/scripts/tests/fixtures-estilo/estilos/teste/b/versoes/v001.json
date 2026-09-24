@@ -1,0 +1,31 @@
+{
+ "contrato": "benchmark.estilo-usuario/v1",
+ "usuario": "teste",
+ "slug": "b",
+ "versao": "v001",
+ "nome": "B (herda de A)",
+ "nota": "Fixture §8.2 casos 5 e 6: herança de UM nível.",
+ "perfis": [
+  "teste"
+ ],
+ "herda": "teste/a",
+ "picks": {},
+ "grafismo": {},
+ "parametros": {},
+ "perfil_overrides": {
+  "cor": {
+   "grade": "eq=saturation=1.40"
+  }
+ },
+ "procedencia": {
+  "tipo": "proprio",
+  "fonte": null,
+  "nota_de_uso": null
+ },
+ "historico": {
+  "criado_em": "2026-08-08T10:00:00-03:00",
+  "derivado_de": null,
+  "confirmado_por": "teste",
+  "mudou": []
+ }
+}

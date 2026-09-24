@@ -1,0 +1,124 @@
+--- stdout
+{
+ "schema": "benchmark.qc-nivel/v1",
+ "modo": "balanco",
+ "gerado_em": "2026-08-08T23:31:55-03:00",
+ "video": "v1-montado.mp4",
+ "medicao": {
+  "referencia": "mediana-dos-outros (leave-one-out)",
+  "balanco_db": 5.0,
+  "mascara": "transcript+piso",
+  "palavras_origem": "derivado-do-bruto",
+  "n_palavras": 13,
+  "sample_rate": 48000,
+  "janela_rms_s": 0.02,
+  "piso_db": -70.7,
+  "piso_metodo": "p15",
+  "n_ranges": 6,
+  "fronteiras": "timeline_real",
+  "n_janelas": 510,
+  "n_janelas_mascaradas": 330,
+  "min_janelas_por_range": 20,
+  "mediana_por_quem": {}
+ },
+ "ranges": [
+  {
+   "i": 0,
+   "beat": "b0",
+   "quem": null,
+   "inicio_s": 0.0,
+   "fim_s": 1.533,
+   "n_janelas": 77,
+   "n_janelas_mascaradas": 47,
+   "n_palavras": 2,
+   "dur_palavras_s": 0.883,
+   "nivel_db": -12.9,
+   "referencia_db": -14.8,
+   "delta_db": 1.9,
+   "flag": "ok"
+  },
+  {
+   "i": 1,
+   "beat": "b1",
+   "quem": null,
+   "inicio_s": 1.533,
+   "fim_s": 3.233,
+   "n_janelas": 86,
+   "n_janelas_mascaradas": 54,
+   "n_palavras": 2,
+   "dur_palavras_s": 1.045,
+   "nivel_db": -14.8,
+   "referencia_db": -14.6,
+   "delta_db": -0.2,
+   "flag": "ok"
+  },
+  {
+   "i": 2,
+   "beat": "b2",
+   "quem": null,
+   "inicio_s": 3.233,
+   "fim_s": 5.333,
+   "n_janelas": 106,
+   "n_janelas_mascaradas": 70,
+   "n_palavras": 3,
+   "dur_palavras_s": 1.327,
+   "nivel_db": -15.6,
+   "referencia_db": -14.6,
+   "delta_db": -1.1,
+   "flag": "ok"
+  },
+  {
+   "i": 3,
+   "beat": "b3",
+   "quem": null,
+   "inicio_s": 5.333,
+   "fim_s": 7.133,
+   "n_janelas": 91,
+   "n_janelas_mascaradas": 62,
+   "n_palavras": 2,
+   "dur_palavras_s": 1.15,
+   "nivel_db": -15.2,
+   "referencia_db": -14.6,
+   "delta_db": -0.6,
+   "flag": "ok"
+  },
+  {
+   "i": 4,
+   "beat": "b4",
+   "quem": null,
+   "inicio_s": 7.133,
+   "fim_s": 8.633,
+   "n_janelas": 76,
+   "n_janelas_mascaradas": 51,
+   "n_palavras": 2,
+   "dur_palavras_s": 0.967,
+   "nivel_db": -14.6,
+   "referencia_db": -14.8,
+   "delta_db": 0.2,
+   "flag": "ok"
+  },
+  {
+   "i": 5,
+   "beat": "b5",
+   "quem": null,
+   "inicio_s": 8.633,
+   "fim_s": 10.2,
+   "n_janelas": 79,
+   "n_janelas_mascaradas": 48,
+   "n_palavras": 2,
+   "dur_palavras_s": 0.918,
+   "nivel_db": -13.2,
+   "referencia_db": -14.8,
+   "delta_db": 1.6,
+   "flag": "ok"
+  }
+ ],
+ "veredito": {
+  "flags": 0,
+  "n_low_level": 0,
+  "n_sem_nivel": 0,
+  "aprovado": true
+ }
+}
+
+--- stderr

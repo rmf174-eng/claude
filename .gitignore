@@ -1,0 +1,115 @@
+# .gitignore DO PRODUTO — não é o desta árvore.
+#
+# Entra no export por `MANIFESTO.export.raiz_produto`, no lugar do `.gitignore`
+# da ilha, pelo mesmo mecanismo do `README.produto.md` e do `Root.produto.tsx`.
+#
+# ═══════════════════════════════════════════════════════════════════════════
+# 🔴 POR QUE ELE EXISTE (achado R-9 da revalidação de 2026-08-11)
+#
+# O `.gitignore` da ilha barra `*.mp4`, `*.wav`, `*.webm` e `**/public/*`, e
+# estava certo: nesta árvore aquilo é bruto de creator, 25 GB de mídia e a
+# própria produção. Ele viajava para o repo do produto, e ali a mesma regra
+# barrava a mídia QUE É PRODUTO — medido: de 406 arquivos do export, **64 não
+# sobreviviam ao `git clone`** (39 `.webm` do catálogo + 25 sob `public/`).
+# Consequência para quem instala: `npx remotion render HookTest` falhava com
+# `404 … public/v1-montado.mp4` antes do frame 0, e a galeria de estilos abria
+# com 39 posters e ZERO vídeo, enquanto o README promete "cada estilo aparece
+# em vídeo".
+#
+# A decisão de 2026-08-11 é: **mídia genérica do produto entra no
+# git DO PRODUTO**. Genérica tem definição, e cada arquivo foi conferido um a
+# um antes de entrar — o que está liberado abaixo está nomeado, e o que não
+# passou no critério continua barrado, com o motivo escrito.
+# ═══════════════════════════════════════════════════════════════════════════
+
+# regenerável
+node_modules/
+__pycache__/
+*.pyc
+.venv*/
+out/
+.DS_Store
+
+# build e material de produção que mora em public/
+**/public/*
+
+# mídia — o default continua NÃO
+*.mp4
+*.MP4
+*.mov
+*.MOV
+*.webm
+*.mp3
+*.wav
+*.m4a
+*.zip
+
+# binário de plataforma única (baixado pelo clean-audio, sha256 no README dele)
+tools/audio-clean/deep-filter
+
+# dado de usuário e saída de execução
+.env
+.env.local
+*.pem
+*.key
+**/.preview/cache/
+**/segs/
+# 🔴 SPEC-46: os binários que `matte.py` e `rastrear-rosto.py` compilam sob
+# demanda com `swiftc` caem aqui. Sem esta linha, rodar a bateria de testes num
+# clone deixa `?? .claude/skills/edit-video/scripts/.bin/matte-vision` no
+# `git status` — e quem instalou não distingue "instalação limpa" de "eu mexi em
+# alguma coisa". O `.gitignore` da NOSSA árvore já os ignorava; o do produto não,
+# e a diferença só apareceu ao rodar os 25 test_*.py da raiz de um clone.
+**/.bin/
+
+# ═══════════════ o que É produto e por isso VOLTA ═══════════════
+# ⚠️ ORDEM IMPORTA: no gitignore vence o ÚLTIMO padrão que casa, então toda
+# negação tem que vir DEPOIS dos blocos amplos acima. E não se desfaz a
+# exclusão de um arquivo cujo DIRETÓRIO-PAI está excluído — por isso a primeira
+# linha devolve o diretório `public/sfx/` antes de devolver o que há dentro.
+
+# 1 · os previews do catálogo de estilos (39 arquivos, 2,1 MB)
+#     Conferidos frame a frame em 2026-08-11 (folha de contato dos 39): fundo
+#     cinza com SILHUETA neutra, e todo texto é literalmente "amostra" /
+#     "texto de amostra" / "A frase que segura o primeiro segundo" / "Nome de
+#     quem fala". Nenhum rosto, nenhum nome de pessoa. A trilha de áudio dos 39
+#     é SILÊNCIO DIGITAL (pico 0 de 32767, medido nos 39) — nenhum SFX viaja
+#     escondido dentro do container.
+!tools/remotion-compositor/catalogo/previews/*.webm
+
+# 2 · o clipe de arranque das composições (2 arquivos, 4,2 MB)
+#     SINTÉTICOS: `testsrc2` (barras de cor) com tom senoidal de ~220 Hz.
+#     Medido em 2026-08-11: frames aos 2 s e aos 30 s são barras de cor; a
+#     análise espectral do áudio dá três bins ADJACENTES em 219/221/223 Hz, que
+#     é vazamento espectral de UMA senoide — não é voz (voz tem fundamental +
+#     harmônicos espalhados + formantes). Sem eles o primeiro `remotion render`
+#     de quem instala falha em 404, e um produto que só roda depois que você
+#     traz o seu vídeo não dá para experimentar.
+!**/public/v1-montado.mp4
+!**/public/v1-graded.mp4
+
+# 3 · os SFX, e SÓ os que têm licença conferida
+#     O diretório volta primeiro (senão nenhuma negação abaixo alcança nada).
+!**/public/sfx/
+!**/public/sfx/*.json
+!**/public/sfx/*.wav
+#
+#     🔶 E DOIS FICAM FORA, por licença NÃO CONFERIDA.
+#     `MANIFESTO.ativos.sfx` declara, arquivo por arquivo: `pop` e `pencil` são
+#     "próprio — sample gravado por nós, uso liberado com o pacote"; `typing`,
+#     `shutter` e `scratch` são CC0; `pop-hi`, `pop-lo` derivam de `pop`. Esses
+#     sete entram. `whoosh.wav` está marcado "🔶 NÃO CONFERIDA — catálogo
+#     remotion.media", e `whoosh-soft.wav` deriva dele. Redistribuir arquivo com
+#     licença que ninguém conferiu não é decisão de quem empacota: os dois
+#     continuam `ativos` (fora do git, conferidos por sha256), e `chaves.py
+#     --ativos` os reporta ausentes num clone novo sem reprovar.
+#     Medido: nenhuma das 4 composições do produto (Main, Graphics, HookTest,
+#     SfxDemo) referencia whoosh — as dependências literais do que embarca são
+#     `pencil`, `typing` e `pop`, e os dados de exemplo citam só `pencil`.
+**/public/sfx/whoosh.wav
+**/public/sfx/whoosh-soft.wav
+#
+#     E o histórico de reprocessamento não é produto: `_historico/` guarda o
+#     WAV anterior ao tratamento de cada SFX, que é evidência NOSSA. Ele sai do
+#     corte pelo `nunca_sai`; a linha aqui é cinto de segurança.
+**/public/sfx/_historico/

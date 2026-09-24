@@ -1,0 +1,39 @@
+{
+  "artifact": "ILHA-v0.17.zip",
+  "generated_by": "tools/pacote/criar-release.py",
+  "payload": {
+    "bytes": 29695758,
+    "files": 698,
+    "hash_excludes": [
+      "RELEASE.json"
+    ],
+    "tree_sha256": "c4ea6508e89cbf1c88527797bb31af3f87262fcc26e5b675bdcb99d7c133122e"
+  },
+  "plugin_version": "0.17.0",
+  "schema": "ilha.release/v1",
+  "source": {
+    "dirty": true,
+    "head": "0534716ff0638ee59d29f2b512123fa4c7304fb9",
+    "repo": "benchmark-system/ilha"
+  },
+  "validation": {
+    "export_smoke_tests": [
+      "skills/edit-video/preview/tests/test_timeline_zoom.py",
+      "skills/edit-video/preview/tests/test_aprovacao_nonce.py",
+      "skills/edit-video/scripts/tests/test_galeria_estilos.py",
+      "skills/edit-video/scripts/tests/test_contrato_ui.py"
+    ],
+    "exported_test_gate": {
+      "coverage": "all distributed tests, semantic aliases once",
+      "order": "lexicographic",
+      "pattern": "test_*.py"
+    },
+    "plugin_validator": [
+      "source",
+      "staging",
+      "extraction"
+    ],
+    "source_gate": "scripts/verificar.sh"
+  },
+  "version": "0.17"
+}

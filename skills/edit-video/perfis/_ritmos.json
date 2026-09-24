@@ -1,0 +1,27 @@
+{
+  "_comentario": [
+    "Ritmos nomeados, referenciáveis por `\"ritmo\": \"colado\"` em qualquer camada da",
+    "cadeia de merge (perfil, creator-override ou --set). O que estiver escrito aqui",
+    "é mesclado por cima do bloco `ritmo` corrente, então um creator pode dizer",
+    "`{\"ritmo\": \"dinamico\"}` e ainda sobrescrever um campo isolado depois.",
+    "Origem dos números: edit-video/SKILL.md:44 (pads por creator)."
+  ],
+
+  "normal": {
+    "pads": {"pre": 0.12, "post": 0.20},
+    "cap": 0.25,
+    "rel": 0.0
+  },
+
+  "dinamico": {
+    "pads": {"pre": 0.02, "post": 0.06},
+    "cap": 0.25,
+    "rel": 0.0
+  },
+
+  "colado": {
+    "pads": {"pre": 0.02, "post": 0.02},
+    "cap": 0.25,
+    "rel": 10.0
+  }
+}

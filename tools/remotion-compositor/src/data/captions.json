@@ -1,0 +1,58 @@
+[
+  {
+    "text": "Este",
+    "startMs": 0,
+    "endMs": 320,
+    "timestampMs": 160,
+    "confidence": 0.99
+  },
+  {
+    "text": " é",
+    "startMs": 400,
+    "endMs": 720,
+    "timestampMs": 560,
+    "confidence": 0.99
+  },
+  {
+    "text": " um",
+    "startMs": 800,
+    "endMs": 1120,
+    "timestampMs": 960,
+    "confidence": 0.99
+  },
+  {
+    "text": " exemplo",
+    "startMs": 1200,
+    "endMs": 1520,
+    "timestampMs": 1360,
+    "confidence": 0.99
+  },
+  {
+    "text": " de",
+    "startMs": 1600,
+    "endMs": 1920,
+    "timestampMs": 1760,
+    "confidence": 0.99
+  },
+  {
+    "text": " legenda",
+    "startMs": 2000,
+    "endMs": 2320,
+    "timestampMs": 2160,
+    "confidence": 0.99
+  },
+  {
+    "text": " do",
+    "startMs": 2400,
+    "endMs": 2720,
+    "timestampMs": 2560,
+    "confidence": 0.99
+  },
+  {
+    "text": " produto",
+    "startMs": 2800,
+    "endMs": 3120,
+    "timestampMs": 2960,
+    "confidence": 0.99
+  }
+]

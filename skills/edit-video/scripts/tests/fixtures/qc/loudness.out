@@ -1,0 +1,4 @@
+--- stdout
+./v1-montado.mp4  I=-18.6 TP=-3.8 LRA=1.5 (alvo I=-14 TP=-1.5) → REPROVA: I -18.6 vs alvo -14.0 (erro -4.60 LU > tol 0.50)
+
+--- stderr

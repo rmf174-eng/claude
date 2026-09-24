@@ -1,0 +1,52 @@
+{
+ "schema": "benchmark.edit-recipe/v1",
+ "fonte": {
+  "handle": "@fixture",
+  "url": null,
+  "tem_bruto": false
+ },
+ "montagem": {
+  "pads_estimados_s": {
+   "pre": 0.02,
+   "post": 0.02
+  }
+ },
+ "planos": [
+  {
+   "n": "A",
+   "zoom": 1.0
+  },
+  {
+   "n": "B",
+   "zoom": 1.27
+  }
+ ],
+ "gramatica_de_plano": "alterna nativo e punch-in a cada corte de frase",
+ "tipografia": {
+  "legenda": {
+   "y_centro_pct": 79,
+   "palavras_por_pagina": [
+    2,
+    4
+   ],
+   "familia": "grotesca neutra semibold"
+  },
+  "titulo": {
+   "linhas": [
+    {
+     "anim": "type-on com cursor"
+    }
+   ]
+  }
+ },
+ "audio": {
+  "lufs_integrado": -14.4,
+  "cadeia_equivalente": "acompressor=threshold=-30dB:ratio=6,loudnorm=I=-14.4"
+ },
+ "cor": {
+  "cadeia_equivalente": "eq=saturation=1.18:gamma=0.95"
+ },
+ "densidade": {
+  "elementos_por_10s": 0.9
+ }
+}

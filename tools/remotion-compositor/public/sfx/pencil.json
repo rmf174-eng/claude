@@ -1,0 +1,35 @@
+{
+ "schema": "benchmark.sfx/v1",
+ "nome": "pencil",
+ "classe": "textura",
+ "origem": {
+  "tipo": "arquivo",
+  "caminho": "_historico/pencil-eab95943.wav",
+  "sha256": "eab959430baed6374930de7d6ac6ca8e0e5e269109722b92a69759d026420ac5",
+  "licenca": null,
+  "fonte": "migrado por sfx-preparar.py",
+  "seed": null
+ },
+ "antes": {
+  "onset_ms": 135.0,
+  "corpo_ms": 1715.0,
+  "lufs": -23.7,
+  "pico_dbfs": -3.0
+ },
+ "depois": {
+  "onset_ms": 3.0,
+  "corpo_ms": 1714.0,
+  "lufs": -21.6,
+  "pico_dbfs": -1.0
+ },
+ "sha256_wav": "d68f41c4533a85d0facf17bf36dbe6833425d01ee85d675bc4ace4f68fd3bb76",
+ "gerado_em": "2026-08-09T00:35:05-03:00",
+ "gerado_por": "sfx-preparar.py",
+ "ganho_db": 2.0,
+ "corte_s": [
+  0.132,
+  1.917
+ ],
+ "reprocessado": true,
+ "ganho_limitado_por": "pico: ganho 3.60 dB reduzido para 2.00 dB"
+}
